@@ -19,5 +19,15 @@ module Janitek
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+
+    
+    config.app_generators do |g|
+      g.test_framework      :test_unit, fixture_replacement: :fabrication
+      g.fixture_replacement :fabrication, dir: "test/fabricators"
+    end
+
+    
+    config.filter_parameters += [:password, :password_confirmation, :current_password]
   end
 end

@@ -55,6 +55,8 @@ gem 'will_paginate'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# For Heroku
+gem 'rails_12factor', group: :production
 
 # Testing aids
 group :test do

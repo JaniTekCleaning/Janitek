@@ -37,6 +37,17 @@ body {
   }
 }
 
+.navbar > .container .navbar-brand{
+  background-image: image-url('janitek-logo-black.png');
+  background-size: 100% 100%;
+  width:150px;
+  height:50px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  .hiddentext{ display: none }
+}
+
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover{
   background-color: #0073AE;

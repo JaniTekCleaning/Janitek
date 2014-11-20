@@ -34,6 +34,14 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
+# WebBrick keeps bricking up, so use thin instead
+gem 'thin'
+
+# improved ActiveRecord requests
+gem 'squeel'
+
+# easy pagination
+gem 'will_paginate'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

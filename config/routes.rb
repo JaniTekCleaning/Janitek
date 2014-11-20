@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :clients
+
   get 'root/index'
 
   devise_for :users

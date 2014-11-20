@@ -14,11 +14,33 @@
  *= require_self
  */
 
+ /* Colors for logo are: #8DC63F and #0073AE; */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 body {
   padding-top: 50px;
+  background-color: #0073AE;
+  color: #8DC63F;
+}
+
+.navbar-inverse{
+  background-color: #8DC63F;
+  border-color:#0073AE;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+  color :#0073AE;
+  &:hover{
+  	color:#000;
+  }
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover{
+  background-color: #0073AE;
+  color:#8DC63F;
 }
 
 h1{
@@ -28,5 +50,8 @@ h1{
 #logged_in_user{
   padding:15px;
   display:block;
-  color:#ccc;
+  color: #000;
+  a{
+    color :#0073AE;
+  }
 }

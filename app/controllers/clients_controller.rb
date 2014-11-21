@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
 
   def index
     @name=params[:by_name]
-    @clients = Client.filter(params.slice(:by_name)).paginate(:page=>params[:page], :per_page => 5)
+    @clients = Client.filter(params.slice(:by_name)).order('name asc').paginate(:page=>params[:page], :per_page => 12)
     respond_with(@clients)
   end
 

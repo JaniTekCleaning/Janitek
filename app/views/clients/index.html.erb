@@ -7,18 +7,23 @@
   </div>
 <% end %>
 
-<div class='pagination'>
+<div class='pagination-div'>
   <div class="page_info">
     <%= page_entries_info @posts %>
   </div>
   <%= will_paginate @clients %>
 </div>
-
-<ul id='client_index_list'>
-  <% @clients.each do |client| %>
-    <li><%= link_to client.name, client %>
+<div id="client-index-list">
+  <% for idx in (1..@clients.size) %>
+    <% if idx%4==1 %>
+      <div class='row'>
+    <% end %>
+      <div class='col-md-3'><%= link_to @clients[idx-1].name, @clients[idx-1] %></div>
+    <% if idx%4==0 %>
+      </div>
+    <% end %>
   <% end %>
-</ul>
+</div>
 
 <br>
 

@@ -1,19 +1,44 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Number:</strong>
-  <%= @client.number %>
-</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
+<div class='row identity-info'>
+  <div class='col-md-6 col-md-push-3'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <h1><%= @client.name %></h1>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-5'>
+        <p><%= @client.number %></p>
+      </div>
+      <div class='col-md-6'>
+        <p><%= @client.email %></p>
+      </div>
+      <div class='col-md-1'>
+        <p><%= link_to 'Edit', edit_client_path(@client) %> </p>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-3 col-md-pull-6'>
+    <%= image_tag 'http://lorempixel.com/200/200' %>
+  </div>
+</div>
 
-<p>
-  <strong>Hot button list:</strong>
-  <%= @client.hot_button_items %>
-</p>
-
-<%= link_to 'Edit', edit_client_path(@client) %> |
+<div class='row'>
+  <div class='col-md-4'>
+    <h3>Contracts</h3>
+  </div>
+  <div class='col-md-4'>
+    <h3>Task Schedule</h3>
+  </div>
+  <div class='col-md-4'>
+    <h3>Hot Button List</h3>
+    <ol>
+      <% @client.hot_button_items.each do |item| %>
+        <li><%= item %>
+      <% end %>
+    </ol>
+    (Edit)
+  </div>
+</div>
 <%= link_to 'Back', clients_path %>

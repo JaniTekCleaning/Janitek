@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: [:show, :edit, :update, :destroy, :edit_hotbutton, :update_hotbutton]
 
   respond_to :html
 
@@ -21,6 +21,16 @@ class ClientsController < ApplicationController
   def edit
   end
 
+  def edit_hotbutton
+  end
+
+  def update_hotbutton
+    items=params[:hotbutton_item].reject{|item| item.empty?}
+    @client.hot_button_items=items
+    @client.save
+    respond_with(@client)
+  end
+
   def create
     @client = Client.new(client_params)
     @client.save
@@ -39,7 +49,9 @@ class ClientsController < ApplicationController
 
   private
     def set_client
-      @client = Client.find(params[:id])
+      id=params[:id]
+      id||=params[:client_id]
+      @client = Client.find(id)
     end
 
     def client_params

@@ -1,0 +1,15 @@
+<h1>Edit Hotbutton List</h1>
+
+<%= form_tag(client_update_hotbutton_path(@client), method: :put) do -%>
+<h2 id='tester'>Clickity</h2>
+<ol id='EditHotbuttonList'>
+  <% for idx in (1..10) %>
+    <li>
+      <input type='text' name='hotbutton_item[]'
+        value='<%=@client.hot_button_items[idx-1] %>' class='hotbutton_item'></li>
+    </li>
+  <% end %>
+</ol>
+
+<%= submit_tag "Save" %>
+<% end %>

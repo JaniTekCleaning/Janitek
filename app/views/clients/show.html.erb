@@ -1,5 +1,3 @@
-
-
 <div class='row identity-info'>
   <div class='col-md-6 col-md-push-3'>
     <div class='row'>
@@ -38,7 +36,16 @@
         <li><%= item %>
       <% end %>
     </ol>
-    (Edit)
+    <%= link_to 'Edit', client_edit_hotbutton_path(@client)%>
   </div>
+</div>
+<h2>Members</h2>
+<div class='row'>
+  <% @client.members.each do |member| %>
+  <%= link_to member.full_name, client_member_path(@client,member) %>
+  <% end %>
+</div>
+<div>
+  <%= link_to 'Add Member', new_client_member_path(@client) %>
 </div>
 <%= link_to 'Back', clients_path %>

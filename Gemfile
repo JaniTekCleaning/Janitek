@@ -29,6 +29,8 @@ gem 'spring',        group: :development
 
 # Authentication
 gem 'devise'
+# Authorization
+gem "pundit"
 
 # Adding bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'

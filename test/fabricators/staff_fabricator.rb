@@ -1,0 +1,2 @@
+Fabricator(:staff) do
+end

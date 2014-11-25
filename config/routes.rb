@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
-  resources :clients
+
+  resources :clients do
+    resources :members
+    get 'edit_hotbutton'
+    put 'update_hotbutton'
+  end
 
   get 'root/index'
 
-  devise_for :users
+  devise_for :users, :skip => [:registrations]
   root to: "root#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -6,5 +6,7 @@ class Client < ActiveRecord::Base
   validates :number, :presence=>true
   validates :email, :presence=>true
 
+  has_many :members
+
   scope :by_name, -> (name){ where "lower(name) LIKE ?", "%#{name.downcase}%"}
 end

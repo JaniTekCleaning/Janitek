@@ -46,4 +46,11 @@ class ClientsControllerTest < ActionController::TestCase
 
     assert_redirected_to clients_path
   end
+
+  should 'update hot button items' do
+    Client.expects(:find).returns(@client)
+    @client.expects(:hot_button_items=)
+    @client.expects(:save)
+    put :update_hotbutton, client_id:@client, hotbutton_item:["1","2","3"]
+  end
 end

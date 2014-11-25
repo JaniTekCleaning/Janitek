@@ -1,0 +1,3 @@
+class Schedule < Link
+  
+end

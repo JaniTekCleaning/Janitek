@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :members
     get 'edit_hotbutton'
     put 'update_hotbutton'
+    resources :contracts, :only=>[:new,:create,:show]
   end
 
   get 'root/index'

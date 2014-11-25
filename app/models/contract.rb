@@ -1,0 +1,3 @@
+class Contract < Link
+  
+end

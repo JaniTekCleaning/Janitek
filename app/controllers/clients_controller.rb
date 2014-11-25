@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:show, :edit, :update, :destroy, :edit_hotbutton, :update_hotbutton]
+  before_action :set_client, except:[:index,:new,:create]
 
   respond_to :html
 
@@ -21,16 +21,6 @@ class ClientsController < ApplicationController
   def edit
   end
 
-  def edit_hotbutton
-  end
-
-  def update_hotbutton
-    items=params[:hotbutton_item].reject{|item| item.empty?}
-    @client.hot_button_items=items
-    @client.save
-    respond_with(@client)
-  end
-
   def create
     @client = Client.new(client_params)
     @client.save
@@ -47,6 +37,28 @@ class ClientsController < ApplicationController
     respond_with(@client)
   end
 
+  def edit_hotbutton
+  end
+
+  def update_hotbutton
+    items=params[:hotbutton_item].reject{|item| item.empty?}
+    @client.hot_button_items=items
+    @client.save
+    respond_with(@client)
+  end
+
+  def new_contract
+    @link=Link.new
+    respond_with(@link)
+  end
+
+  def create_contract
+    debugger
+    #@link = Link.new(link_params.merge({:is_contract?=>true}))
+    @link.save
+    respond_with(@client,@link)
+  end
+
   private
     def set_client
       id=params[:id]
@@ -56,5 +68,9 @@ class ClientsController < ApplicationController
 
     def client_params
       params.require(:client).permit(:name, :number, :email, :hot_button_list)
+    end
+
+    def link_params
+      params.require(:link).permit(:url)
     end
 end

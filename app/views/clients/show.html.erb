@@ -18,7 +18,9 @@
     </div>
   </div>
   <div class='col-md-3 col-md-pull-6'>
-    <%= image_tag 'http://lorempixel.com/200/200' %>
+    <% if @client.logo.file? %>
+      <%= image_tag @client.logo.url(:profile) %>
+    <% end %>
   </div>
 </div>
 

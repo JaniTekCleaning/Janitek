@@ -11,4 +11,11 @@ class Client < ActiveRecord::Base
   has_many :schedules
 
   scope :by_name, -> (name){ where "lower(name) LIKE ?", "%#{name.downcase}%"}
+
+  has_attached_file :logo, :url => ":s3_domain_url", styles:{
+    thumb:'50x50>',
+    profile: '200x200'
+    }, :path=>"/:class/:attachment/:id_partition/:style/:filename"
+
+  validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 end

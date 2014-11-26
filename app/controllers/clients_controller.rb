@@ -57,7 +57,7 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:name, :number, :email, :hot_button_list)
+      params.require(:client).permit(:name, :number, :email, :hot_button_list, :logo)
     end
 
     def link_params

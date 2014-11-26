@@ -21,13 +21,14 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(member_registration_params)
+    @member.client=@client
     @member.save
     respond_with @client, @member
   end
 
   def update
     @member.update(member_update_params)
-    @member.update_with_password(member_password_params) if member_password_params.any?
+    @member.update_with_password(member_password_params) if member_password_params.delete_if{|k,v|v.empty?}.any?
     respond_with @client, @member
   end
 
@@ -52,10 +53,10 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_registration_params
-      params.require(:member).permit(:email,:first_name,:last_name,:password,:password_confirmation)
+      params.require(:member).permit(:email,:first_name,:last_name,:password,:password_confirmation,:avatar)
     end
     def member_update_params
-      params.require(:member).permit(:email,:first_name,:last_name)
+      params.require(:member).permit(:email,:first_name,:last_name,:avatar)
     end
     def member_password_params
       params.require(:member).permit(:password,:password_confirmation,:current_password)

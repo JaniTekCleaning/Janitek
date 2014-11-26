@@ -26,6 +26,13 @@ class MembersControllerTest < ActionController::TestCase
     assert_redirected_to client_member_path(@client, assigns(:member))
   end
 
+  test 'created member should have client id' do
+    post :create, member: { :email=>'ronlugge@test.test', :first_name=>'ron',
+        :last_name=>'lugge', :password=>'password',:password_confirmation=>'password' },
+        client_id: @client.id
+    assert Member.last.client==@client, 'schedule should have client id assigned'
+  end
+
   test "should show member" do
     get :show, id: @member, client_id: @client.id
     assert_response :success

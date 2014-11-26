@@ -1,4 +1,6 @@
-This is show
+<div>
+  <%= image_tag @member.avatar.url(:profile) %>
+</div>
 
 <%= link_to 'Edit', edit_client_member_path(@client,@member) %> |
 <%= link_to 'Back', client_members_path(@client) %>

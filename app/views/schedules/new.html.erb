@@ -1,0 +1,34 @@
+<h1>New Schedule</h1>
+
+<%= form_for([:schedule,@client,@schedule], :url=>client_schedules_path(@client)) do |f| %>
+  <% if @schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+      <% @schedule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>Please note that you may use either the url or the file upload fields.  Using both at once is disrecommended.
+
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :s3, "File Upload" %><br />
+    <%= f.file_field :s3 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back', client_path(@client) %>

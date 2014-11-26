@@ -10,7 +10,9 @@ class ClientsController < ApplicationController
   end
 
   def show
-    respond_with(@client)
+    @contracts=@client.contracts.limit(10).order(created_at: :desc)
+    @schedules=@client.schedules.limit(10).order(created_at: :desc)
+    respond_with(@client,@contracts,@schedules)
   end
 
   def new
@@ -45,18 +47,6 @@ class ClientsController < ApplicationController
     @client.hot_button_items=items
     @client.save
     respond_with(@client)
-  end
-
-  def new_contract
-    @link=Link.new
-    respond_with(@link)
-  end
-
-  def create_contract
-    debugger
-    #@link = Link.new(link_params.merge({:is_contract?=>true}))
-    @link.save
-    respond_with(@client,@link)
   end
 
   private

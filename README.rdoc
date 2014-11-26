@@ -1,28 +1,9 @@
-== README
+Janitek customer portal project.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run project locally, you must fill in various environment variables.  Recommended procedure is to create a .env file with the following format:
 
-Things you may want to cover:
+S3_BUCKET_NAME=your_bucket_name
+AWS_ACCESS_KEY_ID=your_access_key_id
+AWS_SECRET_ACCESS_KEY=your_secret_access_key
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Obviously, replace the your_ items with the actual S3 access variables.  This file is ignored adn should NOT be checked into your repository.

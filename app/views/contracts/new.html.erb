@@ -13,9 +13,16 @@
     </div>
   <% end %>
 
+  <p>Please note that you may use either the url or the file upload fields.  Using both at once is disrecommended.
+
   <div class="field">
     <%= f.label :url %><br>
     <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :s3, "File Upload" %><br />
+    <%= f.file_field :s3 %>
   </div>
 
   <div class="actions">

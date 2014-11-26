@@ -28,7 +28,7 @@
     <%= link_to 'Add New', new_client_contract_path(@client) %>
     <ul>
     <% @client.contracts.limit(10).order(created_at: :desc).each do |contract| %>
-      <%= link_to contract.created_at.strftime("%b %d, %Y"),contract.url_to_use %>
+      <li><%= link_to contract.created_at.strftime("%b %d, %Y"),contract.url_to_use, :target=>'_blank' %></li>
     <% end %>
     </ul>
   </div>

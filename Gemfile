@@ -40,6 +40,9 @@ gem "pundit"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
+# Markdown rendering
+gem 'redcarpet'
+
 # WebBrick keeps bricking up, so use thin instead
 gem 'thin'
 

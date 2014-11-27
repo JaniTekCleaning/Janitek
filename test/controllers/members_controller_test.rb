@@ -48,11 +48,11 @@ class MembersControllerTest < ActionController::TestCase
     assert_redirected_to client_member_path(@client, assigns(:member))
   end
 
-  test "should destroy member" do
-    assert_difference('Member.count', -1) do
-      delete :destroy, id: @member, client_id: @client.id
-    end
+  # test "should destroy member" do
+  #   assert_difference('Member.count', -1) do
+  #     delete :destroy, id: @member, client_id: @client.id
+  #   end
 
-    assert_redirected_to client_path(@client)
-  end
+  #   assert_redirected_to client_path(@client)
+  # end
 end

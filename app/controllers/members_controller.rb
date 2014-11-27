@@ -32,13 +32,13 @@ class MembersController < ApplicationController
     respond_with @client, @member
   end
 
-  def destroy
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to client_path(@client), notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @member.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to client_path(@client), notice: 'Member was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

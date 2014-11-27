@@ -1,0 +1,30 @@
+<h1>Staff</h1>
+
+<%= form_tag(staff_index_path, method: :get) do %>
+  <div class="field">
+    <%= text_field_tag('by_name', @name) %>
+    <%= submit_tag 'Search' %>
+  </div>
+<% end %>
+
+<div class='pagination-div'>
+  <div class="page_info">
+    <%= page_entries_info @posts %>
+  </div>
+  <%= will_paginate @staff %>
+</div>
+<div id="client-index-list">
+  <% for idx in (1..@staff.size) %>
+    <% if idx%4==1 %>
+      <div class='row'>
+    <% end %>
+      <div class='col-md-3'><%= link_to @staff[idx-1].full_name, @staff[idx-1] %></div>
+    <% if idx%4==0 %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Staff', new_staff_path %>

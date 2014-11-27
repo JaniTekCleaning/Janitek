@@ -17,11 +17,11 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           <% else %>
-            <li <% if params[:controller]=='clients' %>class="active"<% end %>>
+            <li <% if ['clients','members','contracts','schedules'].include? params[:controller] %>class="active"<% end %>>
               <%= link_to('Clients',clients_path)%>
             </li>
-            <li <% if params[:staff]=='staff' %>class="active"<% end %>>
-              <%= link_to('Staff',clients_path)%>
+            <li <% if params[:controller]=='staff' %>class="active"<% end %>>
+              <%= link_to('Staff',staff_index_path)%>
             </li>
           <% end %>  
         <% end %>

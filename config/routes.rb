@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :contracts, :only=>[:new,:create,:show]
     resources :schedules, :only=>[:new,:create,:show]
   end
+  resources :staff
 
   get 'root/index'
 

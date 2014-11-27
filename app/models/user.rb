@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  scope :by_name, -> (name){ where "lower(first_name) LIKE ? OR lower(last_name) LIKE ?", "%#{name.downcase}%", "%#{name.downcase}%"}
+
   has_attached_file :avatar, :url => ":s3_domain_url", styles:{
     thumb:'50x50>',
     profile: '200x200'

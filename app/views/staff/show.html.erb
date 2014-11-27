@@ -1,0 +1,19 @@
+<div class='user_profile'>
+  <div>
+    <% if @staff.avatar.file? %>
+    <%= image_tag @staff.avatar.url(:profile), :class=>'profile_image' %>
+    <% end %>
+  </div>
+  <div>
+    <h1><%= @staff.full_name %> </h1>
+  </div>
+  <div>
+    <h3><%= @staff.email %> </h3>
+  </div>
+  <div>
+    <h3><%= markdown(@staff.description).html_safe %> </h3>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_staff_path(@staff) %> |
+<%= link_to 'Back', staff_index_path %>

@@ -11,7 +11,7 @@
     <h3><%= @staff.email %> </h3>
   </div>
   <div>
-    <h3><%= markdown(@staff.description).html_safe %> </h3>
+    <%= markdown(@staff.description).html_safe if @staff.description%>
   </div>
 </div>
 

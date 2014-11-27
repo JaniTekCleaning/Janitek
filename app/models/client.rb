@@ -9,6 +9,7 @@ class Client < ActiveRecord::Base
   has_many :members
   has_many :contracts
   has_many :schedules
+  belongs_to :staff
 
   scope :by_name, -> (name){ where "lower(name) LIKE ?", "%#{name.downcase}%"}
 

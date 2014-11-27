@@ -16,6 +16,11 @@
         <p><%= link_to 'Edit', edit_client_path(@client) %> </p>
       </div>
     </div>
+    <% if @client.staff %>
+      <div class='row'>
+        <p>Janitorial Lead: <%= link_to @client.staff.full_name, @client.staff %>.</p>
+      </div>
+    <% end %>
   </div>
   <div class='col-md-3 col-md-pull-6'>
     <% if @client.logo.file? %>

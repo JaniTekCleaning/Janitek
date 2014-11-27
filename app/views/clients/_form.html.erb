@@ -28,6 +28,12 @@
     <%= f.label :logo %><br />
     <%= f.file_field :logo %>
   </div>
+
+  <div class="field">
+    <%= f.label :staff, "Janitorial Lead" %><br>
+    <%= collection_select(:client, :staff_id, Staff.all.order('first_name'), :id, :full_name, prompt: true) %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,1 +1,13 @@
 <h1>Clients Root</h1>
+
+<p>Service Request</p>
+<% if current_user.client.contracts.last %>
+  <p><%= link_to 'Contract', client_contract_path(current_user.client, current_user.client.contracts.last) %></p>
+<% end %>
+<p>Contact Us</p>
+<p>Task Schedule</p>
+
+
+<% if current_user.client.staff %>
+  <%= link_to 'See My Janitorial Lead' ,staff_path(current_user.client.staff) %>
+<% end %>

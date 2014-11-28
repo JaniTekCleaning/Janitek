@@ -1,4 +1,4 @@
-<% if current_user.role==:staff %>
+<% if current_user.class==Member %>
   <%= render 'client' %>
 <% else %>
   <%= render 'staff' %>

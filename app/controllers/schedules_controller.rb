@@ -4,17 +4,20 @@ class SchedulesController < ApplicationController
 
   respond_to :html
   def new
+    authorize Schedule
     @schedule = Schedule.new
     respond_with(@schedule)
   end
 
   def create
+    authorize Schedule
     @schedule = Schedule.new(schedule_params.merge(:client_id=>@client.id))
     @schedule.save
     respond_with(@client,@schedule)
   end
 
   def show
+    authorize @schedule
     redirect_to @client
   end
 

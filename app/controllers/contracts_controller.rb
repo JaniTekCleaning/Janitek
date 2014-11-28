@@ -4,17 +4,20 @@ class ContractsController < ApplicationController
 
   respond_to :html
   def new
+    authorize Contract
     @contract = Contract.new
     respond_with(@contract)
   end
 
   def create
+    authorize Contract
     @contract = Contract.new(contract_params.merge(:client_id=>@client.id))
     @contract.save
     respond_with(@client,@contract)
   end
 
   def show
+    authorize @contract
     redirect_to @client
   end
 

@@ -5,21 +5,26 @@ class MembersController < ApplicationController
   respond_to :html
 
   def index
+    authorize Member
     redirect_to client_path(@client)
   end
 
   def show
+    authorize @member
     respond_with @client,@member
   end
 
   def new
+    authorize Member
     @member = Member.new
   end
 
   def edit
+    authorize @member
   end
 
   def create
+    authorize Member
     @member = Member.new(member_registration_params)
     @member.client=@client
     @member.save
@@ -27,6 +32,7 @@ class MembersController < ApplicationController
   end
 
   def update
+    authorize @member
     @member.update(member_update_params)
     @member.update_with_password(member_password_params) if member_password_params.delete_if{|k,v|v.empty?}.any?
     respond_with @client, @member

@@ -35,7 +35,7 @@
     <%= link_to 'Add New', new_client_contract_path(@client) %>
     <ul>
     <% @contracts.each do |contract| %>
-      <li><%= link_to contract.created_at.strftime("%b %d, %Y"),contract.url_to_use, :target=>'_blank' %></li>
+      <li><%= link_to contract.created_at.strftime("%b %d, %Y"),client_contract_path(@client, contract) %></li>
     <% end %>
     </ul>
   </div>

@@ -1,0 +1,6 @@
+<h1>Schedule</h1>
+
+<div class="embed-responsive embed-responsive-4by3">
+  <iframe class="embed-responsive-item" src="<%= @schedule.url_to_use %>"></iframe>
+</div>
+<p>Contract for <%= @client.name %> on <%= @schedule.created_at.strftime("%b %d, %Y") %> (<%= link_to 'visit', @schedule.url_to_use, :target=>'_blank'%>)</p>

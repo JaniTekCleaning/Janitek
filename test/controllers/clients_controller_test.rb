@@ -33,13 +33,14 @@ class ClientsControllerTest < ActionController::TestCase
       assert_raises(Pundit::NotAuthorizedError){get :show, id: @client}
     end
 
-    should "should get edit" do
+    should "should not get edit" do
       assert_raises(Pundit::NotAuthorizedError){get :edit, id: @client}
     end
 
-    should "should update client" do
-      patch :update, id: @client, client: { email: @client.email, hot_button_items: @client.hot_button_items, number: @client.number }
-      assert_redirected_to client_path(assigns(:client))
+    should "should not update client" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        patch :update, id: @client, client: { email: @client.email, hot_button_items: @client.hot_button_items, number: @client.number }
+      end
     end
 
     should "should destroy client" do

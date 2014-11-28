@@ -4,7 +4,8 @@ class StaffControllerTest < ActionController::TestCase
   context 'authorized as member' do
     setup do
       @staff = Fabricate(:staff)
-      sign_in Fabricate(:member, :client=>Fabricate(:client))
+      @client=Fabricate(:client)
+      sign_in Fabricate(:member, :client=>@client)
     end
 
     should "not get index" do
@@ -22,8 +23,14 @@ class StaffControllerTest < ActionController::TestCase
       end
     end
 
-    should "not show staff" do
+    should "not show general staff" do
       assert_raises(Pundit::NotAuthorizedError){get :show, id: @staff}
+    end
+
+    should "show janitorial lead staff" do
+      @client.update(:staff=>@staff)
+      get :show, id: @staff
+      assert_response :success
     end
 
     should "not get edit" do

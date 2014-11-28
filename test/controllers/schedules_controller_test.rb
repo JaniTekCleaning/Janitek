@@ -20,7 +20,7 @@ class SchedulesControllerTest < ActionController::TestCase
 
     should "should show schedule" do
       get :show, id: @schedule, client_id: @client.id
-      assert_redirected_to client_path(@client)
+      assert_response :success
     end
   end
   context 'authorized as general member' do
@@ -61,7 +61,7 @@ class SchedulesControllerTest < ActionController::TestCase
 
     should "should show schedule" do
       get :show, id: @schedule, client_id: @client.id
-      assert_redirected_to client_path(@client)
+      assert_response :success
     end
   end
   

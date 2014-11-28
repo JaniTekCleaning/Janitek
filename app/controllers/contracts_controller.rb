@@ -18,7 +18,7 @@ class ContractsController < ApplicationController
 
   def show
     authorize @contract
-    redirect_to @client
+    respond_with @client, @contract
   end
 
   private

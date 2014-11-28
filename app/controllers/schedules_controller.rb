@@ -18,7 +18,6 @@ class SchedulesController < ApplicationController
 
   def show
     authorize @schedule
-    redirect_to @client
   end
 
   private

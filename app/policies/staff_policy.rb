@@ -4,7 +4,7 @@ class StaffPolicy < ApplicationPolicy
   end
 
   def show?
-    user.class==Staff
+    user.class==Staff || user.client.staff==record
   end
 
   def edit?

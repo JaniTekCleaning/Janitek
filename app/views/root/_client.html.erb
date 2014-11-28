@@ -2,10 +2,14 @@
 
 <p>Service Request</p>
 <% if current_user.client.contracts.last %>
-  <p><%= link_to 'Contract', client_contract_path(current_user.client, current_user.client.contracts.last) %></p>
+  <p><%= link_to 'Contract', client_contract_path(current_user.client, current_user.client.contracts.last) %>
+  </p>
 <% end %>
 <p>Contact Us</p>
-<p>Task Schedule</p>
+<% if current_user.client.schedules.last %>
+  <p><%= link_to 'Schedule', client_schedule_path(current_user.client, current_user.client.schedules.last) %>
+  </p>
+<% end %>
 
 
 <% if current_user.client.staff %>

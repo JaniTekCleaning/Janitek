@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :contracts, :only=>[:new,:create,:show]
     resources :schedules, :only=>[:new,:create,:show]
   end
+  get 'contact_us' => 'contact#new'
+  post 'contact_us' => 'contact#create'
   resources :staff
 
   get 'root/index'

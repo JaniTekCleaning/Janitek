@@ -1,0 +1,16 @@
+<h1><%= @member.full_name %> History</h1>
+
+<ul>
+  <% @logs.each do |log| %>
+    <li>User requested <%= log.action %> <%= log.controller %> at <%= log.created_at %></li>
+  <% end %>
+</ul>
+
+<div class='pagination-div'>
+  <div class="page_info">
+    <%= page_entries_info @logs %>
+  </div>
+  <%= will_paginate @logs %>
+</div>
+
+<%= link_to @member.full_name, [@client,@member] %>

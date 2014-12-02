@@ -6,5 +6,10 @@ class RootControllerTest < ActionController::TestCase
     get :index
     assert_response :success
   end
-
+  test 'should generate an action log when logged in' do
+    assert_difference('ActionLog.count') do
+      sign_in Fabricate(:member,:client=>Fabricate(:client))
+      get :index
+    end
+  end
 end

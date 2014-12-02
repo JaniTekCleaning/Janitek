@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   before_filter :authenticate_user!, unless: :devise_controller?
   after_action :verify_authorized, unless: :devise_controller?
+  after_action :log_action
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -11,7 +12,9 @@ class ApplicationController < ActionController::Base
       u.permit(:password, :password_confirmation, :current_password) 
     }
   end
+  
   protected
+
   def authenticate_user!
     if user_signed_in?
       super
@@ -20,5 +23,15 @@ class ApplicationController < ActionController::Base
       ## if you want render 404 page
       ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
     end
+  end
+
+  def log_action
+    return unless current_user
+    log=ActionLog.create({
+      :controller=>params[:controller],
+      :action=>params[:action],
+      :user=>current_user
+      })
+    # raise ActionLog::UnrecognizedRequest unless log.request_recognized?
   end
 end

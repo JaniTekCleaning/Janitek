@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
     :trackable, :validatable, :lockable
   enum role: [:user, :staff, :admin]
 
+  has_many :action_logs
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 

@@ -7,6 +7,10 @@ class StaffPolicy < ApplicationPolicy
     user.class==Staff || user.client.staff==record
   end
 
+  def log?
+    show?
+  end
+
   def edit?
     user.class==Staff
   end

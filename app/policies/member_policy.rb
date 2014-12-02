@@ -7,6 +7,10 @@ class MemberPolicy < ApplicationPolicy
     user.class==Staff || user==record
   end
 
+  def log?
+    show?
+  end
+
   def edit?
     user.class==Staff || user==record
   end

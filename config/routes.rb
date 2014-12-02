@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
 
   resources :clients do
-    resources :members
+    resources :members do
+      member do
+        get 'log'
+      end
+    end
     get 'edit_hotbutton'
     put 'update_hotbutton'
     resources :contracts, :only=>[:new,:create,:show]
@@ -10,7 +14,11 @@ Rails.application.routes.draw do
   end
   get 'contact_us' => 'contact#new'
   post 'contact_us' => 'contact#create'
-  resources :staff
+  resources :staff do
+    member do
+      get 'log'
+    end
+  end
 
   get 'root/index'
 

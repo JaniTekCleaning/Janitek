@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_action :set_client
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_member, only: [:show, :edit, :update, :destroy, :log]
 
   respond_to :html
 
@@ -36,6 +36,11 @@ class MembersController < ApplicationController
     @member.update(member_update_params)
     @member.update_with_password(member_password_params) if member_password_params.delete_if{|k,v|v.empty?}.any?
     respond_with @client, @member
+  end
+
+  def log
+    authorize @member
+    @logs = @member.action_logs.order('created_at desc').paginate(:page=>params[:page], :per_page => 100)
   end
 
   # def destroy

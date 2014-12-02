@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127212542) do
+ActiveRecord::Schema.define(version: 20141202042754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_logs", force: true do |t|
+    t.string   "controller"
+    t.string   "action"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "action_logs", ["user_id"], name: "index_action_logs_on_user_id", using: :btree
 
   create_table "clients", force: true do |t|
     t.string   "name"

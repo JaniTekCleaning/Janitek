@@ -16,6 +16,20 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  # Set true to send emails for testing
+  config.action_mailer.perform_deliveries = false
+
+  # Setup actionmailer to use Mandrill
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => ENV["MANDRILL_USERNAME"],
+    :password  => ENV["MANDRILL_PASSWORD"], # SMTP password is any valid API key
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'janitek.herokuapp.com' # your domain to identify your server when connecting
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

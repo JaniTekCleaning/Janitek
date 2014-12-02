@@ -5,7 +5,7 @@
   </head>
   <body>
     <h1>Message From <%= @member.full_name %></h1>
-    <p><%= @member.full_name %>, a member of client <% @member.client.name %>, has used the 'Contact Us' form on your website to contact you.  Their message is below.</p>
+    <p><%= @member.full_name %>, a member of client <%= @member.client.name %>, has used the 'Contact Us' form on your website to contact you.  Their message is below.</p>
 
     <pre><%= @contact.content %></pre>
   </body>

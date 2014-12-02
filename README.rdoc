@@ -2,8 +2,8 @@ Janitek customer portal project.
 
 To run project locally, you must fill in various environment variables.  Recommended procedure is to create a .env file with the following format:
 
-S3_BUCKET_NAME=your_bucket_name
-AWS_ACCESS_KEY_ID=your_access_key_id
-AWS_SECRET_ACCESS_KEY=your_secret_access_key
+KEY='VALUE'
+
+Required keys include: S3_BUCKET_NAME, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, CONTACT_EMAIL
 
 Obviously, replace the your_ items with the actual S3 access variables.  This file is ignored adn should NOT be checked into your repository.

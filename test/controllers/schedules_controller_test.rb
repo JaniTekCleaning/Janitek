@@ -5,7 +5,8 @@ class SchedulesControllerTest < ActionController::TestCase
     setup do
       @client = Fabricate(:client)
       @schedule = Fabricate(:schedule, :client=>@client)
-      sign_in Fabricate(:member, :client=>@client)
+      @member=Fabricate(:member, :client=>@client)
+      sign_in @member
     end
 
     should "should not get new" do
@@ -21,6 +22,12 @@ class SchedulesControllerTest < ActionController::TestCase
     should "should show schedule" do
       get :show, id: @schedule, client_id: @client.id
       assert_response :success
+    end
+    should 'email when showing schedule' do
+      message=mock('mailer')
+      TrackingMailer.expects(:viewed_schedule).with(@member).returns(message)
+      message.expects(:deliver)
+      get :show, id: @schedule, client_id: @client.id
     end
   end
   context 'authorized as general member' do
@@ -62,6 +69,11 @@ class SchedulesControllerTest < ActionController::TestCase
     should "should show schedule" do
       get :show, id: @schedule, client_id: @client.id
       assert_response :success
+    end
+
+    should 'not email when showing schedule' do
+      TrackingMailer.expects(:viewed_schedule).never
+      get :show, id: @schedule, client_id: @client.id
     end
   end
   

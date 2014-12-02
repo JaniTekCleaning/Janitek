@@ -49,6 +49,7 @@ class StaffControllerTest < ActionController::TestCase
 
     should "get index" do
       get :index
+      assert_response :success
     end
 
     should "get new" do

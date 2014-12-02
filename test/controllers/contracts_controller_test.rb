@@ -5,14 +5,15 @@ class ContractsControllerTest < ActionController::TestCase
     setup do
       @client = Fabricate(:client)
       @contract = Fabricate(:contract, :client=>@client)
-      sign_in Fabricate(:member, :client=>@client)
+      @member=Fabricate(:member, :client=>@client)
+      sign_in @member
     end
 
-    should "should get new" do
+    should "should not get new" do
       assert_raises(Pundit::NotAuthorizedError){get :new, client_id: @client.id}
     end
 
-    should "should create contract" do
+    should "should not create contract" do
       assert_raises(Pundit::NotAuthorizedError) do
         post :create, contract: { :url=>"abc" }, client_id: @client.id
       end
@@ -21,6 +22,12 @@ class ContractsControllerTest < ActionController::TestCase
     should "should show contract" do
       get :show, id: @contract, client_id: @client.id
       assert_response :success
+    end
+    should 'email when showing contact' do
+      message=mock('mailer')
+      TrackingMailer.expects(:viewed_contract).with(@member).returns(message)
+      message.expects(:deliver)
+      get :show, id: @contract, client_id: @client.id
     end
   end
   context 'authorized as general member' do
@@ -62,6 +69,11 @@ class ContractsControllerTest < ActionController::TestCase
     should "should show contract" do
       get :show, id: @contract, client_id: @client.id
       assert_response :success
+    end
+
+    should 'not email when showing schedule' do
+      TrackingMailer.expects(:viewed_schedule).never
+      get :show, id: @contract, client_id: @client.id
     end
   end
 end

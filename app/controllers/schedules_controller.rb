@@ -18,6 +18,7 @@ class SchedulesController < ApplicationController
 
   def show
     authorize @schedule
+    TrackingMailer.viewed_schedule(current_user).deliver if current_user.type=="Member"
   end
 
   private

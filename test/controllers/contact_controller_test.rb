@@ -10,7 +10,9 @@ class ContactControllerTest < ActionController::TestCase
     assert_response :success
   end
   should 'send email' do
-    post :create, :contact=>{:content=>'abcdef'}
-    pending("email response")
+    message=mock('mailer')
+    ContactMailer.expects(:contact_message).returns(message)
+    message.expects(:deliver)
+    post :create, :contact=>{:content=>'abcdef'*3}
   end
 end

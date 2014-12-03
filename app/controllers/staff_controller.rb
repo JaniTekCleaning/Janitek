@@ -1,5 +1,6 @@
 class StaffController < ApplicationController
   before_action :set_staff, except:[:index,:new,:create]
+  before_filter :add_breadcrumbs
 
   respond_to :html
 
@@ -18,17 +19,20 @@ class StaffController < ApplicationController
   def new
     authorize Staff
     @staff = Staff.new
+    add_breadcrumb "New", new_staff_path
     respond_with(@staff)
   end
 
   def edit
     authorize @staff
+    add_breadcrumb "Edit", edit_staff_path(@staff)
   end
 
   def create
     authorize Staff
     @staff = Staff.new(staff_registration_params)
     @staff.save
+    add_breadcrumb "New", new_staff_path
     respond_with(@staff)
   end
 
@@ -36,6 +40,7 @@ class StaffController < ApplicationController
     authorize @staff
     @staff.update(staff_update_params)
     @staff.update_with_password(staff_password_params) if staff_password_params.delete_if{|k,v|v.empty?}.any?
+    add_breadcrumb "Edit", edit_staff_path(@staff)
     respond_with @staff
   end
 
@@ -44,12 +49,12 @@ class StaffController < ApplicationController
     @logs=@staff.action_logs.order('created_at desc').paginate(:page=>params[:page], :per_page => 100)
   end
 
-  # def destroy
-  #   @staff.destroy
-  #   respond_with(@staff)
-  # end
-
   private
+    def add_breadcrumbs
+      add_breadcrumb "Home", :root_path
+      add_breadcrumb "Staff", staff_index_path if current_user.type=="Staff"
+      add_breadcrumb @staff.full_name, staff_path(@staff) if @staff
+    end
     def set_staff
       @staff = Staff.find(params[:id])
     end

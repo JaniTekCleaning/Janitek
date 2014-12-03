@@ -4,6 +4,6 @@ To run project locally, you must fill in various environment variables.  Recomme
 
 KEY='VALUE'
 
-Required keys include: S3_BUCKET_NAME, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, CONTACT_EMAIL
+Required keys include: S3_BUCKET_NAME, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, CONTACT_EMAIL, MANDRILL_USERNAME, MANDRILL_PASSWORD
 
 Obviously, replace the your_ items with the actual S3 access variables.  This file is ignored adn should NOT be checked into your repository.

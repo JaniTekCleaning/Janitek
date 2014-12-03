@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Janitek</title>
+  <title><%= content_for?(:page_title) ? content_for(:page_title) : "Janitek" %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -14,10 +14,14 @@
 <body>
 
 <%= render 'layouts/navbar' %>
-<%= link_to "Change your password", edit_user_password_path %>
+
 <div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% if content_for?(:title) %>
+    <h1> <%= content_for(:title) %></h1>
+  <% end %>
+  <%= render_breadcrumbs %>
+  <% if notice %><p class="notice"><%= notice %></p><% end %>
+  <% if alert %><p class="alert"><%= alert %></p><% end %>
 
   <%= yield %>
 </div>

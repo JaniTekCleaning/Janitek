@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
   before_action :set_client
   before_action :set_member, only: [:show, :edit, :update, :destroy, :log]
+  before_filter :add_breadcrumbs
 
   respond_to :html
 
@@ -16,11 +17,13 @@ class MembersController < ApplicationController
 
   def new
     authorize Member
+    add_breadcrumb "New Member", new_client_member_path(@client)
     @member = Member.new
   end
 
   def edit
     authorize @member
+    add_breadcrumb "Edit", edit_client_member_path(@client,@member)
   end
 
   def create
@@ -28,6 +31,7 @@ class MembersController < ApplicationController
     @member = Member.new(member_registration_params)
     @member.client=@client
     @member.save
+    add_breadcrumb "New Member", new_client_member_path(@client)
     respond_with @client, @member
   end
 
@@ -35,6 +39,7 @@ class MembersController < ApplicationController
     authorize @member
     @member.update(member_update_params)
     @member.update_with_password(member_password_params) if member_password_params.delete_if{|k,v|v.empty?}.any?
+    add_breadcrumb "Edit", edit_client_member_path(@client,@member)
     respond_with @client, @member
   end
 
@@ -52,6 +57,12 @@ class MembersController < ApplicationController
   # end
 
   private
+    def add_breadcrumbs
+      add_breadcrumb "Home", :root_path
+      add_breadcrumb "Clients", clients_path
+      add_breadcrumb @client.name, client_path(@client)
+      add_breadcrumb @member.full_name, client_member_path(@client,@member) if @member
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_member
       set_client unless @client

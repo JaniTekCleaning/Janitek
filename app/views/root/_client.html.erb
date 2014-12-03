@@ -1,17 +1,35 @@
-<h1>Clients Root</h1>
+<%- title "Janitek" %>
+<%- page_title "Janitek" %>
 
-<p><a href="mailto:ron@rtest.test" target="_blank">Service Request</a></p>
-<% if current_user.client.contracts.last %>
-  <p><%= link_to 'Contract', client_contract_path(current_user.client, current_user.client.contracts.last) %>
-  </p>
-<% end %>
-<p><%= link_to 'Contact Us', contact_us_path %></p>
-<% if current_user.client.schedules.last %>
-  <p><%= link_to 'Schedule', client_schedule_path(current_user.client, current_user.client.schedules.last) %>
-  </p>
-<% end %>
+<div class='row' id='client_root'>
+  <div class='col-md-6'>
+    <h2>
+      <% if current_user.client.contracts.last %>
+        <%= link_to 'Contract', client_contract_path(current_user.client, current_user.client.contracts.last) %>
+      <% else %>
+        No contract entered yet
+      <% end %>
+    </h2>
+  </div>
+  <div class='col-md-6'>
+    <h2>
+      <% if current_user.client.schedules.last %>
+        <%= link_to 'Schedule', client_schedule_path(current_user.client, current_user.client.schedules.last) %>
+      <% else %>
+        No task schedule entered yet
+      <% end %>
+    </h2>
+  </div>
+  <div class='col-md-6'>
+    <h2><a href="mailto:ron@rtest.test" target="_blank">Service Request</a></h2>
+  </div>
+  <div class='col-md-6'>
+    <h2><%= link_to 'Contact Us', contact_us_path %></h2>
+  </div>
 
-
-<% if current_user.client.staff %>
-  <%= link_to 'See My Janitorial Lead' ,staff_path(current_user.client.staff) %>
-<% end %>
+  <% if current_user.client.staff %>
+    <div class='col-md-12'>
+        <h2><%= link_to 'See My Janitorial Lead' ,staff_path(current_user.client.staff) %></h2>
+    </div>
+  <% end %>
+</div>

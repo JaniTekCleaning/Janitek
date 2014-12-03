@@ -31,12 +31,14 @@
     <%= f.file_field :avatar %>
   </div>
 
-  <% if @member.persisted? %>
+  <% if @member.persisted? && current_user==@member %>
   <div class="field">
     <%= f.label :current_password %><br>
     <%= f.password_field :current_password %>
   </div>
   <% end %>
+
+  <% if !@member.persisted? || current_user==@member %>
 
   <div class="field">
     <%= f.label :password %><br>
@@ -47,6 +49,7 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

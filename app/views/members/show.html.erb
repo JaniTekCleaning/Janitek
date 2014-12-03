@@ -1,3 +1,4 @@
+<%- page_title "Janitek | Member" %>
 <div class='user_profile'>
   <div>
     <% if @member.avatar.file? %>
@@ -13,4 +14,4 @@
 </div>
 
 <%= link_to 'Edit', edit_client_member_path(@client,@member) %> |
-<%= link_to 'Back', client_members_path(@client) %>
+<%= link_to "Log", log_client_member_path(@client,@member) %>

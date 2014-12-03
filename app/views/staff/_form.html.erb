@@ -37,13 +37,14 @@
     <%= f.text_area :description %>
   </div>
 
-  <% if @staff.persisted? %>
+  <% if @staff.persisted? && current_user==@staff %>
   <div class="field">
     <%= f.label :current_password %><br>
     <%= f.password_field :current_password %>
   </div>
   <% end %>
 
+  <% if !@staff.persisted? || current_user==@staff %>
   <div class="field">
     <%= f.label :password %><br>
     <%= f.password_field :password %>
@@ -53,6 +54,7 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

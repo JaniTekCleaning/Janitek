@@ -56,6 +56,9 @@ gem 'will_paginate'
 gem "paperclip"
 gem 'aws-sdk'
 
+# Easier breadcrumbs
+gem "breadcrumbs_on_rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

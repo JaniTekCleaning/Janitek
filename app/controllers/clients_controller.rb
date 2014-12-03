@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, except:[:index,:new,:create]
+  before_filter :add_breadcrumbs
 
   respond_to :html
 
@@ -20,23 +21,27 @@ class ClientsController < ApplicationController
   def new
     authorize Client
     @client = Client.new
+    add_breadcrumb "New", new_client_path
     respond_with(@client)
   end
 
   def edit
     authorize @client
+    add_breadcrumb "Edit", edit_client_path(@client)
   end
 
   def create
     authorize Client
     @client = Client.new(client_params)
     @client.save
+    add_breadcrumb "New", new_client_path
     respond_with(@client)
   end
 
   def update
     authorize @client
     @client.update(client_params)
+    add_breadcrumb "Edit", edit_client_path(@client)
     respond_with(@client)
   end
 
@@ -48,6 +53,7 @@ class ClientsController < ApplicationController
 
   def edit_hotbutton
     authorize @client
+    add_breadcrumb "Edit", client_edit_hotbutton_path(@client)
   end
 
   def update_hotbutton
@@ -55,10 +61,17 @@ class ClientsController < ApplicationController
     items=params[:hotbutton_item].reject{|item| item.empty?}
     @client.hot_button_items=items
     @client.save
+    add_breadcrumb "Edit", client_edit_hotbutton_path(@client)
     respond_with(@client)
   end
 
   private
+    def add_breadcrumbs
+      add_breadcrumb "Home", :root_path
+      add_breadcrumb "Clients", clients_path if current_user.type=="Staff"
+      add_breadcrumb @client.name, client_path(@client) if @client
+    end
+
     def set_client
       id=params[:id]
       id||=params[:client_id]

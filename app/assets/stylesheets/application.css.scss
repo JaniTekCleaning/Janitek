@@ -20,17 +20,16 @@
 @import "bootstrap";
 
 body {
-  padding-top: 10px;
   background-color: #0073AE;
   color: #8DC63F;
 }
 
-.navbar-inverse{
+.navbar-default{
   background-color: #8DC63F;
   border-color:#0073AE;
 }
 
-.navbar-inverse .navbar-nav > li > a{
+.navbar-default .navbar-nav > li > a{
   color :#0073AE;
   &:hover{
     color:#000;

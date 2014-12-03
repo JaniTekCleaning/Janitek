@@ -31,14 +31,14 @@
     <%= f.file_field :avatar %>
   </div>
 
-  <% if @member.persisted? && current_user==@member %>
+  <% if @member.persisted? && (current_user==@member) %>
   <div class="field">
     <%= f.label :current_password %><br>
     <%= f.password_field :current_password %>
   </div>
   <% end %>
 
-  <% if !@member.persisted? || current_user==@member %>
+  <% if !@member.persisted? || current_user==@member || current_user.admin %>
 
   <div class="field">
     <%= f.label :password %><br>

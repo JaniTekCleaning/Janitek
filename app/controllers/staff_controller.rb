@@ -39,7 +39,7 @@ class StaffController < ApplicationController
   def update
     authorize @staff
     @staff.update(staff_update_params)
-    @staff.update_with_password(staff_password_params) if staff_password_params.delete_if{|k,v|v.empty?}.any?
+    @staff.update_with_password(staff_password_params) if staff_password_params.delete_if{|k,v|v.empty?}.any? && !(current_user.admin && current_user==@user)
     add_breadcrumb "Edit", edit_staff_path(@staff)
     respond_with @staff
   end
@@ -62,7 +62,7 @@ class StaffController < ApplicationController
       params.require(:staff).permit(:description, :email,:first_name,:last_name,:password,:password_confirmation,:avatar)
     end
     def staff_update_params
-      params.require(:staff).permit(:description, :email,:first_name,:last_name,:avatar)
+      params.require(:staff).permit(*policy(@staff || Staff).permitted_attributes)
     end
     def staff_password_params
       params.require(:staff).permit(:password,:password_confirmation,:current_password)

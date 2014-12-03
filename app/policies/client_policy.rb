@@ -16,11 +16,11 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def update?
-    user.class==Staff
+    user.class==Staff || user.client=record
   end
 
   def edit?
-    user.class==Staff
+    update?
   end
 
   def destroy?

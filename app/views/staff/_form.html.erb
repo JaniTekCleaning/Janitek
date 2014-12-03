@@ -25,6 +25,11 @@
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name %>
   </div>
+  
+  <div class="field">
+    <%= f.label :admin %><br>
+    <%= f.check_box :admin %>
+  </div>
 
   <div class="field">
     <%= f.label :avatar %><br />
@@ -44,7 +49,7 @@
   </div>
   <% end %>
 
-  <% if !@staff.persisted? || current_user==@staff %>
+  <% if !@staff.persisted? || current_user==@staff || current_user.admin %>
   <div class="field">
     <%= f.label :password %><br>
     <%= f.password_field :password %>

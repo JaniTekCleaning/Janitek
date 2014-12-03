@@ -30,4 +30,13 @@ class StaffPolicy < ApplicationPolicy
   def destroy?
     user.class==Staff
   end
+
+  def permitted_attributes
+    list=[:description,:email,:first_name,:last_name,:avatar]
+    if user.admin && record!=user
+      list<<[:password]
+      list<<[:password_confirmation]
+    end
+    list
+  end
 end

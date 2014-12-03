@@ -38,7 +38,7 @@ class MembersController < ApplicationController
   def update
     authorize @member
     @member.update(member_update_params)
-    @member.update_with_password(member_password_params) if member_password_params.delete_if{|k,v|v.empty?}.any?
+    @member.update_with_password(member_password_params) if member_password_params.delete_if{|k,v|v.empty?}.any? && !current_user.admin
     add_breadcrumb "Edit", edit_client_member_path(@client,@member)
     respond_with @client, @member
   end
@@ -78,7 +78,7 @@ class MembersController < ApplicationController
       params.require(:member).permit(:email,:first_name,:last_name,:password,:password_confirmation,:avatar)
     end
     def member_update_params
-      params.require(:member).permit(:email,:first_name,:last_name,:avatar)
+      params.require(:member).permit(*policy(@member || Member).permitted_attributes)
     end
     def member_password_params
       params.require(:member).permit(:password,:password_confirmation,:current_password)

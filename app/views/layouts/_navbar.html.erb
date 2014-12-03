@@ -28,7 +28,13 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>
-            <span id='logged_in_user'>Welcome back, <%= current_user.first_name %></span>
+            <span id='logged_in_user'>Welcome back, 
+              <% if current_user.class==Staff %>
+                <%= link_to current_user.first_name, current_user %>
+              <% else %>
+                <%= link_to current_user.first_name, [current_user.client,current_user] %>
+              <% end %>
+            </span>
           </li>
           <li> 
             <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>

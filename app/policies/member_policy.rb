@@ -8,7 +8,7 @@ class MemberPolicy < ApplicationPolicy
   end
 
   def log?
-    show?
+    user.class==Staff
   end
 
   def edit?
@@ -29,5 +29,14 @@ class MemberPolicy < ApplicationPolicy
 
   def destroy?
     user.class==Staff
+  end
+
+  def permitted_attributes
+    list=[:email,:first_name,:last_name,:avatar]
+    if user.admin
+      list<<[:password]
+      list<<[:password_confirmation]
+    end
+    list
   end
 end

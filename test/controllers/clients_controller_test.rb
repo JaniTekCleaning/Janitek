@@ -28,18 +28,26 @@ class ClientsControllerTest < ActionController::TestCase
     end
 
     should 'not show client if not member of that client' do
-      @user.client=Fabricate(:client)
-      @user.save
-      assert_raises(Pundit::NotAuthorizedError){get :show, id: @client}
+      assert_raises(Pundit::NotAuthorizedError){get :show, id: Fabricate(:client)}
     end
 
-    should "should not get edit" do
-      assert_raises(Pundit::NotAuthorizedError){get :edit, id: @client}
+    should "should get edit if member of client" do
+      get :edit, id: @client
+      assert_response :success
     end
 
-    should "should not update client" do
+    should "should not get edit unless member of client" do
+      assert_raises(Pundit::NotAuthorizedError){get :edit, id: Fabricate(:client)}
+    end
+
+    should "should update if member of client" do
+      patch :update, id: @client, client: { email: @client.email, hot_button_items: @client.hot_button_items, number: @client.number }
+      assert_redirected_to client_path(assigns(:client))
+    end
+
+    should "should not update unless member of client" do
       assert_raises(Pundit::NotAuthorizedError) do
-        patch :update, id: @client, client: { email: @client.email, hot_button_items: @client.hot_button_items, number: @client.number }
+        patch :update, id: Fabricate(:client), client: { email: @client.email, hot_button_items: @client.hot_button_items, number: @client.number }
       end
     end
 

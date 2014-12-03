@@ -16,7 +16,7 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def update?
-    user.class==Staff || user.client=record
+    user.class==Staff || user.client==record
   end
 
   def edit?

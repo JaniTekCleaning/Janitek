@@ -13,7 +13,7 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_client_member_path(@client,@member) %>
+<%= link_to 'Edit', edit_client_member_path(@client,@member), class:'btn btn-primary' %>
 <% if policy(@member).log? %>
- | <%= link_to "Log", log_client_member_path(@client,@member) %>
+ <%= link_to "Log", log_client_member_path(@client,@member),  class:'btn btn-default'  %>
 <% end %>

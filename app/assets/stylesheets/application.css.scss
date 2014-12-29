@@ -16,25 +16,25 @@
 
  /* Colors for logo are: #8DC63F and #0073AE; */
 
+//Base styling
+$text-color: #8DC63F;
+$link-color: #0073AE;
+
+// Navbar baground
+$navbar-default-bg: #8DC63F;
+$navbar-default-border: #0073AE;
+
+// ?
+// $navbar-default-color: #0073AE;
+
+//Navbar link coloring
+$navbar-default-link-color: #0073AE;
+$navbar-default-link-hover-color: #000;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
-  background-color: #fff;
-  color: #8DC63F; /* Was: #8DC63F */
-}
 
-.navbar-default{
-  background-color: #8DC63F;
-  border-color:#0073AE;
-}
-
-.navbar-default .navbar-nav > li > a{
-  color :#0073AE;
-  &:hover{
-    color:#000;
-  }
-}
 
 .navbar > .container .navbar-brand{
   background-image: image-url('janitek-logo-black.png');
@@ -47,11 +47,7 @@ body {
   .hiddentext{ display: none }
 }
 
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:hover{
-  background-color: #0073AE;
-  color:#8DC63F;
-}
+
 
 h1{
   text-align: center;
@@ -68,16 +64,6 @@ h1{
 
 button, input, optgroup, select, textarea{
   color:#6DA60F;
-}
-
-.container{
-  a{
-    color:#0073AE;
-    text-decoration: underline;
-    &:hover{
-      background: transparent;
-    }
-  }
 }
 
 .container .pagination-div{

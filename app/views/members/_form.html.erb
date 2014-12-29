@@ -11,47 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
+    <%= f.file_field :avatar, class:"form-control" %>
   </div>
 
   <% if @member.persisted? && (current_user==@member) %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :current_password %><br>
-    <%= f.password_field :current_password %>
+    <%= f.password_field :current_password, class:"form-control" %>
   </div>
   <% end %>
 
   <% if !@member.persisted? || current_user==@member || current_user.admin %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :password %><br>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, class:"form-control" %>
   </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit class:"btn btn-primary" %>
+    <% if @client.persisted? %>
+      <%= link_to "Cancel", [@client,@member], class:'btn btn-danger' %>
+    <% else %>
+      <%= link_to "Cancel", @client, class:'btn btn-danger' %>
+    <% end %>
   </div>
 <% end %>

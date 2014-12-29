@@ -18,18 +18,19 @@
 
   <div class="field">
     <%= f.label :url %><br>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, class:"form-control"  %>
   </div>
 
   <div class="field">
     <%= f.label :s3, "File Upload" %><br />
-    <%= f.file_field :s3 %>
+    <%= f.file_field :s3, class:"form-control"  %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit class:"btn btn-primary" %>
+    <%= link_to 'Cancel', client_path(@client), class:'btn btn-danger' %>
   </div>
 <% end %>
 
 
-<%= link_to 'Back', client_path(@client) %>
+

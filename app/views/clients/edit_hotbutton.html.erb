@@ -11,5 +11,6 @@
   <% end %>
 </ol>
 
-<%= submit_tag "Save" %>
+<%= submit_tag "Save",  class:"btn btn-primary"  %>
+    <%= link_to 'Cancel', client_path(@client), class:'btn btn-danger' %>
 <% end %>

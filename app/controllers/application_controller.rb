@@ -15,11 +15,20 @@ class ApplicationController < ActionController::Base
   
   protected
 
+  def after_sign_out_path_for(resource_or_scope)
+    new_user_session_path
+  end
+
   def authenticate_user!
     if user_signed_in?
       super
     else
-      redirect_to new_user_session_path, :notice => 'if you want to add a notice'
+      if params[:controller]=="root"
+        redirect_to new_user_session_path
+      else
+        redirect_to new_user_session_path, :notice => 'Must be logged in to view this page'
+      end
+      
       ## if you want render 404 page
       ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
     end

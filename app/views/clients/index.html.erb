@@ -1,10 +1,13 @@
 <%- title "Clients" %>
 <%- page_title "Janitek | Clients" %>
 
-<%= form_tag(clients_path, method: :get) do %>
-  <div class="field">
-    <%= text_field_tag('name', @name) %>
-    <%= submit_tag 'Search' %>
+<%= form_tag(clients_path, class:"form-inline", method: :get) do %>
+  <div class="form-group">
+    <%= label_tag(:name, "Client Name", class:"sr-only") %>
+    <%= text_field_tag('name', @name, class:'form-control') %>
+  </div>
+  <div class='form-group'>
+    <%= submit_tag 'Search', class:'btn-info btn' %>
   </div>
 <% end %>
 
@@ -28,4 +31,4 @@
 
 <br>
 
-<%= link_to 'Add Client', new_client_path %>
+<%= link_to 'Add Client', new_client_path, class:'btn btn-success' %>

@@ -20,8 +20,8 @@
 @import "bootstrap";
 
 body {
-  background-color: #0073AE;
-  color: #8DC63F;
+  background-color: #fff;
+  color: #8DC63F; /* Was: #8DC63F */
 }
 
 .navbar-default{
@@ -72,7 +72,7 @@ button, input, optgroup, select, textarea{
 
 .container{
   a{
-    color:#6DA60F;
+    color:#0073AE;
     text-decoration: underline;
     &:hover{
       background: transparent;

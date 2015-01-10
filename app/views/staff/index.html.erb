@@ -1,14 +1,16 @@
 <%- title "Staff" %>
 <%- page_title "Janitek | Staff" %>
 
-<%= form_tag(staff_index_path, class:"form-inline", method: :get) do %>
-  <div class="form-group">
-    <%= label_tag(:by_name, "Staff Name", class:"sr-only") %>
-    <%= text_field_tag('by_name', @name, class:'form-control') %>
-  </div>
-  <div class='form-group'>
-    <%= submit_tag 'Search', class:'btn-info btn' %>
-  </div>
+<% content_for :search do %>
+  <%= form_tag(staff_index_path, class:"form-inline", method: :get) do %>
+    <div class="form-group">
+      <%= label_tag(:by_name, "Staff Name", class:"sr-only") %>
+      <%= text_field_tag('by_name', @name, class:'form-control') %>
+    </div>
+    <div class='form-group'>
+      <%= submit_tag 'Search', class:'btn-info btn' %>
+    </div>
+  <% end %>
 <% end %>
 
 <div class='pagination-div'>

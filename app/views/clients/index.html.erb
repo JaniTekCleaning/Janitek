@@ -1,15 +1,18 @@
 <%- title "Clients" %>
 <%- page_title "Janitek | Clients" %>
 
-<%= form_tag(clients_path, class:"form-inline", method: :get) do %>
-  <div class="form-group">
-    <%= label_tag(:name, "Client Name", class:"sr-only") %>
-    <%= text_field_tag('name', @name, class:'form-control') %>
-  </div>
-  <div class='form-group'>
-    <%= submit_tag 'Search', class:'btn-info btn' %>
-  </div>
+<% content_for :search do %>
+  <%= form_tag(clients_path, class:"form-inline", method: :get) do %>
+    <div class="form-group">
+      <%= label_tag(:name, "Client Name", class:"visible-sr, visible-sm, visible-xs") %>
+      <%= text_field_tag('name', @name, class:'form-control') %>
+    </div>
+    <div class='form-group'>
+      <%= submit_tag 'Search', class:'btn-info btn' %>
+    </div>
+  <% end %>
 <% end %>
+
 
 <div class='pagination-div'>
   <div class="page_info">

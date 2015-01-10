@@ -19,7 +19,16 @@
   <% if content_for?(:title) %>
     <h1> <%= content_for(:title) %></h1>
   <% end %>
-  <%= render_breadcrumbs %>
+  <div class='row'>
+    <div class='col-sm-6'>
+      <%= render_breadcrumbs %>
+    </div>
+    <% if content_for?(:search) %>
+    <div class='cold-sm-6'>
+      <%= content_for(:search) %>
+    </div>
+    <% end %>
+  </div>
   <% if notice %><p class="notice"><%= notice %></p><% end %>
   <% if alert %><p class="alert"><%= alert %></p><% end %>
 

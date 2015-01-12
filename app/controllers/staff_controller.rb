@@ -7,7 +7,7 @@ class StaffController < ApplicationController
   def index
     authorize Staff
     @name=params[:by_name]
-    @staff = Staff.filter(params.slice(:by_name)).order('first_name asc').paginate(:page=>params[:page], :per_page => 12)
+    @staff = Staff.filter(params.slice(:by_name)).order('first_name asc').paginate(:page=>params[:page], :per_page => 12).load
     respond_with(@staff)
   end
 

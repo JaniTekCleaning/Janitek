@@ -19,12 +19,12 @@
   <% if content_for?(:title) %>
     <h1> <%= content_for(:title) %></h1>
   <% end %>
-  <div class='row'>
-    <div class='col-sm-6'>
+  <div class='row breadcrumbs-bar'>
+    <div class='col-xs-4'>
       <%= render_breadcrumbs %>
     </div>
     <% if content_for?(:search) %>
-    <div class='cold-sm-6'>
+    <div class='searchbox col-xs-8'>
       <%= content_for(:search) %>
     </div>
     <% end %>

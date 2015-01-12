@@ -14,24 +14,29 @@
 <% end %>
 
 
-<div class='pagination-div'>
-  <div class="page_info">
-    <%= page_entries_info @posts %>
-  </div>
-  <%= will_paginate @clients %>
+<div id='add-item-control'>
+  <%= link_to 'Add Client', new_client_path, class:'btn btn-success' %>
 </div>
+
 <div id="client-index-list">
   <% for idx in (1..@clients.size) %>
     <% if idx%4==1 %>
       <div class='row'>
     <% end %>
-      <div class='col-md-3'><%= link_to @clients[idx-1].name, @clients[idx-1] %></div>
+      <div class='col-md-3'>
+        <div class='list-button'>
+          <%= link_to @clients[idx-1].name, @clients[idx-1] %>
+        </div>
+      </div>
     <% if idx%4==0 %>
       </div>
     <% end %>
   <% end %>
 </div>
 
-<br>
-
-<%= link_to 'Add Client', new_client_path, class:'btn btn-success' %>
+<div class='pagination-div'>
+  <div class="page_info">
+    <%= page_entries_info @posts %>
+  </div>
+  <%= will_paginate @clients %>
+</div>

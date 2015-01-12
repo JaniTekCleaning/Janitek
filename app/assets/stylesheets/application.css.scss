@@ -96,3 +96,29 @@ button, input, optgroup, select, textarea{
 .jumbotron{
   border:1px solid #0000A0;
 }
+
+.searchbox{
+   text-align:right;
+}
+
+.breadcrumbs-bar{
+  background:#eee;
+  padding:5px 0;
+}
+
+#add-item-control{
+  text-align:right;
+  padding:20px;
+}
+
+.list-button{
+  background:#ADD8E6;
+  border: 1px solid #33f;
+  min-height:40px;
+  margin:10px;
+  padding:10px;
+  a, a:hover{
+    color:#000;
+    text-decoration: underline;
+  }
+}

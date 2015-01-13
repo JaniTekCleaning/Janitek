@@ -1,19 +1,21 @@
 <%- page_title "Janitek | Member" %>
-<div class='user_profile'>
-  <div>
+<div class='row'>
+  <div class='user_profile col-sm-4 col-sm-push-4'>
     <% if @member.avatar.file? %>
-    <%= image_tag @member.avatar.url(:profile), :class=>'profile_image' %>
+      <div class='avatar'>
+        <%= image_tag @member.avatar.url(:profile), :class=>'profile_image' %>
+      </div>
+    <% end %>
+    <div>
+      <h1><%= @member.full_name %> </h1>
+    </div>
+    <div>
+      <h3><%= @member.email %> </h3>
+    </div>
+    <%= link_to 'Edit', edit_client_member_path(@client,@member), class:'btn btn-primary' %>
+    <% if policy(@member).log? %>
+     <%= link_to "Log", log_client_member_path(@client,@member),  class:'btn btn-default'  %>
     <% end %>
   </div>
-  <div>
-    <h1><%= @member.full_name %> </h1>
-  </div>
-  <div>
-    <h3><%= @member.email %> </h3>
-  </div>
-</div>
 
-<%= link_to 'Edit', edit_client_member_path(@client,@member), class:'btn btn-primary' %>
-<% if policy(@member).log? %>
- <%= link_to "Log", log_client_member_path(@client,@member),  class:'btn btn-default'  %>
-<% end %>
+</div>

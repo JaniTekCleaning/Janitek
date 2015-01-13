@@ -1,21 +1,25 @@
 <%- page_title "Janitek | "+@staff.full_name %>
 
-<div class='user_profile'>
-  <div>
+<div class='row'>
+  <div class='user_profile col-sm-4 col-sm-push-4'>
     <% if @staff.avatar.file? %>
-    <%= image_tag @staff.avatar.url(:profile), :class=>'profile_image' %>
+      <div class='avatar'>
+        <%= image_tag @staff.avatar.url(:profile), :class=>'profile_image' %>
+      </div>
     <% end %>
-  </div>
-  <div>
-    <h1><%= @staff.full_name %> </h1>
-    <% if policy(@staff).edit? %>
-      <%= link_to '(Edit)', edit_staff_path(@staff) %>
-    <% end %>
-  </div>
-  <div>
-    <h3><%= @staff.email %> </h3>
-  </div>
-  <div>
-    <%= markdown(@staff.description).html_safe if @staff.description%>
+    <div>
+      <h1><%= @staff.full_name %> </h1>
+    </div>
+    <div>
+      <h3><%= @staff.email %> </h3>
+    </div>
+    <div>
+      <%= markdown(@staff.description).html_safe if @staff.description%>
+    </div>
+    <div>
+      <% if policy(@staff).edit? %>
+        <%= link_to 'Edit', edit_staff_path(@staff) , class:'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
 </div>

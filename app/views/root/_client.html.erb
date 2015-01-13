@@ -1,4 +1,4 @@
-<%- title "Janitek User Portal" %>
+<%- title "Janitek Client Connect" %>
 <%- page_title "Janitek" %>
 
 <div class='row' id='client_root'>
@@ -27,9 +27,25 @@
     <h2><%= link_to 'Contact Us', contact_us_path %></h2>
   </div>
 
-  <% if current_user.client.staff %>
-    <div class='col-md-12'>
-        <h2><%= link_to 'See My Janitorial Lead' ,staff_path(current_user.client.staff) %></h2>
-    </div>
-  <% end %>
 </div>
+<% if current_user.client.staff %>
+  <hr>
+  <div class='row'>
+    <div class='user_profile col-sm-4 col-sm-push-4'>
+      <% if @staff.avatar.file? %>
+        <div class='avatar'>
+          <%= image_tag @staff.avatar.url(:profile), :class=>'profile_image' %>
+        </div>
+      <% end %>
+      <div>
+        <h1><%= @staff.full_name %> </h1>
+      </div>
+      <div>
+        <h3><%= @staff.email %> </h3>
+      </div>
+      <div>
+        <%= markdown(@staff.description).html_safe if @staff.description%>
+      </div>
+    </div>
+  </div>
+<% end %>

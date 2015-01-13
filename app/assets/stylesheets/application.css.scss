@@ -90,7 +90,9 @@ button, input, optgroup, select, textarea{
 }
 
 .user_profile{
-  text-align: center;
+  .avatar, h2, h3{
+    text-align: center;
+  }
 }
 
 .jumbotron{

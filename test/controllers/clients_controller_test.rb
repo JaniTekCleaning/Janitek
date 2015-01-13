@@ -22,9 +22,8 @@ class ClientsControllerTest < ActionController::TestCase
       end
     end
 
-    should "should show client as member of that client" do
-      get :show, id: @client
-      assert_response :success
+    should "should not show client as member of that client" do
+      assert_raises(Pundit::NotAuthorizedError){get :show, id: Fabricate(:client)}
     end
 
     should 'not show client if not member of that client' do

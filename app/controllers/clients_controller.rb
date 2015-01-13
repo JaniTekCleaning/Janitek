@@ -53,23 +53,31 @@ class ClientsController < ApplicationController
 
   def edit_hotbutton
     authorize @client
-    add_breadcrumb "Edit", client_edit_hotbutton_path(@client)
+    add_breadcrumb current_user.type=='Staff' ? "Edit" : "Hotbuttons", client_edit_hotbutton_path(@client)
   end
 
   def update_hotbutton
     authorize @client
+    add_breadcrumb "Edit", client_edit_hotbutton_path(@client)
     items=params[:hotbutton_item].reject{|item| item.empty?}
     @client.hot_button_items=items
     @client.save
-    add_breadcrumb "Edit", client_edit_hotbutton_path(@client)
-    respond_with(@client)
+    if @client.valid?
+      if current_user.type=='Staff'
+        redirect_to client_path(@client)
+      else
+        redirect_to root_path
+      end
+    else
+      render 'edit'
+    end
   end
 
   private
     def add_breadcrumbs
       add_breadcrumb "Home", :root_path
       add_breadcrumb "Clients", clients_path if current_user.type=="Staff"
-      add_breadcrumb @client.name, client_path(@client) if @client
+      add_breadcrumb @client.name, client_path(@client) if @client && current_user.type=="Staff"
     end
 
     def set_client

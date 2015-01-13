@@ -65,9 +65,9 @@
 <h2>Members</h2>
 <div class='row'>
   <% @client.members.each do |member| %>
-  <%= link_to member.full_name, client_member_path(@client,member) %>
+    <%= link_to member.full_name, client_member_path(@client,member), class:'btn btn-primary' %>
   <% end %>
+  <%= link_to 'Add New', new_client_member_path(@client), class:'btn btn-success'  %>
 </div>
 <div>
-  <%= link_to 'Add Member', new_client_member_path(@client), class:'btn btn-success'  %>
 </div>

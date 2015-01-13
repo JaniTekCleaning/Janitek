@@ -34,7 +34,9 @@ $navbar-default-link-hover-color: #000;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
+.container{
+  padding-bottom:30px;
+}
 
 .navbar > .container .navbar-brand{
   background-image: image-url('janitek-logo-black.png');
@@ -89,6 +91,11 @@ button, input, optgroup, select, textarea{
   }
 }
 
+.btn-command{
+  min-width:100%;
+  font-size:150%;
+}
+
 .user_profile{
   .avatar, h2, h3{
     text-align: center;
@@ -106,6 +113,7 @@ button, input, optgroup, select, textarea{
 .breadcrumbs-bar{
   background:#eee;
   padding:5px 0;
+  margin-bottom:30px;
 }
 
 #add-item-control{

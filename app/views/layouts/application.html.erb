@@ -12,29 +12,35 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="main-container">
+  <div class="header-overlay-right" style="opacity: 1;"></div>
 <%= render 'layouts/navbar' %>
-
-<div class="container">
-  <% if content_for?(:title) %>
-    <h1> <%= content_for(:title) %></h1>
-  <% end %>
-  <% if content_for?(:search) || breadcrumbs.any? %>
-    <div class='row breadcrumbs-bar'>
-      <div class='col-xs-4'>
-        <%= render_breadcrumbs %>
+  <div class="body-container container">
+    <% if content_for?(:title) %>
+      <div class="header-title-section">
+        <h1 class="page-header-title"> <%= content_for(:title) %></h1>
+        <div class="page-header-gimmick"></div>
+        <br style="clear:both;">
       </div>
-      <% if content_for?(:search) %>
-      <div class='searchbox col-xs-8'>
-        <%= content_for(:search) %>
+    <% end %>
+    <% if content_for?(:search) || breadcrumbs.any? %>
+      <div class='row breadcrumbs-bar'>
+        <div class='col-xs-4'>
+          <%= render_breadcrumbs %>
+        </div>
+        <% if content_for?(:search) %>
+        <div class='searchbox col-xs-8'>
+          <%= content_for(:search) %>
+        </div>
+        <% end %>
       </div>
-      <% end %>
-    </div>
-  <% end %>
-  <% if notice %><p class="notice"><%= notice %></p><% end %>
-  <% if alert %><p class="alert"><%= alert %></p><% end %>
-
-  <%= yield %>
+    <% end %>
+    <% if notice %><p class="notice"><%= notice %></p><% end %>
+    <% if alert %><p class="alert"><%= alert %></p><% end %>
+  
+    <%= yield %>
+  </div>
+  <%= render 'layouts/footer' %>
 </div>
 </body>
 </html>

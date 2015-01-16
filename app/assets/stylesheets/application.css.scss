@@ -16,6 +16,14 @@
 
  /* Colors for logo are: #8DC63F and #0073AE; */
 
+html,
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow-x: hidden;
+}
+
 //Base styling
 $text-color: #8DC63F;
 $link-color: #0073AE;
@@ -39,10 +47,11 @@ $navbar-default-link-hover-color: #000;
 }
 
 .navbar > .container .navbar-brand{
-  background-image: image-url('janitek-logo-black.png');
+  margin-top: 30px;
+  background-image: image-url('JaniTek-Logo-web.png');
   background-size: 100% 100%;
-  width:150px;
-  height:50px;
+  width:270px;
+  height:85px;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -131,4 +140,261 @@ button, input, optgroup, select, textarea{
     color:#000;
     text-decoration: underline;
   }
+}
+
+.navbar-default {
+  background-color: transparent;
+  border-color: #dddddd;
+}
+
+.navbar-header {
+  float: none;
+}
+
+#navbar {
+  margin-top: 1em;
+}
+
+#navbar .navbar-nav > li > a {
+  padding: 0 10px;
+  border-right: 1px solid #ddd;
+  display: block;
+}
+
+#navbar .navbar-nav > li:first-child > a {
+}
+
+#navbar .navbar-nav > li:last-child > a {
+  border-right: 0;
+}
+
+.navbar-static-top > .container {
+  padding-bottom: 10px;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background-color: #fff;
+}
+
+.navbar-default .navbar-nav > .active > a:hover {
+  color: #014569;
+}
+
+#navbar .navbar-nav > li.active > a {
+  font-weight: bold;
+  color: #0073ae;
+}
+
+.main-container {
+  min-height:100%;
+  position:relative;
+}
+
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #323232;
+  border-top: 8px solid #d8d8d8;
+  height: 210px;
+}
+
+.footer-wrapper {
+  color: #bcbcbc;
+  margin: 0px auto;
+  padding: 0px 20px;
+  max-width: 960px;
+  width: 100%;
+  height:150px;
+}
+
+div.footer-container {
+  margin-top: 25px;
+}
+
+div.copyright-container {
+  background-color: #232323;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.main-container > .body-container {
+  padding-bottom: 250px;
+}
+
+#client-index-list {
+  font-size: 100%;
+}
+
+.body-container > h1 {
+  font-size: 18px;
+}
+
+h1.page-header-title {
+  color: #282828;
+}
+
+h1.page-header-title {
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 50px;
+  margin: 0px 25px 0px 10px;
+  float: left;
+}
+
+div.page-header-gimmick {
+  overflow: hidden;
+  padding-top: 25px;
+  margin-right: 10px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: #d8d8d8;
+}
+
+div.header-title-section {
+  margin-bottom: 10px;
+}
+
+div.header-overlay-right {
+  position: absolute;
+  right: 0px;
+  left: 55%;
+  top: 0px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  background-color: #8ec63f;
+  height: 160px;
+}
+
+.navbar-right li {
+  display: block;
+  float: none;
+  margin: 15px 0;
+  text-align: right;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: 100px;
+  padding-right: 10px;
+  margin-top: 30px;
+  font-size: 25px;
+  border-right: 3px solid white;
+}
+
+#logged_in_user,
+.navbar-right.navbar-nav > li > a {
+  padding: 0;
+  color: white;
+}
+
+.footer-logo {
+  max-width: 120px;
+  max-height: 120px;
+  width: 100%;
+}
+
+.footer-column {
+  display: inline-block;
+  vertical-align: middle;
+  width: 45%;
+  margin: 15px auto;
+}
+
+.footer-column h3 {
+  font-size: 18px;
+}
+
+.footer-column p {
+  margin: 5px 0;
+}
+
+.footer-column.footer-right .footer-column-inside {
+  float: right;
+}
+
+@media all and (max-width: 999px) {
+  .navbar-nav.navbar-right:last-child {
+    margin-right: 0px;
+  }
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-color: #999999;
+}
+
+/*Mobile Query*/
+@media all and (max-width: 765px) {
+  .header-overlay-right {
+    display: none;
+  }
+  
+  #logged_in_user,
+  .navbar-right.navbar-nav > li > a {
+    padding: 0;
+    color: #333;
+  }
+  
+  .navbar-right.navbar-nav > li {
+    display: block;
+    text-align: right;
+  }
+  
+  .navbar-nav.navbar-right:last-child {
+    margin-right: 0px;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 0;
+    margin-right: 75px;
+    margin-top: 15px;
+    border: 0;
+  }
+  
+  .navbar-right li {
+    margin: 0px;
+  }
+  
+  #navbar .navbar-nav > li > a {
+    border-right: 0;
+    
+  }
+  
+  .footer-container {
+    position: relative;
+    bottom: auto;
+    border-top: 8px solid #d8d8d8;
+    height: auto;
+  }
+  
+  .footer-wrapper {
+    color: #bcbcbc;
+    margin: 0px auto;
+    padding: 0px 20px;
+    height:auto;
+  }
+  
+  .main-container > .body-container {
+    padding-bottom: 30px;
+  }
+}
+
+@media all and (max-width: 490px) {
+  .navbar-nav.navbar-right:last-child {
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+  
+  .navbar-brand {
+    float: none;
+    display: inline-block;
+  }
+  
+  .navbar-right.navbar-nav > li {
+  display: inline-block;
+  text-align: center;
+  }
+  
 }

@@ -8,23 +8,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/"><span class='hiddentext'>Janitek</span></a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <% if user_signed_in? %>
-          <% if current_user.class == Member %>
-            <!-- <li class="active"><a href="#">Home</a></li>
-            <li><%= link_to("Contact",'/')%></li> -->
-          <% else %>
-            <li <% if ['clients','members','contracts','schedules'].include? params[:controller] %>class="active"<% end %>>
-              <%= link_to('Clients',clients_path)%>
-            </li>
-            <li <% if params[:controller]=='staff' %>class="active"<% end %>>
-              <%= link_to('Staff',staff_index_path)%>
-            </li>
-          <% end %>  
-        <% end %>
-      </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>
@@ -41,6 +25,24 @@
           </li>
         <% else %>
           <li><%= link_to('Login', new_user_session_path)  %></li>
+        <% end %>
+      </ul>
+      
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <% if current_user.class == Member %>
+            <!-- <li class="active"><a href="#">Home</a></li>
+            <li><%= link_to("Contact",'/')%></li> -->
+          <% else %>
+            <li <% if ['clients','members','contracts','schedules'].include? params[:controller] %>class="active"<% end %>>
+              <%= link_to('Clients',clients_path)%>
+            </li>
+            <li <% if params[:controller]=='staff' %>class="active"<% end %>>
+              <%= link_to('Staff',staff_index_path)%>
+            </li>
+          <% end %>  
         <% end %>
       </ul>
     </div><!--/.nav-collapse -->

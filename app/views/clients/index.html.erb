@@ -19,10 +19,8 @@
 </div>
 
 <div id="client-index-list">
+  <div class='row'>
   <% for idx in (1..@clients.size) %>
-    <% if idx%4==1 %>
-      <div class='row'>
-    <% end %>
       <div class='col-md-3'>
         <div class='list-button'>
           <%= link_to @clients[idx-1].name, @clients[idx-1] %>
@@ -30,8 +28,10 @@
       </div>
     <% if idx%4==0 %>
       </div>
+      <div class='row'>
     <% end %>
   <% end %>
+  </div>
 </div>
 
 <div class='pagination-div'>

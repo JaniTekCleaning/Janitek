@@ -10,6 +10,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" id="Google-Font-Droid+Serif-css" href="//fonts.googleapis.com/css?family=Droid+Serif%3A100%2C200%2C300%2C500%2C700%2Cn%2Ci%2Cb%2Cbi&amp;subset=latin&amp;ver=4.0.1" type="text/css" media="all">
+  <link rel="stylesheet" id="Google-Font-Raleway-css" href="//fonts.googleapis.com/css?family=Raleway%3A100%2C200%2C300%2C500%2C700%2Cn%2Ci%2Cb%2Cbi&amp;subset=latin&amp;ver=4.0.1" type="text/css" media="all">
 </head>
 <body>
 <div class="main-container">
@@ -17,7 +19,7 @@
 <%= render 'layouts/navbar' %>
   <div class="body-container container">
     <% if content_for?(:title) %>
-      <div class="header-title-section">
+      <div class="row header-title-section">
         <h1 class="page-header-title"> <%= content_for(:title) %></h1>
         <div class="page-header-gimmick"></div>
         <br style="clear:both;">
@@ -25,7 +27,7 @@
     <% end %>
     <% if content_for?(:search) || breadcrumbs.any? %>
       <div class='row breadcrumbs-bar'>
-        <div class='col-xs-4'>
+        <div class='col-md-4 breadcrumb-details'>
           <%= render_breadcrumbs %>
         </div>
         <% if content_for?(:search) %>

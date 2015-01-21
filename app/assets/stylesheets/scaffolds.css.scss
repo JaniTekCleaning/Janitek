@@ -1,13 +1,13 @@
 body {
   background-color: #fff;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: HelveticaNeue, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: HelveticaNeue, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
@@ -29,9 +29,14 @@ div {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
+  /*padding: 2px;
+  background-color: red;*/
+  color: red;
   display: table;
+}
+
+.field_with_errors input {
+  border-color: red;
 }
 
 #error_explanation {

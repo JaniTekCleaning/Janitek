@@ -1,7 +1,7 @@
 <%- title "Contract" %>
 <%- page_title "Janitek | Contract" %>
 
+<p>Contract for <%= @client.name %> on <%= @contract.created_at.strftime("%b %d, %Y") %> (<%= link_to 'visit', @contract.url_to_use, :target=>'_blank'%>)</p>
 <div class="embed-responsive embed-responsive-4by3">
   <iframe class="embed-responsive-item" src="<%= @contract.url_to_use %>"></iframe>
 </div>
-<p>Contract for <%= @client.name %> on <%= @contract.created_at.strftime("%b %d, %Y") %> (<%= link_to 'visit', @contract.url_to_use, :target=>'_blank'%>)</p>

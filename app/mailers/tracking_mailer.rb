@@ -1,5 +1,5 @@
 class TrackingMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: ENV["CONTACT_EMAIL"]
 
   def viewed_contract(member)
     @member=member

@@ -533,6 +533,15 @@ ul.list-wrapper .btn {
   color: black;
 }
 
+@media all and (max-width: 991px) {
+  .logo-wrapper-small {
+    display: block;
+  }
+  .logo-wrapper {
+    display: none;
+  }
+}
+
 /*Mobile Query*/
 @media all and (max-width: 765px) {
   .logo-wrapper-small {

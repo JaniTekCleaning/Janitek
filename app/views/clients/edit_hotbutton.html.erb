@@ -2,11 +2,11 @@
 
 <%= form_tag(client_update_hotbutton_path(@client), method: :put) do -%>
 <p>Use this space to list placed you'd like your janitorial team to pay extra attention to when we clean.  For example, you might say, 'Please wipe down my computer screen every night with a dry cloth,' and we will pay special attention to those items!</p>
-<ol id='EditHotbuttonList'>
-  <% for idx in (1..10) %>
+<ol id='EditHotButtonList'>
+  <% @client.hot_button_items.each do |item| %>
     <li>
       <input type='text' name='hotbutton_item[]'
-        value='<%=@client.hot_button_items[idx-1] %>' class='hotbutton_item'></li>
+        value='<%= item %>' class='hotbutton_item'></li>
     </li>
   <% end %>
 </ol>

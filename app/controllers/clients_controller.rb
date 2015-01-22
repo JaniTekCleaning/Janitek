@@ -64,12 +64,13 @@ class ClientsController < ApplicationController
     @client.save
     if @client.valid?
       if current_user.type=='Staff'
-        redirect_to client_path(@client)
+        redirect_to client_path(@client), notice: "Hot Button List updated"
       else
-        redirect_to root_path
+        flash[:notice] = "Hot Button List updated"
+        render 'edit_hotbutton'
       end
     else
-      render 'edit'
+      render 'edit_hotbutton'
     end
   end
 

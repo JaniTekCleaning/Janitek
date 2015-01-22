@@ -7,7 +7,7 @@
       <% if current_user.client.contracts.last %>
         <%= link_to 'Contract', client_contract_path(current_user.client, current_user.client.contracts.last), class: 'btn btn-primary btn-command' %>
       <% else %>
-        No contract entered yet
+        <div class="btn btn-primary btn-command disabled">Contract</div>
       <% end %>
     </h2>
   </div>
@@ -16,7 +16,7 @@
       <% if current_user.client.schedules.last %>
         <%= link_to 'Schedule', client_schedule_path(current_user.client, current_user.client.schedules.last), class: 'btn btn-primary btn-command' %>
       <% else %>
-        No task schedule entered yet
+        <div class="btn btn-primary btn-command disabled">Schedule</div>
       <% end %>
     </h2>
   </div>
@@ -29,7 +29,7 @@
 </div>
 <div class='row'>
   <div class='col-md-6 col-md-push-3'>
-    <h2><%= link_to 'Edit Hotbuttons', client_edit_hotbutton_path(@client), class: 'btn btn-primary btn-command' %></h2>
+    <h2><%= link_to 'Edit Hot Button List', client_edit_hotbutton_path(@client), class: 'btn btn-primary btn-command' %></h2>
   </div>
 </div>
 

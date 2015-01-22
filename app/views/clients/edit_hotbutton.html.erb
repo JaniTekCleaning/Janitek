@@ -1,7 +1,7 @@
-<h1>Edit Hotbutton List</h1>
+<h1>Edit Hot Button List</h1>
 
 <%= form_tag(client_update_hotbutton_path(@client), method: :put) do -%>
-<h2 id='tester'>Clickity</h2>
+<p>Use this space to list placed you'd like your janitorial team to pay extra attention to when we clean.  For example, you might say, 'Please wipe down my computer screen every night with a dry cloth,' and we will pay special attention to those items!</p>
 <ol id='EditHotbuttonList'>
   <% for idx in (1..10) %>
     <li>
@@ -12,5 +12,5 @@
 </ol>
 
 <%= submit_tag "Save",  class:"btn btn-primary"  %>
-    <%= link_to 'Cancel', client_path(@client), class:'btn btn-danger' %>
+    <%= link_to 'Cancel', policy(@client).show? ? client_path(@client) : root_path, class:'btn btn-danger' %>
 <% end %>

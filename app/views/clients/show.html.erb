@@ -96,11 +96,13 @@
     </div>
   </div>
 </div>
-<h2>Members</h2>
-<div class='row'>
+<h2 class="member-title">Members</h2>
+<div class='row member-list'>
   <% @client.members.each do |member| %>
     <div class="col-md-3">
-    <%= link_to member.full_name, client_member_path(@client,member), class:'btn btn-primary' %>
+      <div class="inside">
+        <%= link_to member.full_name, client_member_path(@client,member), class:'btn btn-primary' %>
+      </div>
     </div>
   <% end %>
 </div>

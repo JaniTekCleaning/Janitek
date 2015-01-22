@@ -58,9 +58,11 @@ $navbar-default-link-hover-color: #000;
   .hiddentext{ display: none }
 }
 
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Raleway";
+}
 
-
-h1{
+h1 {
   text-align: center;
 }
 
@@ -498,6 +500,10 @@ ul.list-wrapper {
   padding-left: 0px;
 }
 
+ul.list-wrapper li {
+  margin-bottom: 5px;
+}
+
 ul.list-wrapper .btn {
   width: 100%;
 }
@@ -505,6 +511,26 @@ ul.list-wrapper .btn {
 .logo-wrapper-small {
   text-align: center;
   display: none;
+}
+
+.member-list .inside {
+  padding: 0 5px;
+}
+
+.member-list > div:first-child .inside {
+  padding-left: 0;
+}
+
+.member-list > div:last-child .inside {
+  padding-right: 0;
+}
+
+.member-list a {
+  min-width: 100%;
+}
+
+.member-title {
+  color: black;
 }
 
 /*Mobile Query*/

@@ -61,14 +61,17 @@ class ClientsController < ApplicationController
     add_breadcrumb "Edit", client_edit_hotbutton_path(@client)
     items=params[:hotbutton_item].reject{|item| item.empty?}
     @client.hot_button_items=items
-    @client.save
     if @client.valid?
       if current_user.type=='Staff'
         redirect_to client_path(@client), notice: "Hot Button List updated"
       else
         flash[:notice] = "Hot Button List updated"
         render 'edit_hotbutton'
+        if @client.hot_button_items_changed?
+          TrackingMailer.edited_hotbutton(current_user).deliver
+        end
       end
+      @client.save
     else
       render 'edit_hotbutton'
     end

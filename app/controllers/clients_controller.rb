@@ -42,6 +42,7 @@ class ClientsController < ApplicationController
     authorize @client
     @client.update(client_params)
     add_breadcrumb "Edit", edit_client_path(@client)
+    flash[:notice] = "Client updated"
     respond_with(@client)
   end
 
@@ -62,16 +63,12 @@ class ClientsController < ApplicationController
     items=params[:hotbutton_item].reject{|item| item.empty?}
     @client.hot_button_items=items
     if @client.valid?
-      if current_user.type=='Staff'
-        redirect_to client_path(@client), notice: "Hot Button List updated"
-      else
-        flash[:notice] = "Hot Button List updated"
-        render 'edit_hotbutton'
-        if @client.hot_button_items_changed?
-          TrackingMailer.edited_hotbutton(current_user).deliver
-        end
+      redirect_to client_path(@client), notice: "Hot Button List updated"
+      changed=@client.hot_button_items_changed?
+      @client.save!
+      if (!current_user.is_a? Staff) && changed
+        TrackingMailer.edited_hotbutton(current_user).deliver
       end
-      @client.save
     else
       render 'edit_hotbutton'
     end
@@ -91,7 +88,11 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:staff_id, :name, :number, :email, :hot_button_list, :logo)
+      if current_user.is_a? Staff
+        params.require(:client).permit(:staff_id, :name, :number, :email, :hot_button_list, :logo)
+      else
+        params.require(:client).permit(:name, :number, :email, :hot_button_list, :logo)
+      end
     end
 
     def link_params

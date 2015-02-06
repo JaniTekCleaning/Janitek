@@ -4,7 +4,7 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def show?
-    user.class==Staff
+    user.class==Staff || user.client==record
   end
 
   def create?
@@ -17,6 +17,10 @@ class ClientPolicy < ApplicationPolicy
 
   def update?
     user.class==Staff || user.client==record
+  end
+
+  def update_janitorial_lead?
+    user.class==Staff
   end
 
   def edit?

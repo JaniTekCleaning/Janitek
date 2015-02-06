@@ -52,7 +52,9 @@
     <div class="list-element-inside">
       <h3>Contracts</h3>
       <div class="col-button-wrapper">
-        <%= link_to 'Add New', new_client_contract_path(@client), class:'btn btn-primary btn-xs' %>
+        <% if policy(Contract).create? %>
+          <%= link_to 'Add New', new_client_contract_path(@client), class:'btn btn-primary btn-xs' %>
+        <% end %>
       </div>
       <ul class="list-wrapper">
       <% @contracts.each do |contract| %>
@@ -66,9 +68,11 @@
 
   <div class='col-md-4 list-element'>
     <div class="list-element-inside">
-      <h3>Task Schedule</h3>
+      <h3>Scope of Work</h3>
       <div class="col-button-wrapper">
-      <%= link_to 'Add New', new_client_schedule_path(@client), class:'btn btn-primary btn-xs' %>
+        <% if policy(Schedule).create? %>
+          <%= link_to 'Add New', new_client_schedule_path(@client), class:'btn btn-primary btn-xs' %>
+        <% end %>
       </div>
       <ul class="list-wrapper">
       <% @schedules.each do |contract| %>
@@ -96,18 +100,20 @@
     </div>
   </div>
 </div>
-<h2 class="member-title">Members</h2>
-<div class='row member-list'>
-  <% @client.members.each do |member| %>
-    <div class="col-md-3">
-      <div class="inside">
-        <%= link_to member.full_name, client_member_path(@client,member), class:'btn btn-primary' %>
+<% if policy(Member).update? %>
+  <h2 class="member-title">Members</h2>
+  <div class='row member-list'>
+    <% @client.members.each do |member| %>
+      <div class="col-md-3">
+        <div class="inside">
+          <%= link_to member.full_name, client_member_path(@client,member), class:'btn btn-primary' %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
-<div class="row new-member-wrapper">
-  <div class="col-md-4">
-    <%= link_to 'Add New', new_client_member_path(@client), class:'btn btn-success'  %>
+    <% end %>
   </div>
-</div>
+  <div class="row new-member-wrapper">
+    <div class="col-md-4">
+      <%= link_to 'Add New', new_client_member_path(@client), class:'btn btn-success'  %>
+    </div>
+  </div>
+<% end %>

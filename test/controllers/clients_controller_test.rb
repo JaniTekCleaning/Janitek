@@ -62,14 +62,14 @@ class ClientsControllerTest < ActionController::TestCase
       TrackingMailer.expects(:edited_hotbutton).with(@user).returns(message)
       message.expects(:deliver)
 
-      put :update_hotbutton, client_id:@client, hotbutton_item:["1","2","3"]
+      put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
     end
 
     should 'update hot button items' do
       Client.expects(:find).returns(@client)
       @client.expects(:hot_button_items=)
       @client.expects(:save!)
-      put :update_hotbutton, client_id:@client, hotbutton_item:["1","2","3"]
+      put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
     end
 
   end
@@ -125,12 +125,12 @@ class ClientsControllerTest < ActionController::TestCase
       Client.expects(:find).returns(@client)
       @client.expects(:hot_button_items=)
       @client.expects(:save!)
-      put :update_hotbutton, client_id:@client, hotbutton_item:["1","2","3"]
+      put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
     end
 
     should 'not email when updating hot button items' do
       TrackingMailer.expects(:edited_hotbutton).never
-      put :update_hotbutton, client_id:@client, hotbutton_item:["1","2","3"]
+      put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
     end
   end
 end

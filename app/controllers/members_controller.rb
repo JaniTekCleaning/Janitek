@@ -59,7 +59,7 @@ class MembersController < ApplicationController
   private
     def add_breadcrumbs
       add_breadcrumb "Home", :root_path
-      add_breadcrumb "Clients", clients_path
+      add_breadcrumb "Clients", clients_path if current_user.is_a? Staff
       add_breadcrumb @client.name, client_path(@client)
       add_breadcrumb @member.full_name, client_member_path(@client,@member) if @member
     end

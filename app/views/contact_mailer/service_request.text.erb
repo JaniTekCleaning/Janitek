@@ -1,0 +1,9 @@
+<%= @member.full_name %>, a member of client <%= @member.client.name %>, has filled out the service request form with the following data:
+
+==============
+
+<% @fields.each_index do |index| %>
+<%= @fields[index]%>:
+<%= @submission[index] %>
+
+<% end %>

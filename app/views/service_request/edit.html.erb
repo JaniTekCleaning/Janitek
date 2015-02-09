@@ -1,0 +1,28 @@
+<h1>Edit Service Request Form</h1>
+
+<%= form_tag(service_request_edit_path, method: :put) do -%>
+  <% if @service_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@service_request.errors.count, "error") %> prohibited this form from being saved:</h2>
+
+      <ul>
+      <% @service_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<ol id='EditVariableFieldList'>
+  <% @service_request.fields.each do |item| %>
+    <li>
+      <input type='text' name='variable_item[]'
+        value='<%= item %>' class='variable_item'></li>
+    </li>
+  <% end %>
+</ol>
+
+  <div class="form-group">
+    <%= submit_tag "Save",  class:"btn btn-primary"  %>
+  </div>
+<% end %>

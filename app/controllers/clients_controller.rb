@@ -60,7 +60,7 @@ class ClientsController < ApplicationController
   def update_hotbutton
     authorize @client
     add_breadcrumb "Edit", client_edit_hotbutton_path(@client)
-    items=params[:hotbutton_item].reject{|item| item.empty?}
+    items=params[:variable_item].reject{|item| item.empty?}
     @client.hot_button_items=items
     if @client.valid?
       redirect_to client_path(@client), notice: "Hot Button List updated"

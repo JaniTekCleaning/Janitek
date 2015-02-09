@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Service Request from <%= @member.full_name %></h1>
+    <p><%= @member.full_name %>, a member of client <%= @member.client.name %>, has filled out the service request form with the following data:</p>
+
+    <ul>
+    	<% @fields.each_index do |index| %>
+	    	<li>
+	    		<%= @fields[index]%>:<br>
+	    		<%= @submission[index] %>
+	    	</li>
+    	<% end %>
+    </ul>
+  </body>
+</html>

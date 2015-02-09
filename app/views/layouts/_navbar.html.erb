@@ -42,6 +42,9 @@
             <li <% if params[:controller]=='staff' %>class="active"<% end %>>
               <%= link_to('Staff',staff_index_path)%>
             </li>
+            <li <% if params[:controller]=='service_request' %>class="active"<% end %>>
+              <%= link_to('Edit Service Request Form',service_request_edit_path)%>
+            </li>
           <% end %>  
         <% end %>
       </ul>

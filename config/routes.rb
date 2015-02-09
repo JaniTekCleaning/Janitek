@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   end
   get 'contact_us' => 'contact#new'
   post 'contact_us' => 'contact#create'
+
+  get 'service_request' => 'service_request#show'
+  post 'service_request' => 'service_request#submit'
+  get 'service_request/edit' => 'service_request#edit'
+  put 'service_request/edit' => 'service_request#update'
   resources :staff do
     member do
       get 'log'

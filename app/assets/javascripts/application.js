@@ -27,11 +27,11 @@ function isLastListElement(element){
 
 function checkLastEmpty(){
 	$('.notice').remove();
-	var list=$('#EditHotButtonList');
+	var list=$('#EditVariableFieldList');
 	var last=list.children().last();
 	var input=last.find('input')
 	if (input.val()){
-		list.append("<li><input type='text' name='hotbutton_item[]' class='hotbutton_item'></li>")
+		list.append("<li><input type='text' name='variable_item[]' class='variable_item'></li>")
 		var last=list.children().last();
 		var input=last.find('input')
 		input.keyup(checkLastEmpty);
@@ -39,12 +39,12 @@ function checkLastEmpty(){
 }
 
 function ready(){
-	$('.hotbutton_item').each(function(){
+	$('.variable_item').each(function(){
 		$(this).keyup(checkLastEmpty);
 	})
-	var list=$('#EditHotButtonList');
+	var list=$('#EditVariableFieldList');
 	list.focusout(function(){
-		$('.hotbutton_item').each(function(){
+		$('.variable_item').each(function(){
 			if(!$(this).val().trim()){
 				if (!isLastListElement($(this).parent())){
 					$(this).parent().remove();
@@ -53,7 +53,7 @@ function ready(){
 		})
 	});
 
-	list.append("<li><input type='text' name='hotbutton_item[]' class='hotbutton_item'></li>")
+	list.append("<li><input type='text' name='variable_item[]' class='variable_item'></li>")
 	list.children().last().find('input').keyup(checkLastEmpty);
 	// checkLastEmpty(true);
 }

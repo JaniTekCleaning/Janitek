@@ -1,0 +1,78 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='widget' id='widget-account-manager'>
+      <div class='widget-header'>
+        <div class='widget-icon'>
+          <img src="<%= asset_path('icons/icon-profile.png') %>">
+        </div><div class='widget-title'>
+          Your Account Manager
+        </div>
+      </div>
+      <div class='widget-content'>
+        <div class="client-manager-wrapper">
+          <% if @staff %>
+          <div class='avatar'>
+            <% if @staff.avatar.file? %>
+              <%= image_tag @staff.avatar.url(:profile), :class=>'profile_image' %>
+            <% else %>
+              <div class="no-avatar"></div>
+            <% end %>
+          </div>
+          <div class="manager-name">
+            <%= @staff.full_name %>
+          </div>
+          <% if @staff.title %>
+            <div class="staff-title">
+                <%= @staff.title %>
+            </div>
+          <% end %>
+          <% if @staff.email %>
+          <div class="manager-email">
+            <a href="mailto:<%= @staff.email %>"><%= @staff.email %></a>
+          </div>
+          <% end %>
+          
+          <div class="staff-office-number phone-number">
+            <span class="field-title">Office: </span>
+            <% if @staff.office %>
+              <%= @staff.office %>
+            <% else %>
+              <span class="unavailable">Unavailable</span>
+            <% end %>
+          </div>
+          
+          <div class="staff-cell-number phone-number">
+            <span class="field-title">Cell: </span>
+            <% if @staff.cell %>
+              <%= @staff.cell %>
+            <% else %>
+              <span class="unavailable">Unavailable</span>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='widget' id='widget-contact-me-now'>
+      <div class='widget-header'>
+        <div class='widget-icon'>
+          <img src="<%= asset_path('icons/icon-phone.png') %>">
+        </div><div class='widget-title'>
+          Contact Me Now
+        </div>
+      </div>
+      <div class='widget-content'>
+        <div class="manager-description">
+          <h6>Additional Notes:</h6>
+          <% if @staff %>
+            <%= markdown(@staff.description).html_safe if @staff.description%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

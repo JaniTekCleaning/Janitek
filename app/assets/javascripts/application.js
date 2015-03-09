@@ -56,4 +56,8 @@ function ready(){
 	list.append("<li><input type='text' name='variable_item[]' class='variable_item'></li>")
 	list.children().last().find('input').keyup(checkLastEmpty);
 	// checkLastEmpty(true);
+	
+	if ($("#hot_button_input").length) {
+		$("#hot_button_input").focus();
+	}
 }

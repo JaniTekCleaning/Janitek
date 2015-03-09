@@ -1,11 +1,13 @@
 class ServiceRequestController < ApplicationController
 
+  before_action :set_client
   before_action :set_service_request
   before_action :authorize_controller
   before_action :redirect_staff, only:[:show,:submit]
 
   def show
-    add_breadcrumb "Service Request Form", service_request_path
+    @staff=@client.staff
+    #add_breadcrumb "Service Request Form", service_request_path
   end
 
   def submit
@@ -23,6 +25,10 @@ class ServiceRequestController < ApplicationController
     @service_request.fields=items
     flash[:notice]='Service Request Form updated.' if @service_request.save
     render 'edit'
+  end
+  
+  def set_client
+    @client ||= Client.find(current_user.client_id)
   end
 
   def set_service_request

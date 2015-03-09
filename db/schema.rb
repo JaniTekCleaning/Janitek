@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208214812) do
+ActiveRecord::Schema.define(version: 20150306004653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20150208214812) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.integer  "staff_id"
+    t.string   "directnumber"
+    t.string   "street1"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.text     "notes"
+    t.string   "contact"
+    t.string   "contacttitle"
   end
 
   add_index "clients", ["staff_id"], name: "index_clients_on_staff_id", using: :btree
@@ -88,8 +97,10 @@ ActiveRecord::Schema.define(version: 20150208214812) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "number"
+    t.string   "office"
     t.text     "description"
+    t.string   "title"
+    t.string   "cell"
   end
 
   add_index "users", ["client_id"], name: "index_users_on_client_id", using: :btree

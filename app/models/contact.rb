@@ -3,7 +3,7 @@ class Contact
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :content, :member, :subject
+  attr_accessor :content, :member, :subject, :client
 
   validates :member, :presence=>true
   validates :content, :presence=>true, :length=>{:minimum=>10, :maximum=>1000}

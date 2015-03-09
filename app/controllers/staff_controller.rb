@@ -59,7 +59,7 @@ class StaffController < ApplicationController
       @staff = Staff.find(params[:id])
     end
     def staff_registration_params
-      params.require(:staff).permit(:description, :email,:first_name,:last_name,:password,:password_confirmation,:avatar)
+      params.require(:staff).permit(:description, :email,:first_name,:last_name,:password,:password_confirmation,:avatar,:office,:cell,:title)
     end
     def staff_update_params
       params.require(:staff).permit(*policy(@staff || Staff).permitted_attributes)

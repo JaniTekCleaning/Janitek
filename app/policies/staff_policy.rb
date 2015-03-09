@@ -32,7 +32,7 @@ class StaffPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    list=[:description,:email,:first_name,:last_name,:avatar]
+    list=[:description,:email,:first_name,:last_name,:avatar,:office,:cell,:title]
     if user.admin && record!=user
       list<<[:password]
       list<<[:password_confirmation]

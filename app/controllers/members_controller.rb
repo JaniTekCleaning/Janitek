@@ -75,7 +75,7 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_registration_params
-      params.require(:member).permit(:email,:first_name,:last_name,:password,:password_confirmation,:avatar)
+      params.require(:member).permit(:email,:first_name,:last_name,:password,:password_confirmation,:avatar,:office,:cell,:title)
     end
     def member_update_params
       params.require(:member).permit(*policy(@member || Member).permitted_attributes)

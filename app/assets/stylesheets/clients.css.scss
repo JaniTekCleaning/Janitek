@@ -17,3 +17,303 @@
 ol > li > input{
   margin-bottom: 8px;
 }
+
+.widget {
+  margin-bottom: 2em;
+  position: relative;
+}
+
+.widget .widget-header {
+  background: #0280BB;
+  text-align: left;
+  padding: 0;
+  overflow:hidden;
+  font-family: 'Gotham';
+}
+
+.widget .widget-header .widget-icon {
+  display: inline-block;
+  vertical-align: top;
+  background: black;
+  padding: .5em;
+  font-size: 1.25em;
+}
+
+.widget .widget-header .widget-icon img {
+  display: block;
+  max-width: 1.5em;
+  max-height: 1.5em;
+}
+
+.widget .widget-header .widget-title {
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+  padding: .5em;
+  line-height: 1.5em;
+  font-size: 1.25em;
+}
+
+.widget .widget-header .widget-title a {
+  color: white;
+  font-style: italic;
+}
+
+#client-col-right .widget .widget-content {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
+#client-col-right .widget .widget-content img {
+  width: 100%;
+}
+
+#client-col-right .widget .widget-content {
+  height: 200px;
+  overflow: hidden;
+  
+}
+
+#client-col-right {
+  border-left: 1px solid #ddd;
+}
+
+#widget-service-request .widget-content { background-image: image-url('photos/request.jpg'); }
+#widget-business-profile .widget-content { background-image: image-url('photos/profile.jpg'); }
+#widget-service-contract .widget-content { background-image: image-url('photos/contract.jpg'); }
+#widget-tasks .widget-content { background-image: image-url('photos/tasks.jpg'); }
+
+.widget .overlay {
+  background: rgba(255, 255, 255, 0);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: background 400ms ease;
+}
+
+.widget:hover .overlay {
+  background: rgba(255, 255, 255, .25);
+}
+
+.widget.disabled .overlay {
+  background: rgba(0, 0, 0, .25);
+}
+
+.widget.disabled:hover .overlay {
+  background: rgba(0, 0, 0, .35);
+}
+
+.client-manager-wrapper {
+  text-align: left;
+  font-size: 1em;
+  color: #000;
+}
+
+.client-manager-wrapper > div {
+  margin-bottom: 5px;
+}
+
+.client-manager-wrapper > div:last-child {
+  margin-bottom: 0;
+}
+
+.client-manager-wrapper .avatar {
+  margin-top: 10px;
+  width: 200px;
+  height: 200px;
+}
+
+.client-manager-wrapper .avatar > img {
+  max-width: 100%;
+  max-height: 200px;
+}
+
+.client-manager-wrapper .avatar .no-avatar {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 1px solid #999;
+  background: #ddd;
+}
+
+.client-manager-wrapper .manager-name {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 5px;
+}
+
+.client-manager-wrapper .manager-email {
+  
+}
+
+.client-manager-wrapper .unavailable {
+  font-style: italic;
+  color: #ddd;
+}
+
+.manager-description {
+  text-align: left;
+  font-size: 1em;
+  color: #333;
+  margin-top: 5px;
+}
+
+.manager-description h6 {
+  font-weight: bold;
+  font-size: 1em;
+  margin: 10px auto 5px;
+}
+
+.greybox {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 1px solid #999;
+  background: #ddd;
+}
+
+#business-profile-full table {
+  width: 100%;
+}
+
+#client_root.business-profile-full .widget-content {
+  padding: 10px 0;
+  text-align: left;
+  color: #333;
+  height: auto !important;
+  position: relative;
+}
+
+#client_root .widget-content .inside {
+  padding: 10px;
+}
+
+#client_root .widget-content .business-name {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+textarea#client_notes {
+  min-height: 200px;
+}
+
+.business-contact-details {
+  margin-bottom: 10px;
+}
+
+.business-contact-details .contact-title {
+  font-style: italic;
+}
+
+.main-office-number,
+.direct-number {
+  margin: 10px auto;
+}
+
+.business-email {
+  margin: 10px auto;
+}
+
+.business-additional-notes {
+  margin: 10px auto;
+}
+
+.edit-client-button-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#edit-client-button {
+  margin-bottom: 0;
+}
+
+#hot-button-task-list,
+#hot-button-task-list li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#hot-button-task-list {
+  height: 250px;
+  overflow-y: scroll;
+  border: 1px solid #999;
+  background: #dedede;
+}
+
+#hot-button-task-list li {
+  padding: 5px 10px;
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+  border-top: 1px solid #999;
+  border-right: 1px solid #999;
+  border-bottom: 0px;
+}
+
+#hot-button-task-list li:first-child {
+  border-top: 0;
+}
+
+#hot-button-task-list li:last-child {
+  border-bottom: 1px solid #999;
+}
+
+#hot-button-task-list li a {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+#hot-button-task-list li span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#hot-buttons-container {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-top: 0px;
+}
+
+#client_root.task-list-and-hot-buttons .widget-content {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#client_root .widget-content h6 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#add-new-hotbutton {
+  width: 100%;
+  max-width: 225px;
+  float: right;
+}
+
+#add-new-hotbutton .glyphicon {
+  line-height: 24px;
+  color: #99cb4a;
+}
+
+#hot_button_input {
+  font-size: 1.25em;
+  width: 100%;
+  margin: 5px auto;
+  padding: 5px 5px;
+  color: #333;
+}
+
+#hot-buttons-container .instructions {
+  margin: 0px auto 20px auto;
+}

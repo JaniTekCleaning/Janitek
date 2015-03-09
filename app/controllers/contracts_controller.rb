@@ -21,6 +21,7 @@ class ContractsController < ApplicationController
   def show
     authorize @contract
     TrackingMailer.viewed_contract(current_user).deliver if current_user.type=="Member"
+    @staff = @client.staff
   end
 
   private

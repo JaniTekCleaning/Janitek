@@ -32,7 +32,7 @@ class MemberPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    list=[:email,:first_name,:last_name,:avatar]
+    list=[:email,:first_name,:last_name,:avatar,:office,:cell,:title]
     if user.admin
       list<<[:password]
       list<<[:password_confirmation]

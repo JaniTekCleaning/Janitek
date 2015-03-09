@@ -24,6 +24,10 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  cursor: pointer;
+}
+
 //Base styling
 $text-color: #8DC63F;
 $link-color: #0073AE;
@@ -531,6 +535,23 @@ ul.list-wrapper .btn {
 
 .member-title {
   color: black;
+}
+
+.submit-wrapper {
+  text-align: right;
+}
+
+.submit-wrapper button {
+  border: 0;
+  background: transparent;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
 
 @media all and (max-width: 991px) {

@@ -15,6 +15,7 @@ class ClientsController < ApplicationController
     authorize @client
     @contracts=@client.contracts.limit(10).order(created_at: :desc)
     @schedules=@client.schedules.limit(10).order(created_at: :desc)
+    @staff=@client.staff
     respond_with(@client,@contracts,@schedules)
   end
 
@@ -54,7 +55,8 @@ class ClientsController < ApplicationController
 
   def edit_hotbutton
     authorize @client
-    add_breadcrumb current_user.type=='Staff' ? "Edit" : "Hotbuttons", client_edit_hotbutton_path(@client)
+    @staff = @client.staff
+    # add_breadcrumb current_user.type=='Staff' ? "Edit" : "Hotbuttons", client_edit_hotbutton_path(@client)
   end
 
   def update_hotbutton
@@ -76,9 +78,9 @@ class ClientsController < ApplicationController
 
   private
     def add_breadcrumbs
-      add_breadcrumb "Home", :root_path
-      add_breadcrumb "Clients", clients_path if current_user.type=="Staff"
-      add_breadcrumb @client.name, client_path(@client) if @client && current_user.type=="Staff"
+      # add_breadcrumb "Home", :root_path
+      # add_breadcrumb "Clients", clients_path if current_user.type=="Staff"
+      # add_breadcrumb @client.name, client_path(@client) if @client && current_user.type=="Staff"
     end
 
     def set_client
@@ -89,9 +91,9 @@ class ClientsController < ApplicationController
 
     def client_params
       if current_user.is_a? Staff
-        params.require(:client).permit(:staff_id, :name, :number, :email, :hot_button_list, :logo)
+        params.require(:client).permit(:staff_id, :name, :number, :email, :hot_button_list, :logo, :directnumber, :street1, :street2, :city, :state, :zip, :notes, :contacttitle, :contact)
       else
-        params.require(:client).permit(:name, :number, :email, :hot_button_list, :logo)
+        params.require(:client).permit(:name, :number, :email, :hot_button_list, :logo, :directnumber, :street1, :street2, :city, :state, :zip, :notes, :contacttitle, :contact)
       end
     end
 

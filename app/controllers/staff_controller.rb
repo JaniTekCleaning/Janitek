@@ -1,6 +1,6 @@
 class StaffController < ApplicationController
   before_action :set_staff, except:[:index,:new,:create]
-  before_filter :add_breadcrumbs
+  # before_filter :add_breadcrumbs
 
   respond_to :html
 

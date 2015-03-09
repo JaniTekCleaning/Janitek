@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, except:[:index,:new,:create]
-  before_filter :add_breadcrumbs
+  # before_filter :add_breadcrumbs
 
   respond_to :html
 
@@ -22,27 +22,27 @@ class ClientsController < ApplicationController
   def new
     authorize Client
     @client = Client.new
-    add_breadcrumb "New", new_client_path
+    # add_breadcrumb "New", new_client_path
     respond_with(@client)
   end
 
   def edit
     authorize @client
-    add_breadcrumb "Edit", edit_client_path(@client)
+    # add_breadcrumb "Edit", edit_client_path(@client)
   end
 
   def create
     authorize Client
     @client = Client.new(client_params)
     @client.save
-    add_breadcrumb "New", new_client_path
+    # add_breadcrumb "New", new_client_path
     respond_with(@client)
   end
 
   def update
     authorize @client
     @client.update(client_params)
-    add_breadcrumb "Edit", edit_client_path(@client)
+    # add_breadcrumb "Edit", edit_client_path(@client)
     flash[:notice] = "Client updated"
     respond_with(@client)
   end

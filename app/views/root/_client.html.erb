@@ -37,20 +37,8 @@
       </div>
       <!-- Task List and Hot Buttons -->
       <div class="col-md-6">
-        <div class='widget <% if !current_user.client.schedules.last %> disabled <% end %>' id='widget-tasks'>
-          <% if current_user.client.schedules.last %>
-            <%= link_to(client_edit_hotbutton_path(@client)) do %>
-              <div class='overlay'></div>
-              <div class='widget-header'>
-                <div class='widget-icon'>
-                  <img src="<%= asset_path('icons/icon-tasks.png') %>">
-                </div><div class='widget-title'>
-                  My Task List + Hot Buttons
-                </div>
-              </div>
-              <div class='widget-content'></div>
-            <% end %>
-          <% else %>
+        <div class='widget' id='widget-tasks'>
+          <%= link_to(client_edit_hotbutton_path(@client)) do %>
             <div class='overlay'></div>
             <div class='widget-header'>
               <div class='widget-icon'>

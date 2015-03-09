@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
   before_action :set_client
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
-  before_filter :add_breadcrumbs
+  # before_filter :add_breadcrumbs
 
   respond_to :html
   def new

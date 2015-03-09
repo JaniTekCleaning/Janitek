@@ -101,38 +101,3 @@
   </div>
 </div>
 <!-- /#client_root-->
-
-
-<div class='row' id='client_root' style="display: none !important;">
-  <%= link_to(client_schedule_path(current_user.client, current_user.client.schedules.last)) do %>
-<% end %>
-  <div class='col-md-6'>
-    <h2>
-      <% if current_user.client.contracts.last %>
-        <%= link_to 'Contract', client_contract_path(current_user.client, current_user.client.contracts.last), class: 'btn btn-primary btn-command' %>
-      <% else %>
-        <div class="btn btn-primary btn-command disabled">Contract</div>
-      <% end %>
-    </h2>
-  </div>
-  <div class='col-md-6'>
-    <h2>
-      <% if current_user.client.schedules.last %>
-        <%= link_to 'Scope of Work', client_schedule_path(current_user.client, current_user.client.schedules.last), class: 'btn btn-primary btn-command' %>
-      <% else %>
-        <div class="btn btn-primary btn-command disabled">Scope of Work</div>
-      <% end %>
-    </h2>
-  </div>
-  <div class='col-md-6'>
-    <h2><%= link_to 'Service Request', service_request_path, class: 'btn btn-primary btn-command' %></h2>
-  </div>
-  <div class='col-md-6'>
-    <h2><%= link_to 'Contact Us', contact_us_path, class: 'btn btn-primary btn-command' %></h2>
-  </div>
-</div>
-<div class='row' style="display: none !important;">
-  <div class='col-md-6 col-md-push-3'>
-    <h2><%= link_to 'Profile', client_path(@client), class: 'btn btn-primary btn-command' %></h2>
-  </div>
-</div>

@@ -1,6 +1,6 @@
 class ServiceRequestController < ApplicationController
 
-  before_action :set_client
+  before_action :set_client, only:[:show, :submit]
   before_action :set_service_request
   before_action :authorize_controller
   before_action :redirect_staff, only:[:show,:submit]
@@ -28,7 +28,7 @@ class ServiceRequestController < ApplicationController
   end
   
   def set_client
-    @client ||= Client.find(current_user.client_id)
+    @client ||= Client.find(current_user.client_id) unless current_user.is_a? Staff
   end
 
   def set_service_request

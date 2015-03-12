@@ -15,19 +15,6 @@
         </div>
       </div>
       <div class='widget-content'>
-        <div class="edit-client-button-wrapper">
-          <%= link_to(edit_client_path(@client)) do %>
-          <div class='widget' id='edit-client-button'>
-            <div class='widget-header'>
-              <div class='widget-icon'>
-                <img src="<%= asset_path('icons/icon-edit.png') %>">
-              </div><div class='widget-title'>
-                Edit
-              </div>
-            </div>
-          </div>
-          <% end %>
-        </div>
         <div class="row">
           <div class="col-md-6">
             <div class="greybox">
@@ -84,11 +71,26 @@
             </div>
           </div>
           <div class="col-md-6">
+            <div class="member-image-wrapper">
             <% if @client.logo.file? %>
               <%= image_tag @client.logo.url(:profile) %>
             <% else %>
-              
+              <div class="no-image"></div>
             <% end %>
+            </div>
+            <div class="edit-client-button-wrapper">
+              <%= link_to(edit_client_path(@client)) do %>
+              <div class='widget' id='edit-client-button'>
+                <div class='widget-header'>
+                  <div class='widget-icon'>
+                    <img src="<%= asset_path('icons/icon-edit.png') %>">
+                  </div><div class='widget-title'>
+                    Edit
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

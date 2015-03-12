@@ -222,13 +222,30 @@ textarea#client_notes {
 }
 
 .edit-client-button-wrapper {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  width: auto;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.edit-client-button-wrapper > a {
+  display: inline-block;
+}
+
+.member-image-wrapper {
+  display: block;
+  min-height: 200px;
+}
+
+.member-image-wrapper .no-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
 }
 
 #edit-client-button {
   margin-bottom: 0;
+  max-width: 100px;
+  width: 100%;
 }
 
 #hot-button-task-list,

@@ -331,6 +331,10 @@ textarea#client_notes {
   color: #333;
 }
 
+#hot_button_input.invalid {
+  border: 1px solid red;
+}
+
 #hot-buttons-container .instructions {
   margin: 0px auto 20px auto;
 }

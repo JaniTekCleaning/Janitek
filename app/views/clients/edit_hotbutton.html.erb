@@ -20,6 +20,7 @@
             Please use the space below to add you site specific "hot buttons".
             These are issues that are unique to your site or areas you'd like us to pay extra attention to.
           </p>
+          <%= form_tag(client_update_hotbutton_path(@client), method: :put) do -%>
           <div class="hot-button-input-wrapper">
             <h6>Add a Hot Button item to my Task List:</h6>
             <input type="text" name="hot_button_input" id="hot_button_input" placeholder="Enter your hot button item text here..." />
@@ -38,69 +39,17 @@
               <br style="clear:both;">
             </div>
           </div>
+          <% end %>
           <div id="hot-button-list-wrapper">
             <h6>My current Hot Button Task List:</h6>
             <ul id="hot-button-task-list">
-              <li data-button-id="1">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 1</span>
-              </li>
-              <li data-button-id="2">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 2</span>
-              </li>
-              <li data-button-id="3">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 3</span>
-              </li>
-              <li data-button-id="4">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 4</span>
-              </li>
-              <li data-button-id="5">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 5</span>
-              </li>
-              <li data-button-id="6">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 6</span>
-              </li>
-              <li data-button-id="7">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 7</span>
-              </li>
-              <li data-button-id="8">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 8</span>
-              </li>
-              <li data-button-id="9">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 9</span>
-              </li>
-              <li data-button-id="10">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 10</span>
-              </li>
-              <li data-button-id="11">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 11</span>
-              </li>
-              <li data-button-id="12">
-                <a href="#remove">
-                  <i class="glyphicon glyphicon-minus-sign"></i>
-                </a> <span>Sample Task Item 12</span>
-              </li>
+              <% @client.hot_button_items.each do |item| %>
+                <li>
+                  <a href="#remove">
+                    <i class="glyphicon glyphicon-minus-sign"></i>
+                  </a> <span><%= item %></span>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div> <!-- /#hot-buttons-container -->
@@ -120,6 +69,11 @@
         <%= link_to 'Cancel', policy(@client).show? ? client_path(@client) : root_path, class:'btn btn-danger' %>
         <% end %>
         -->
+        
+        <script>
+          var clientId = "<%= @client.id %>";
+          var postUrl = "<%= client_update_hotbutton_path(@client) %>";
+        </script>
       </div>
     </div>
   </div>

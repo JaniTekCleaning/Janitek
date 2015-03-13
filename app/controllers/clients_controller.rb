@@ -65,14 +65,14 @@ class ClientsController < ApplicationController
     items=params[:variable_item].reject{|item| item.empty?}
     @client.hot_button_items=items
     if @client.valid?
-      redirect_to client_path(@client), notice: "Hot Button List updated"
+      # redirect_to client_path(@client), notice: "Hot Button List updated"
       changed=@client.hot_button_items_changed?
       @client.save!
       if (!current_user.is_a? Staff) && changed
         TrackingMailer.edited_hotbutton(current_user).deliver
       end
     else
-      render 'edit_hotbutton'
+      # render 'edit_hotbutton'
     end
   end
 

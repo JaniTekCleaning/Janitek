@@ -338,3 +338,27 @@ textarea#client_notes {
 #hot-buttons-container .instructions {
   margin: 0px auto 20px auto;
 }
+
+.widget-tabs .widget-tab {
+  width: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.widget-tab.inactive .widget-header{
+  background: #777777;
+  color: white;
+}
+
+.widget-tab.inactive .widget-header:hover {
+  background: #333;
+  cursor: pointer;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.tab-active {
+  display: block;
+}

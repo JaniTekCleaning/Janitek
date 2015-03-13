@@ -7,14 +7,32 @@
   </div>
   <div class='col-md-8' id="client-col-right">
     <div class='widget' id=''>
-      <div class='widget-header'>
-        <div class='widget-icon'>
-          <img src="<%= asset_path('icons/icon-service-request.png') %>">
-        </div><div class='widget-title'>
-          My Task List + Hot Buttons
+      <div class="widget-tabs">
+        <div class="widget-tab" data-target="hot_button_widget" id="tab_hot_buttons">
+        <div class='widget-header'>
+          <div class='widget-icon'>
+            <img src="<%= asset_path('icons/icon-service-request.png') %>">
+          </div><div class='widget-title'>
+            Hot Buttons
+          </div>
+        </div>
+        </div><div class="widget-tab inactive" data-target="task_list_widget" id="tab_task_list">
+          <div class='widget-header'>
+            <div class='widget-icon'>
+              <img src="<%= asset_path('icons/icon-service-request.png') %>">
+            </div><div class='widget-title'>
+              My Task List
+            </div>
+          </div>
         </div>
       </div>
-      <div class='widget-content'>
+      <div class="widget-content tab-content" id="task_list_widget">
+        <div class="embed-responsive embed-responsive-4by3">
+          <iframe class="embed-responsive-item" src=""></iframe>
+        </div>
+        <p></p>
+      </div>
+      <div class='widget-content tab-content tab-active' id="hot_button_widget">
         <div id="hot-buttons-container">
           <p class="instructions">
             Please use the space below to add you site specific "hot buttons".
@@ -52,24 +70,7 @@
               <% end %>
             </ul>
           </div>
-        </div> <!-- /#hot-buttons-container -->
-        <!--
-        <%= form_tag(client_update_hotbutton_path(@client), method: :put) do -%>
-        <p>Use this space to list placed you'd like your janitorial team to pay extra attention to when we clean.  For example, you might say, 'Please wipe down my computer screen every night with a dry cloth,' and we will pay special attention to those items!</p>
-        <ol id='EditVariableFieldList'>
-          <% @client.hot_button_items.each do |item| %>
-            <li>
-              <input type='text' name='variable_item[]'
-                value='<%= item %>' class='variable_item'></li>
-            </li>
-          <% end %>
-        </ol>
-        
-        <%= submit_tag "Save",  class:"btn btn-primary"  %>
-        <%= link_to 'Cancel', policy(@client).show? ? client_path(@client) : root_path, class:'btn btn-danger' %>
-        <% end %>
-        -->
-        
+        </div>        
         <script>
           var clientId = "<%= @client.id %>";
           var postUrl = "<%= client_update_hotbutton_path(@client) %>";

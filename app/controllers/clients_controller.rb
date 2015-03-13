@@ -56,6 +56,7 @@ class ClientsController < ApplicationController
   def edit_hotbutton
     authorize @client
     @staff = @client.staff
+    @schedule=@client.schedules.order(created_at: :desc).last
     # add_breadcrumb current_user.type=='Staff' ? "Edit" : "Hotbuttons", client_edit_hotbutton_path(@client)
   end
 

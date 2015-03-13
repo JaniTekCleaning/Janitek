@@ -28,7 +28,9 @@
       </div>
       <div class="widget-content tab-content" id="task_list_widget">
         <div class="embed-responsive embed-responsive-4by3">
-          <iframe class="embed-responsive-item" src=""></iframe>
+          <% if @schedule %>
+            <iframe class="embed-responsive-item" src="<%= @schedule.url_to_use %>"></iframe>
+          <% end %>
         </div>
         <p></p>
       </div>

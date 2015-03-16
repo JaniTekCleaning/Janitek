@@ -59,14 +59,14 @@
     <%= f.text_area :description, class:"form-control" %>
   </div>
 
-  <% if @staff.persisted? && current_user==@staff %>
+  <% if @staff.persisted? && (current_user==@staff || current_user.admin) %>
   <div class="form-group">
     <%= f.label :current_password %><br>
     <%= f.password_field :current_password, class:"form-control" %>
   </div>
   <% end %>
 
-  <% if !@staff.persisted? || current_user==@staff || current_user.admin %>
+  <% if !@staff.persisted? || (current_user==@staff || current_user.admin) %>
   <div class="form-group">
     <%= f.label :password %><br>
     <%= f.password_field :password, class:"form-control" %>

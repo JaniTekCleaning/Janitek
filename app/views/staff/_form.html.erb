@@ -42,18 +42,20 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :admin %><br>
+    <%= f.label :admin %>
+    <div class="text-left">
     <%= f.check_box :admin, class:"form-control" %>
+    </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :avatar %><br />
+    <%= f.label "Picture" %><br />
     <%= f.file_field :avatar, class:"form-control" %>
   </div>
 
 
   <div class="form-group">
-    <%= f.label :description %><br />
+    <%= f.label "Additional Notes" %><br />
     <%= f.text_area :description, class:"form-control" %>
   </div>
 

@@ -3,7 +3,7 @@ require 'test_helper'
 class ContractsControllerTest < ActionController::TestCase
   context 'authorized as member of client' do
     setup do
-      @client = Fabricate(:client)
+      @client = Fabricate(:client)#, staff:Fabricate(:staff))
       @contract = Fabricate(:contract, :client=>@client)
       @member=Fabricate(:member, :client=>@client)
       sign_in @member

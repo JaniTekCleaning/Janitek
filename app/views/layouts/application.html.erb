@@ -14,13 +14,18 @@
   <link rel="stylesheet" id="Google-Font-Raleway-css" href="//fonts.googleapis.com/css?family=Raleway%3A100%2C200%2C300%2C500%2C700%2Cn%2Ci%2Cb%2Cbi&amp;subset=latin&amp;ver=4.0.1" type="text/css" media="all">
 </head>
 <body>
-<div class="main-container">
+<div class="main-container <%= content_for?(:page_class) ? content_for(:page_class) : "main-page" %>">
   <div class="header-overlay-right" style="opacity: 1;"></div>
 <%= render 'layouts/navbar' %>
   <div class="body-container container">
     <% if content_for?(:title) %>
       <div class="row header-title-section">
-        <h1 class="page-header-title"> <%= content_for(:title) %></h1>
+        <h1 class="page-header-title">
+          <%= content_for(:title) %>
+        </h1>
+        <a class="page-back" href="/">
+          &laquo; Back
+        </a>
         <div class="page-header-gimmick"></div>
         <br style="clear:both;">
       </div>

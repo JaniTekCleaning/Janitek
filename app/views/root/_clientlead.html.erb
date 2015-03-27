@@ -58,6 +58,7 @@
 <div class='row'>
   <div class='col-md-12'>
     <div class='widget' id='widget-contact-me-now'>
+      <%= link_to(contact_us_path(@client)) do %>
       <div class='widget-header'>
         <div class='widget-icon'>
           <img src="<%= asset_path('icons/icon-phone.png') %>">
@@ -65,6 +66,7 @@
           Contact Me Now
         </div>
       </div>
+      <% end %>
       <div class='widget-content'>
         <div class="manager-description">
           <h6>Additional Notes:</h6>

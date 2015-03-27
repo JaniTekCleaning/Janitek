@@ -11,4 +11,8 @@ module ApplicationHelper
   def page_title(page_title)
     content_for(:page_title) { page_title }
   end
+  
+  def page_class(page_class)
+    content_for(:page_class) { page_class }
+  end
 end

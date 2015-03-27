@@ -362,3 +362,17 @@ textarea#client_notes {
 .tab-content.tab-active {
   display: block;
 }
+
+a.page-back {
+  display: block;
+  background: white;
+  height: 50px;
+  line-height: 50px;
+  float: right;
+  padding: 0 10px;
+  font-size: 1.5em;
+}
+
+.page-client-view a.page-back {
+  display: none;
+}

@@ -39,6 +39,10 @@ ol > li > input{
   font-size: 1.25em;
 }
 
+.widget .widget-header > a {
+  display: block;
+}
+
 .widget .widget-header .widget-icon img {
   display: block;
   max-width: 1.5em;
@@ -194,6 +198,11 @@ ol > li > input{
 #client_root .widget-content .business-name {
   font-weight: bold;
   font-size: 1.2em;
+}
+
+#client_root #widget-contact-me-now .widget-content,
+#client_root #widget-account-manager .widget-content {
+  padding: 0;
 }
 
 textarea#client_notes {

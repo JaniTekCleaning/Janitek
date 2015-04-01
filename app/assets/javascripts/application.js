@@ -121,19 +121,19 @@ function ready(){
 	// checkLastEmpty(true);
 	
 	if ($("#hot_button_input").length) {
-		$('.widget-tab').on('click', function() {
-			var me = $(this);
-			if (me.hasClass('inactive')) {
-				$('.widget-tab').addClass('inactive');
-				me.removeClass('inactive');
-				var myTarget = me.attr('data-target');
-				var target = $("#"+myTarget);
-				if (!target.is(":visible")) {
-					$(".tab-active").removeClass('tab-active');
-					target.addClass('tab-active');
-				}
-			}
-		});
+		//$('.widget-tab').on('click', function() {
+		//	var me = $(this);
+		//	if (me.hasClass('inactive')) {
+		//		$('.widget-tab').addClass('inactive');
+		//		me.removeClass('inactive');
+		//		var myTarget = me.attr('data-target');
+		//		var target = $("#"+myTarget);
+		//		if (!target.is(":visible")) {
+		//			$(".tab-active").removeClass('tab-active');
+		//			target.addClass('tab-active');
+		//		}
+		//	}
+		//});
 		
 		$('#hot-button-task-list').on('click', '.glyphicon-minus-sign', function(e) {
 			e.preventDefault();

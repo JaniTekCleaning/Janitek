@@ -1,7 +1,47 @@
-<%- title "Schedule" %>
+<%- title "Janitek Client Connect: Task List" %>
 <%- page_title "Janitek | Schedule" %>
 
-<div class="embed-responsive embed-responsive-4by3">
-  <iframe class="embed-responsive-item" src="<%= @schedule.url_to_use %>"></iframe>
+<div class='row business-profile-full task-list-and-hot-buttons' id='client_root'>
+  <div class='col-md-4' id="client-col-left">
+    <%=render 'root/clientlead' %>
+  </div>
+  <div class='col-md-8' id="client-col-right">
+    <div class='widget' id=''>
+      <div class="widget-tabs">
+        <div class="widget-tab inactive" data-target="hot_button_widget" id="tab_hot_buttons">
+          <div class='widget-header'>
+            <%= link_to(client_edit_hotbutton_path(@client)) do %>
+            <div class='widget-icon'>
+              <img src="<%= asset_path('icons/icon-service-request.png') %>">
+            </div><div class='widget-title'>
+              Hot Buttons
+            </div>
+            <% end %>
+          </div>
+        </div><div class="widget-tab" data-target="task_list_widget" id="tab_task_list">
+          <div class='widget-header'>
+            <%= link_to(client_schedule_path(@client, @schedule)) do %>
+            <div class='widget-icon'>
+              <img src="<%= asset_path('icons/icon-service-request.png') %>">
+            </div><div class='widget-title'>
+              My Task List
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="widget-content tab-content tab-active" id="task_list_widget">
+        <div class="embed-responsive embed-responsive-4by3">
+          <% if @schedule %>
+            <iframe class="embed-responsive-item" src="<%= @schedule.url_to_use %>"></iframe>
+          <% else %>
+            <div class="no-schedule">
+              Unable to load the schedule.
+            </div>
+          <% end %>
+        </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
 </div>
-<p>Contract for <%= @client.name %> on <%= @schedule.created_at.strftime("%b %d, %Y") %> (<%= link_to 'visit', @schedule.url_to_use, :target=>'_blank'%>)</p>

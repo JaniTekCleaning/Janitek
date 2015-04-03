@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 #specify ruby version
-ruby '2.1.3'
+ruby '2.2.1'
 
 # Environment Variable Handling
 gem 'dotenv-rails', :groups => [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets

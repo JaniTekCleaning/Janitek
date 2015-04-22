@@ -20,7 +20,7 @@ class SchedulesController < ApplicationController
 
   def show
     authorize @schedule
-    TrackingMailer.viewed_schedule(current_user).deliver if current_user.type=="Member"
+    TrackingMailer.viewed_schedule(current_user).deliver_now if current_user.type=="Member"
     set_client unless @client
     @staff=@client.staff
   end

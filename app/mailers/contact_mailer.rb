@@ -13,6 +13,6 @@ class ContactMailer < ActionMailer::Base
     @submission=submission
     @member=member
     target=@member.client.staff.nil? ? ENV["CONTACT_EMAIL"] : @member.client.staff.email
-    mail(to:target, subject:"Service Request From: "+member.full_name, from:contact.member.email)
+    mail(to:target, subject:"Service Request From: "+member.full_name, from:member.email)
   end
 end

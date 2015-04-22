@@ -70,7 +70,7 @@ class ClientsController < ApplicationController
       changed=@client.hot_button_items_changed?
       @client.save!
       if (!current_user.is_a? Staff) && changed
-        TrackingMailer.edited_hotbutton(current_user).deliver
+        TrackingMailer.edited_hotbutton(current_user).deliver_now
       end
     else
       # render 'edit_hotbutton'

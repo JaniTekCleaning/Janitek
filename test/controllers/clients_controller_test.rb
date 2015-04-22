@@ -60,7 +60,7 @@ class ClientsControllerTest < ActionController::TestCase
       Client.expects(:find).returns(@client)
       message=mock('mailer')
       TrackingMailer.expects(:edited_hotbutton).with(@user).returns(message)
-      message.expects(:deliver)
+      message.expects(:deliver_now)
 
       put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
     end

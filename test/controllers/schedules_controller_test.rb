@@ -26,7 +26,7 @@ class SchedulesControllerTest < ActionController::TestCase
     should 'email when showing schedule' do
       message=mock('mailer')
       TrackingMailer.expects(:viewed_schedule).with(@member).returns(message)
-      message.expects(:deliver)
+      message.expects(:deliver_now)
       get :show, id: @schedule, client_id: @client.id
     end
   end

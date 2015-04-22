@@ -11,7 +11,7 @@ class ContactController < ApplicationController
     contact_params=params.require(:contact).permit(:content)
     @contact=Contact.new(contact_params.merge({:member=>current_user}))
     if @contact.valid?
-      ContactMailer.contact_message(@contact).deliver
+      ContactMailer.contact_message(@contact).deliver_now
       redirect_to root_url, notice: "Message sent! Thank you for contacting us."
     else
       render "new"

@@ -26,7 +26,7 @@ class ContractsControllerTest < ActionController::TestCase
     should 'email when showing contact' do
       message=mock('mailer')
       TrackingMailer.expects(:viewed_contract).with(@member).returns(message)
-      message.expects(:deliver)
+      message.expects(:deliver_now)
       get :show, id: @contract, client_id: @client.id
     end
   end

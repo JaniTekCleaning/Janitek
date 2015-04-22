@@ -19,7 +19,7 @@ class ServiceRequestControllerTest < ActionController::TestCase
       should 'send email' do
         message=mock('mailer')
         ContactMailer.expects(:service_request).returns(message)
-        message.expects(:deliver)
+        message.expects(:deliver_now)
         post :submit
       end
     end

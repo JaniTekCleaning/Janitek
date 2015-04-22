@@ -5,7 +5,7 @@ class ContactMailer < ActionMailer::Base
     @contact=contact
     @member=contact.member
     target=@member.client.staff.nil? ? ENV["CONTACT_EMAIL"] : @member.client.staff.email
-    mail(to:target, subject:"Message From: "+contact.member.full_name)
+    mail(to:target, subject:"Message From: "+contact.member.full_name, from:contact.member.email)
   end
 
   def service_request(service_request, submission, member)
@@ -13,6 +13,6 @@ class ContactMailer < ActionMailer::Base
     @submission=submission
     @member=member
     target=@member.client.staff.nil? ? ENV["CONTACT_EMAIL"] : @member.client.staff.email
-    mail(to:target, subject:"Service Request From: "+member.full_name)
+    mail(to:target, subject:"Service Request From: "+member.full_name, from:contact.member.email)
   end
 end

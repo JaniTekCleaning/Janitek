@@ -2,8 +2,16 @@
 
 ==============
 
-<% @fields.each_index do |index| %>
-<%= @fields[index]%>:
-<%= @submission[index] %>
+Service: <%= @service %>
 
-<% end %>
+ * * * 
+
+Request / Complaint:
+
+<%= @request %>
+
+ * * * 
+
+Other:
+
+<%= @other %>

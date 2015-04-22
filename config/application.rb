@@ -27,6 +27,7 @@ module Janitek
       g.fixture_replacement :fabrication, dir: "test/fabricators"
     end
 
+    config.active_record.raise_in_transactional_callbacks = true
     
     config.filter_parameters += [:password, :password_confirmation, :current_password]
   end

@@ -16,14 +16,23 @@
       </div>
       <div class='widget-content'>
         <h1>Service Request Form</h1>
-        
         <%= form_tag(service_request_path, method: :post) do -%>
-          <% @service_request.fields.each_index do |index| %>
-            <div class="form-group">
-              <label for="field<%= index %>"><%= @service_request.fields[index] %></label><br>
-              <input id="field<%= index %>" type='text' name='service_items[]' value='' class='form-control'></li>
-            </div>
-          <% end %>
+          <div class="form-group">
+            <label for="service">Service Request</label><br>
+            <select name="service" id='service'>
+              <% @service_request.fields.each_index do |index| %>
+                <option value='<%= index %>'><%= @service_request.fields[index] %></option>    
+              <% end %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="complaint">Complaint / Request</label><br>
+            <textarea id='complaint' name='complaint'></textarea>
+          </div>
+          <div class="form-group">
+            <label for="other">Other</label><br>
+            <textarea id='other' name='other'></textarea>
+          </div>
         
           <div class="form-group submit-wrapper">
             <button name="commit" type="submit" value="Submit">

@@ -8,9 +8,10 @@ class ContactMailer < ActionMailer::Base
     mail(to:target, subject:"Message From: "+contact.member.full_name, from:contact.member.email)
   end
 
-  def service_request(service_request, submission, member)
-    @fields=service_request.fields
-    @submission=submission
+  def service_request(service, request, other, member)
+    @service=service
+    @request=request
+    @other=other
     @member=member
     target=@member.client.staff.nil? ? ENV["CONTACT_EMAIL"] : @member.client.staff.email
     mail(to:target, subject:"Service Request From: "+member.full_name, from:member.email)

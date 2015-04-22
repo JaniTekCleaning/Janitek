@@ -11,7 +11,8 @@ class ServiceRequestController < ApplicationController
   end
 
   def submit
-    ContactMailer.service_request(@service_request, params[:service_items],current_user).deliver_now
+    ContactMailer.service_request(@service_request.select_field(params[:service]),
+      params[:complaint], params[:other],current_user).deliver_now
     redirect_to root_path
   end
 

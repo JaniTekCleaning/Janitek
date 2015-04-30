@@ -1,3 +1,24 @@
 // Place all the styles related to the service_request controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.service-request-widget {
+    margin-top: 10px;
+}
+
+.service-request-widget select {
+    padding: 5px 10px;
+    font-size: 1.25em;
+}
+
+.service-request-widget textarea {
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+    font-size: 1.25em;
+}
+
+.service-request-edit-list input[type="text"] {
+    padding: 5px 10px;
+    font-size: 1.25em;
+}

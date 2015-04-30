@@ -14,8 +14,7 @@
           Submit a Service Request
         </div>
       </div>
-      <div class='widget-content'>
-        <h1>Service Request Form</h1>
+      <div class='widget-content service-request-widget'>
         <%= form_tag(service_request_path, method: :post) do -%>
           <div class="form-group">
             <label for="service">Service Request</label><br>
@@ -27,11 +26,11 @@
           </div>
           <div class="form-group">
             <label for="complaint">Complaint / Request</label><br>
-            <textarea id='complaint' name='complaint'></textarea>
+            <textarea id='complaint' class="form-control" name='complaint' placeholder="Enter your request/complaint here..."></textarea>
           </div>
           <div class="form-group">
             <label for="other">Other</label><br>
-            <textarea id='other' name='other'></textarea>
+            <textarea id='other' class="form-control" name='other' placeholder="Additional information?"></textarea>
           </div>
         
           <div class="form-group submit-wrapper">

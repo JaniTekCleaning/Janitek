@@ -16,22 +16,20 @@
       </div>
       <div class='widget-content service-request-widget'>
         <%= form_tag(service_request_path, method: :post) do -%>
-          <div class="form-group">
-            <label for="service">Service Request</label><br>
-            <select name="service" id='service'>
-              <% @service_request.fields.each_index do |index| %>
-                <option value='<%= index %>'><%= @service_request.fields[index] %></option>    
+          <%= hidden_field_tag("form_version",@service_request.version_number) %>
+          <% (0..@service_request.fields.count-1).each do |index| %>
+            <% field = @service_request.fields[index] %>
+            <div class='form-group'>
+              <label for='formField[<%= index %>]'><%= field['title'] %></label>
+              <% if field['type'] == 'shortText' %>
+                <input type='text' id='formField[<%= index %>]' name='formField[<%= index %>]'>
+              <% elsif field['type'] == 'longText' %>
+                <textarea id='formField[<%= index %>]' name='formField[<%= index %>]'></textarea>
+              <% elsif field['type'] == 'checkbox' %>
+                <input type='checkbox' id='formField[<%= index %>]' name='formField[<%= index %>]'>
               <% end %>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="complaint">Complaint / Request</label><br>
-            <textarea id='complaint' class="form-control" name='complaint' placeholder="Enter your request/complaint here..."></textarea>
-          </div>
-          <div class="form-group">
-            <label for="other">Other</label><br>
-            <textarea id='other' class="form-control" name='other' placeholder="Additional information?"></textarea>
-          </div>
+            </div>
+          <% end %>
         
           <div class="form-group submit-wrapper">
             <button name="commit" type="submit" value="Submit">

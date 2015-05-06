@@ -13,11 +13,18 @@
     </div>
   <% end %>
 
-<ol id='EditVariableFieldList' class="service-request-edit-list">
-  <% @service_request.fields.each do |item| %>
-    <li>
-      <input type='text' name='variable_item[]'
-        value='<%= item %>' class='variable_item'></li>
+<ol id='EditServiceRequestFormItems' class="service-request-edit-list">
+  <% (0..@service_request.fields.count-1).each do |index| %>
+    <% item = @service_request.fields[index] %>
+    <li data-form-number='<%= index+1 %>'>
+      <input type='text' id='field-title-<%= index+1 %>' name='service_item_title[<%= index+1 %>]' placeholder='Title' class='item_title_input' value='<%= item['title']%>'><br>
+      <select id='field-type-<%= index+1 %>' name='service_item_type[<%= index+1 %>]'>"
+        <option value='shortText' <%= item['type'] == 'shortText' ? 'selected' : 0 %>>Short Text</option>
+        <option value='longText' <%= item['type'] == 'longText' ? 'selected' : 0 %>>Long Text</option>"
+        <option value='checkbox' <%= item['type'] == 'checkbox' ? 'selected' : 0 %>>Checkbox</option>"
+      </select> <label for='field-type-<%= index+1 %>'>Field Type</label><!-- <br> -->
+      <!-- <input id='field-required-<%= index+1 %>' type='checkbox' name='service_item_required[<%= index+1 %>]' <%= item['required'] ? 'checked' : '' %>>
+       <label for='field-required-<%= index+1 %>'>Field Required</label> -->
     </li>
   <% end %>
 </ol>

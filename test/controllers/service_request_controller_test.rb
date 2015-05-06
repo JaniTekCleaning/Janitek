@@ -5,6 +5,7 @@ class ServiceRequestControllerTest < ActionController::TestCase
     setup do
       @client=Fabricate(:client)
       @member = Fabricate(:member, :client=>@client)
+      @service_request=Fabricate(:service_request)
       sign_in @member
     end
     should 'get show' do
@@ -12,15 +13,23 @@ class ServiceRequestControllerTest < ActionController::TestCase
       assert_response :success
     end
     context 'posting submit' do
-      should 'redirect to root' do
-        post :submit
-        assert_redirected_to root_path
+      context 'succeeds' do
+        should 'redirect to root' do
+          post :submit, {:form_version=>@service_request.version_number, formField:{'0':'abcd'}}
+          assert_redirected_to root_path
+        end
+        should 'send email' do
+          message=mock('mailer')
+          ContactMailer.expects(:service_request).returns(message)
+          message.expects(:deliver_now)
+          post :submit, {:form_version=>@service_request.version_number, formField:{'0':'abcd'}}
+        end
       end
-      should 'send email' do
-        message=mock('mailer')
-        ContactMailer.expects(:service_request).returns(message)
-        message.expects(:deliver_now)
-        post :submit
+      context 'invalid version numer' do
+        should 'redirect to form' do
+          post :submit, {}
+          assert_redirected_to service_request_path
+        end
       end
     end
     should 'not get edit' do
@@ -46,9 +55,15 @@ class ServiceRequestControllerTest < ActionController::TestCase
       get :edit
       assert_response :success
     end
-    should 'put update' do
-      put :update, :variable_item=>[]
-      assert_response :success
+    context 'update' do
+      should 'put update' do
+        # put :update, :variable_item=>[]
+        assert_response :success
+      end
+      should 'create version number' do
+        put :update, {service_item_title:{'0':'item'}, service_item_type:{'0':'shortText'} }
+        assert ServiceRequest.first.version_number==1
+      end
     end
   end
 end

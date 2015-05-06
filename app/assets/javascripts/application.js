@@ -19,25 +19,6 @@
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
-function isLastListElement(element){
-	var list=element.parent();
-	var last=list.children().last();
-	return last.is(element);
-}
-
-function checkLastEmpty(){
-	$('.notice').remove();
-	var list=$('#EditVariableFieldList');
-	var last=list.children().last();
-	var input=last.find('input')
-	if (input.val()){
-		list.append("<li><input type='text' name='variable_item[]' class='variable_item'></li>")
-		var last=list.children().last();
-		var input=last.find('input')
-		input.keyup(checkLastEmpty);
-	}
-}
-
 function addNewHotButtonElement(buttonText) {
 	if (buttonText == "" || buttonText == undefined || buttonText == null) {
 		return false;
@@ -102,23 +83,6 @@ function focusHotButtonInput() {
 }
 
 function ready(){
-	$('.variable_item').each(function(){
-		$(this).keyup(checkLastEmpty);
-	})
-	var list=$('#EditVariableFieldList');
-	list.focusout(function(){
-		$('.variable_item').each(function(){
-			if(!$(this).val().trim()){
-				if (!isLastListElement($(this).parent())){
-					$(this).parent().remove();
-				}
-			}
-		})
-	});
-
-	list.append("<li><input type='text' name='variable_item[]' class='variable_item'></li>")
-	list.children().last().find('input').keyup(checkLastEmpty);
-	// checkLastEmpty(true);
 	
 	if ($("#hot_button_input").length) {
 		//$('.widget-tab').on('click', function() {

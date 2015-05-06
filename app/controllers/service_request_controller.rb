@@ -11,8 +11,12 @@ class ServiceRequestController < ApplicationController
   end
 
   def submit
-    ContactMailer.service_request(@service_request.select_field(params[:service]),
-      params[:complaint], params[:other],current_user).deliver_now
+    if params[:form_version].to_i != @service_request.version_number
+      flash[:notice] = "Service Request Form has been updated.  Please fill out the new form."
+      redirect_to service_request_path
+      return
+    end
+    ContactMailer.service_request(params[:formField],current_user).deliver_now
     redirect_to root_path
   end
 
@@ -22,9 +26,18 @@ class ServiceRequestController < ApplicationController
 
   def update
     # add_breadcrumb "Edit Service Request Form", service_request_edit_path
-    items=params[:variable_item].reject{|item| item.empty?}
+    items=params[:service_item_title].reject{|key, value| value.nil? || value.empty?}
+    items = items.map do |key, value|
+      {
+        "title"=>value,
+        "type"=>params[:service_item_type][key]
+        # "required"=>!(params[:service_item_required][key].nil?)
+      }
+    end
     @service_request.fields=items
-    flash[:notice]='Service Request Form updated.' if @service_request.save
+    @service_request.version_number=0 if @service_request.version_number.nil?
+    @service_request.version_number+=1
+    flash[:notice]= 'Service Request Form updated.' if @service_request.save
     render 'edit'
   end
   

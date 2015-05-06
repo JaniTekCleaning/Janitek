@@ -1,17 +1,12 @@
 <%= @member.full_name %>, a member of client <%= @member.client.name %>, has filled out the service request form with the following data:
 
 ==============
+<%= @fields.to_json %>
+<% (0..@service_request.fields.count-1).each do |index| %>
+  <% field=@service_request.fields[index] %>
+  <% fieldValue=@fields[index.to_s] %>
+  <%= field['title'] %>: <% if field['type']=='checkbox' %><%= (!fieldValue.nil? && fieldValue)? 'yes' : 'no' %><% elsif field['type'] == 'shortText' %><%= fieldValue %><% elsif field['type'] == 'longText' %>
 
-Service: <%= @service %>
+  <%= fieldValue %><% end %>
 
- * * * 
-
-Request / Complaint:
-
-<%= @request %>
-
- * * * 
-
-Other:
-
-<%= @other %>
+<% end %>

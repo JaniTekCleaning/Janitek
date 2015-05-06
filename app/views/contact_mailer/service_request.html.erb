@@ -7,12 +7,22 @@
     <h1>Service Request from <%= @member.full_name %></h1>
     <p><%= @member.full_name %>, a member of client <%= @member.client.name %>, has filled out the service request form with the following data:</p>
 
-    <p>Service: <%= @service %></p>
-    <p>Request / Complaint: <br>
-      <pre><%= @request %></pre>
-    </p>
-    <p>Other: <br>
-      <pre><%= @other %></pre>
-    </p>
+    <ul>
+      <% (0..@service_request.fields.count-1).each do |index| %>
+        <% field=@service_request.fields[index] %>
+        <% fieldValue=@fields[index] %>
+        <li>
+          <%= field['title'] %>: 
+            <% if field['type'] == 'checkbox' %>
+              <%= (fieldValue.nil? && fieldValue)? 'yes' : 'no' %>
+            <% elsif field['type'] == 'shortText' %>
+              <%= fieldValue %>
+            <% elsif field['type'] == 'longText' %>
+              <br>
+              <pre><%= fieldValue %></pre>
+            <% end %>
+        </li>
+      <% end %>
+    </ul>
   </body>
 </html>

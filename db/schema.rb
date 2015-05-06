@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306004653) do
+ActiveRecord::Schema.define(version: 20150505225125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20150306004653) do
     t.string   "name",              limit: 255
     t.string   "number",            limit: 255
     t.string   "email",             limit: 255, null: false
-    t.text     "hot_button_items"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "logo_file_name",    limit: 255
@@ -47,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150306004653) do
     t.text     "notes"
     t.string   "contact",           limit: 255
     t.string   "contacttitle",      limit: 255
+    t.text     "hot_button_items"
   end
 
   add_index "clients", ["staff_id"], name: "index_clients_on_staff_id", using: :btree
@@ -66,9 +66,10 @@ ActiveRecord::Schema.define(version: 20150306004653) do
   add_index "links", ["client_id"], name: "index_links_on_client_id", using: :btree
 
   create_table "service_requests", force: :cascade do |t|
-    t.text     "fields",     null: false
+    t.text     "fields",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "version_number"
   end
 
   create_table "users", force: :cascade do |t|

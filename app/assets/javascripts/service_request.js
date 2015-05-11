@@ -22,14 +22,21 @@ function appendServiceRequestField(){
   var list = $('#EditServiceRequestFormItems');
   formNumber = maxFormNumber()+1;
   list.append("<li data-form-number='" + formNumber + "'>"
-      +"<input type='text' id='field-title-"+formNumber+"' name='service_item_title["+formNumber+"]' placeholder='Title' class='item_title_input'><br>"
-      +"<select id='field-type-"+formNumber+"' name='service_item_type["+formNumber+"]'>"
-        +"<option value='shortText'>Short Text</option>"
-        +"<option value='longText'>Long Text</option>"
-        +"<option value='checkbox'>Checkbox</option>"
-      +"</select> <label for='field-type-"+formNumber+"'>Field Type</label>"#+"<br>"
-      # +"<input id='field-required-"+formNumber+"' type='checkbox' name='service_item_required["+formNumber+"]'>"
-      # +" <label for='field-required-"+formNumber+"'>Field Required</label>"
+      +'<div class="form-wrapper">'
+        +"<input type='text' id='field-title-"+formNumber+"' name='service_item_title["+formNumber+"]' placeholder='Title' class='item_title_input'>"
+        +'<div class="field-type-wrapper">'
+          +"<label for='field-type-"+formNumber+"'>Field Type</label>"
+          +"<select id='field-type-"+formNumber+"' name='service_item_type["+formNumber+"]'>"
+            +"<option value='shortText'>Short Text</option>"
+            +"<option value='longText'>Long Text</option>"
+            +"<option value='checkbox'>Checkbox</option>"
+          +"</select>"
+        +'</div>'
+        //+'<div class="field-required-wrapper">'
+        //  +"<input id='field-required-"+formNumber+"' type='checkbox' name='service_item_required["+formNumber+"]'>"
+        //  +" <label for='field-required-"+formNumber+"'>Field Required</label>"
+        //+'</div>'
+      +"</div>"
       +"</li>");
   list.children().last().find('input').keyup(checkLastEmpty);
 }

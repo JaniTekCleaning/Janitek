@@ -22,3 +22,26 @@
     padding: 5px 10px;
     font-size: 1.25em;
 }
+
+.service-request-edit-list li {
+    margin-bottom: 10px;
+}
+
+.form-wrapper > div {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.form-wrapper > div {
+    margin-left: 10px;
+}
+
+.form-wrapper > div:last-child {
+    margin-right: 0;
+}
+
+.field-type-wrapper > label {
+    margin-right: 5px;
+}

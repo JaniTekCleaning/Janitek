@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150505225125) do
     t.string   "name",              limit: 255
     t.string   "number",            limit: 255
     t.string   "email",             limit: 255, null: false
+    t.text     "hot_button_items"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "logo_file_name",    limit: 255
@@ -46,7 +47,6 @@ ActiveRecord::Schema.define(version: 20150505225125) do
     t.text     "notes"
     t.string   "contact",           limit: 255
     t.string   "contacttitle",      limit: 255
-    t.text     "hot_button_items"
   end
 
   add_index "clients", ["staff_id"], name: "index_clients_on_staff_id", using: :btree

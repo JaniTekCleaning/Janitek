@@ -18,6 +18,11 @@
     font-size: 1.25em;
 }
 
+.service-request-widget form {
+    width: 95%;
+    margin: 0 auto;
+}
+
 .service-request-edit-list input[type="text"] {
     padding: 5px 10px;
     font-size: 1.25em;
@@ -49,6 +54,10 @@
 
 .form-wrapper > div select {
     padding: 5px 10px;
+}
+
+.service-request-widget .form-group.type-checkbox label {
+    vertical-align: top;
 }
 
 @media all and (max-width: 765px) {

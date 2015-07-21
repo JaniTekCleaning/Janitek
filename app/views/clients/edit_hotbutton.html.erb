@@ -20,7 +20,9 @@
           </div>
         </div><div class="widget-tab inactive" data-target="task_list_widget" id="tab_task_list">
           <div class='widget-header'>
-            <%= link_to(client_schedule_path(@client, @schedule)) do %>
+            <% if @schedule %>
+              <%= link_to(client_schedule_path(@client, @schedule)) do %>
+            <% end %>
             <div class='widget-icon'>
               <img src="<%= asset_path('icons/icon-service-request.png') %>">
             </div><div class='widget-title'>

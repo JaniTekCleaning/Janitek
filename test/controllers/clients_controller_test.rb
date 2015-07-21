@@ -1,6 +1,14 @@
 require 'test_helper'
 
 class ClientsControllerTest < ActionController::TestCase
+  should 'get edit_hotbutton when no schedule set' do
+    @client=Fabricate(:client)
+    @user=Fabricate(:member,:client=>@client)
+    sign_in Fabricate(:staff)
+
+    get :edit_hotbutton, client_id: @client.id
+    assert_response :success
+  end
   context 'authorized as member' do
     setup do
       @client=Fabricate(:client)

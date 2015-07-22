@@ -82,6 +82,61 @@ function focusHotButtonInput() {
 	$("#hot_button_input").focus();
 }
 
+function addHotButtonItem(){
+	var hotButtonInput = $("#hot_button_input");
+	hotButtonInput.removeClass('invalid');
+	var inputValue = hotButtonInput.val().trim();
+	if (inputValue == "" || inputValue == undefined || inputValue == null) {
+		hotButtonInput.addClass('invalid');
+		return false;
+	} else {
+		/*Gather Up this item and all others and post them.*/
+		var newItems = [];
+		var currentItems = $("#hot-button-task-list li");
+		$.each(currentItems, function(itemIdx, itemElem) {
+			var me = $(itemElem);
+			var myText = encodeURIComponent(me.find('span').text());
+			newItems.push(myText);
+		});
+		
+		newItems.push(encodeURIComponent(inputValue));
+		
+		if (postUrl == undefined || postUrl == "") {
+			return false;
+		}
+		if (clientId == undefined || clientId == "") {
+			return false;
+		}
+		
+		var form = $("#hot-buttons-container form");
+		
+		var authenticity_token = form.find("input[name='authenticity_token']").val();
+		var utf8 = form.find("input[name='utf8']").val();
+		var method = form.find("input[name='_method']").val();
+		
+		var variableItemText = "";
+		$.each(newItems, function(itemIdx, item) {
+			variableItemText += "&variable_item[]="+item;
+		});
+		var postData = "authenticity_token="+authenticity_token + variableItemText;
+		addNewHotButtonElement(inputValue);
+		$.ajax({
+			type: "PUT",
+			url: postUrl,
+			data: postData,
+			success: function(returnData) {
+				hotButtonInput.val('');
+			},
+			error: function (errormessage) {
+				hotButtonInput.addClass('invalid');
+			}
+		});
+		focusHotButtonInput();
+	}
+	
+	return false;
+}
+
 function ready(){
 	
 	if ($("#hot_button_input").length) {
@@ -110,60 +165,15 @@ function ready(){
 		});
 		
 		focusHotButtonInput();
-		var hotButtonInput = $("#hot_button_input");
 		$("#add-new-hotbutton a").on('click', function(e) {
 			e.preventDefault();
-			hotButtonInput.removeClass('invalid');
-			var inputValue = hotButtonInput.val().trim();
-			if (inputValue == "" || inputValue == undefined || inputValue == null) {
-				hotButtonInput.addClass('invalid');
-				return false;
-			} else {
-				/*Gather Up this item and all others and post them.*/
-				var newItems = [];
-				var currentItems = $("#hot-button-task-list li");
-				$.each(currentItems, function(itemIdx, itemElem) {
-					var me = $(itemElem);
-					var myText = encodeURIComponent(me.find('span').text());
-					newItems.push(myText);
-				});
-				
-				newItems.push(encodeURIComponent(inputValue));
-				
-				if (postUrl == undefined || postUrl == "") {
-					return false;
-				}
-				if (clientId == undefined || clientId == "") {
-					return false;
-				}
-				
-				var form = $("#hot-buttons-container form");
-				
-				var authenticity_token = form.find("input[name='authenticity_token']").val();
-				var utf8 = form.find("input[name='utf8']").val();
-				var method = form.find("input[name='_method']").val();
-				
-				var variableItemText = "";
-				$.each(newItems, function(itemIdx, item) {
-					variableItemText += "&variable_item[]="+item;
-				});
-				var postData = "authenticity_token="+authenticity_token + variableItemText;
-				addNewHotButtonElement(inputValue);
-				$.ajax({
-					type: "PUT",
-					url: postUrl,
-					data: postData,
-					success: function(returnData) {
-						hotButtonInput.val('');
-					},
-					error: function (errormessage) {
-						hotButtonInput.addClass('invalid');
-					}
-				});
-				focusHotButtonInput();
+			addHotButtonItem();
+		});
+		$("#hot_button_input").keypress(function(e) {
+			if (e.keyCode==13){
+				e.preventDefault();
+				addHotButtonItem();
 			}
-			
-			return false;
 		});
 	}
 }

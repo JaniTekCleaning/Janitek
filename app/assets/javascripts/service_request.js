@@ -18,11 +18,17 @@ function isLastListElement(element){
   return last.is(element);
 }
 
+function removeButtonPressed(index){
+  $('li[data-form-number='+index+']').remove();
+  checkLastEmpty();
+}
+
 function appendServiceRequestField(){
   var list = $('#EditServiceRequestFormItems');
   formNumber = maxFormNumber()+1;
   list.append("<li data-form-number='" + formNumber + "'>"
       +'<div class="form-wrapper">'
+        +"<a class='btn btn-danger remove-service-request-item-button' onclick='removeButtonPressed("+formNumber+")'>Remove</a> "
         +"<input type='text' id='field-title-"+formNumber+"' name='service_item_title["+formNumber+"]' placeholder='Title' class='item_title_input'>"
         +'<div class="field-type-wrapper">'
           +"<label for='field-type-"+formNumber+"'>Field Type</label>"
@@ -46,7 +52,7 @@ function checkLastEmpty(){
   var list = $('#EditServiceRequestFormItems');
   var last = list.children().last();
   var input = last.find('input')
-  if (input.val()){
+  if (input.val() || input.length==0 ){
     appendServiceRequestField();
   }
 }

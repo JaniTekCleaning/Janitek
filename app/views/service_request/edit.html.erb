@@ -18,6 +18,7 @@
     <% item = @service_request.fields[index] %>
     <li data-form-number='<%= index+1 %>'>
       <div class="form-wrapper">
+        <a class='btn btn-danger remove-service-request-item-button' onclick='removeButtonPressed(<%= index+1 %>)'>Remove</a>
         <input type='text' id='field-title-<%= index+1 %>' name='service_item_title[<%= index+1 %>]' placeholder='Title' class='item_title_input' value='<%= item['title']%>'><div class="field-type-wrapper">
           <label for='field-type-<%= index+1 %>'>Field Type</label>
           <select id='field-type-<%= index+1 %>' name='service_item_type[<%= index+1 %>]'>"

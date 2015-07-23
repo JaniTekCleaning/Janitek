@@ -24,11 +24,12 @@ function removeButtonPressed(index){
 }
 
 function appendServiceRequestField(){
+  $('#EditServiceRequestFormItems li a.btn.btn-hidden').removeClass('btn-hidden').removeAttr('disabled');
   var list = $('#EditServiceRequestFormItems');
   formNumber = maxFormNumber()+1;
   list.append("<li data-form-number='" + formNumber + "'>"
       +'<div class="form-wrapper">'
-        +"<a class='btn btn-danger remove-service-request-item-button' onclick='removeButtonPressed("+formNumber+")'>Remove</a> "
+        +"<a disabled class='btn btn-danger btn-hidden remove-service-request-item-button' onclick='removeButtonPressed("+formNumber+")'>Remove</a> "
         +"<input type='text' id='field-title-"+formNumber+"' name='service_item_title["+formNumber+"]' placeholder='Title' class='item_title_input'>"
         +'<div class="field-type-wrapper">'
           +"<label for='field-type-"+formNumber+"'>Field Type</label>"

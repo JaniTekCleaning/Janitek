@@ -1,5 +1,9 @@
 <%- title "Janitek Client Connect: Hot Buttons" %>
-<%- back_link_url client_path(@client) %>
+<% if @user.is_a? Staff %>
+  <%- back_link_url client_path(@client) %>
+<% else %>
+  <%- back_link_url root_path %>
+<% end %>
 <%- page_title "Janitek | Hot Buttons" %>
 
 <div class='row business-profile-full task-list-and-hot-buttons' id='client_root'>
@@ -23,12 +27,11 @@
           <div class='widget-header'>
             <% if @schedule %>
               <%= link_to(client_schedule_path(@client, @schedule)) do %>
-            <% end %>
             <div class='widget-icon'>
               <img src="<%= asset_path('icons/icon-service-request.png') %>">
-            </div><div class='widget-title'>
-              My Task List
             </div>
+            <div class='widget-title'>My Task List</div>
+            <% end %>
             <% end %>
           </div>
         </div>

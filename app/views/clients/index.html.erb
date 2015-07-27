@@ -1,4 +1,5 @@
 <%- title "Clients" %>
+<%- back_link_url root_path %>
 <%- page_title "Janitek | Clients" %>
 
 <% content_for :search do %>
@@ -12,7 +13,6 @@
     </div>
   <% end %>
 <% end %>
-
 
 <div id='add-item-control'>
   <%= link_to 'Add Client', new_client_path, class:'btn btn-success' %>

@@ -1,4 +1,5 @@
 <%- title "New Schedule" %>
+<%- back_link_url client_path(@client) %>
 <%- page_title "Janitek | New Schedule" %>
 
 <%= form_for([:schedule,@client,@schedule], :url=>client_schedules_path(@client)) do |f| %>

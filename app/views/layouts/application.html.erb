@@ -40,9 +40,9 @@
         <h1 class="page-header-title">
           <%= content_for(:title) %>
         </h1>
-        <a class="page-back" href="/">
-          &laquo; Back
-        </a>
+        <% if content_for(:back_link_url) %>
+          <%= link_to('&laquo; Back'.html_safe, content_for(:back_link_url), {:class=>'page-back'}) %>
+        <% end %>
         <div class="page-header-gimmick"></div>
         <br style="clear:both;">
       </div>

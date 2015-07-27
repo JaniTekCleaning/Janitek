@@ -66,7 +66,7 @@
   </div>
   <% if policy(@client).update_janitorial_lead? %>
     <div class="form-group">
-      <%= f.label :staff, "Janitorial Lead" %><br>
+      <%= f.label :staff, "Account Rep" %><br>
       <%= collection_select(:client, :staff_id, Staff.all.order('first_name'), :id, :full_name, prompt: true, class:"form-control") %>
     </div>
   <% end %>

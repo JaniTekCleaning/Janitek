@@ -1,4 +1,5 @@
 <%- title "New Contract" %>
+<%- back_link_url client_path(@client) %>
 <%- page_title "Janitek | New Contract" %>
 
 <%= form_for([:contract,@client,@contract], :url=>client_contracts_path(@client)) do |f| %>

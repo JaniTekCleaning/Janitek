@@ -1,4 +1,5 @@
 <%- title "Edit " + @staff.full_name %>
+<%- back_link_url staff_path(@staff) %>
 <%- page_title "Janitek | Edit Staff" %>
 
 <%= form_for(@staff) do |f| %>

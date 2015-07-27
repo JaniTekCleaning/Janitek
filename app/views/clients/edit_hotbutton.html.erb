@@ -1,4 +1,5 @@
 <%- title "Janitek Client Connect: Hot Buttons" %>
+<%- back_link_url client_path(@client) %>
 <%- page_title "Janitek | Hot Buttons" %>
 
 <div class='row business-profile-full task-list-and-hot-buttons' id='client_root'>
@@ -59,7 +60,7 @@
           </div>
           <% end %>
           <div id="hot-button-list-wrapper">
-            <h6>My current Hot Button Task List:</h6>
+            <h6>My Current Facility Hot Button List:</h6>
             <ul id="hot-button-task-list">
               <% @client.hot_button_items.each do |item| %>
                 <li>

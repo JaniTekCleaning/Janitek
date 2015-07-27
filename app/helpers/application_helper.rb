@@ -15,4 +15,8 @@ module ApplicationHelper
   def page_class(page_class)
     content_for(:page_class) { page_class }
   end
+
+  def back_link_url(back_link_url)
+    content_for(:back_link_url) { back_link_url }
+  end
 end

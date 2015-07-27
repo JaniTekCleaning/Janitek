@@ -1,4 +1,5 @@
 <%- title "Edit " + @member.full_name %>
+<%- back_link_url client_member_path(@client,@member) %>
 <%- page_title "Janitek | Edit Member" %>
 
 <%= render 'form' %>

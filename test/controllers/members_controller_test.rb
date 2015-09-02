@@ -16,7 +16,7 @@ class MembersControllerTest < ActionController::TestCase
       assert_raises(Pundit::NotAuthorizedError){get :new, client_id: @client.id}
     end
 
-    should "should create member" do
+    should "should not create member" do
       assert_raises(Pundit::NotAuthorizedError) do
         post :create, member: { :email=>'ronlugge@test.test', :first_name=>'ron',
           :last_name=>'lugge', :password=>'password',:password_confirmation=>'password' },
@@ -37,6 +37,13 @@ class MembersControllerTest < ActionController::TestCase
     should "should update member" do
       patch :update, id: @member, member: { :email=>'ronlugge@test.test' }, client_id: @client.id
       assert_redirected_to client_member_path(@client, assigns(:member))
+    end
+    should 'not update password' do
+      assert_raises(Member::CannotChangePasswordException) do
+        patch :update, id:@member, member: { :email=>'ronlugge@test.test', :first_name=>'ron',
+          :last_name=>'lugge', :password=>'password',:password_confirmation=>'password' },
+          client_id: @client.id
+      end
     end
   end
   context 'authorized as general member' do

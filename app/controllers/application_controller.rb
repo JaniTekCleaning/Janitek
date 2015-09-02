@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
       u.permit(:password, :password_confirmation, :current_password) 
     }
   end
+
+  rescue_from Member::CannotResetPasswordException, with: :render_cannot_reset_password
+
+  def render_cannot_reset_password
+    redirect_to new_user_session_path, alert:"You may not reset your password.  Please contact support instead."
+  end
   
   protected
 

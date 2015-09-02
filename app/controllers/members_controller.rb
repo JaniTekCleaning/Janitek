@@ -38,7 +38,10 @@ class MembersController < ApplicationController
   def update
     authorize @member
     @member.update(member_update_params)
-    @member.update_with_password(member_password_params) if member_password_params.delete_if{|k,v|v.empty?}.any? && !current_user.admin
+    if member_password_params.delete_if{|k,v|v.empty?}.any?
+      raise Member::CannotChangePasswordException if current_user.is_a? Member
+      # @member.update_with_password(member_password_params)
+    end
     add_breadcrumb "Edit", edit_client_member_path(@client,@member)
     respond_with @client, @member
   end

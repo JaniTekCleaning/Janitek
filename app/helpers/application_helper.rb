@@ -4,8 +4,8 @@ module ApplicationHelper
     markdown.render(text)
   end
 
-  def title(title)
-    content_for(:title) { title }
+  def title(title, html_safe:false)
+    content_for(:title) { html_safe ? title.html_safe : title }
   end
 
   def page_title(page_title)

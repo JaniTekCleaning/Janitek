@@ -12,11 +12,11 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>
-            <span id='logged_in_user'>Welcome back, 
+            <span id='logged_in_user'>
               <% if current_user.class==Staff %>
-                <%= link_to current_user.first_name, current_user %>
+                Welcome back, <%= link_to current_user.first_name, current_user %>
               <% else %>
-                <%= link_to current_user.first_name, [current_user.client,current_user] %>
+                Welcome back to<br>client connect, <%= link_to current_user.first_name, [current_user.client,current_user] %>
               <% end %>
             </span>
           </li>

@@ -267,7 +267,10 @@ h1.page-header-title {
   font-weight: 300;
   line-height: 50px;
   margin: 0px 25px 0px 10px;
-  float: left;
+  float: left;  
+  #client-home-connect{
+    font-size: 200%;
+  }
 }
 
 div.page-header-gimmick {
@@ -304,7 +307,7 @@ div.header-overlay-right {
 .navbar-nav.navbar-right:last-child {
   margin-right: 100px;
   padding-right: 10px;
-  margin-top: 30px;
+  margin-top: 15px;
   font-size: 25px;
   border-right: 3px solid white;
 }
@@ -313,6 +316,9 @@ div.header-overlay-right {
 .navbar-right.navbar-nav > li > a {
   padding: 0;
   color: white;
+}
+#logged_in_user, .navbar-right.navbar-nav > li > span{
+  line-height: 25px;
 }
 
 .footer-logo {

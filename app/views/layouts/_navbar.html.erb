@@ -16,7 +16,7 @@
               <% if current_user.class==Staff %>
                 Welcome back, <%= link_to current_user.first_name, current_user %>
               <% else %>
-                Welcome back to<br>client connect, <%= link_to current_user.first_name, [current_user.client,current_user] %>
+                Welcome back to<br>Client Connect, <%= link_to current_user.first_name, [current_user.client,current_user] %>
               <% end %>
             </span>
           </li>

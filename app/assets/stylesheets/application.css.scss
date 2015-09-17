@@ -262,7 +262,7 @@ div.copyright-container {
 
 h1.page-header-title {
   color: #282828;
-  font-family: Raleway;
+  font-family: Gotham;
   font-size: 30px;
   font-weight: 300;
   line-height: 50px;
@@ -270,6 +270,10 @@ h1.page-header-title {
   float: left;  
   #client-home-connect{
     font-size: 200%;
+    span{
+      font-weight:bold;
+      font-style: italic;
+    }
   }
 }
 

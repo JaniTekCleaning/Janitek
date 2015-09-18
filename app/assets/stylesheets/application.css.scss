@@ -269,12 +269,13 @@ h1.page-header-title {
   margin: 0px 25px 0px 10px;
   float: left;  
   #client-home-connect{
-    font-size: 200%;
-    span{
-      font-weight:bold;
-      font-style: italic;
-    }
+    font-size: 130%;
   }
+}
+
+span.client-connect-emphasis{
+  font-weight:bold;
+  font-style: italic;
 }
 
 div.page-header-gimmick {

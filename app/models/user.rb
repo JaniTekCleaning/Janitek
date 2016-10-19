@@ -4,8 +4,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, 
     :trackable, :validatable, :lockable
-  enum role: [:user, :staff, :admin]
-
+  
   has_many :action_logs
 
   validates :first_name, presence: true

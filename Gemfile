@@ -54,7 +54,7 @@ gem 'will_paginate'
 
 # S3 File storage
 gem "paperclip"
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk', '~> 2.3.0'
 
 # Easier breadcrumbs
 gem "breadcrumbs_on_rails"

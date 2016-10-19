@@ -129,11 +129,18 @@ class ClientsControllerTest < ActionController::TestCase
       assert_redirected_to clients_path
     end
 
-    should 'update hot button items' do
-      Client.expects(:find).returns(@client)
-      @client.expects(:hot_button_items=)
-      @client.expects(:save!)
-      put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
+    context "#update_hotbutton" do
+      should 'update hot button items' do
+        Client.expects(:find).returns(@client)
+        @client.expects(:hot_button_items=)
+        @client.expects(:save!)
+        put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
+      end
+
+      should 'function with nil params' do
+        put :update_hotbutton, client_id:@client
+        assert_response :success
+      end
     end
 
     should 'not email when updating hot button items' do

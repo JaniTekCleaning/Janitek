@@ -16,8 +16,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).on('turbolinks:load', ready);
 
 function addNewHotButtonElement(buttonText) {
 	if (buttonText == "" || buttonText == undefined || buttonText == null) {

@@ -24,6 +24,25 @@ class ContractsController < ApplicationController
     @staff = @client.staff
   end
 
+  def edit
+    authorize @contract
+  end
+
+  def update
+    authorize @contract
+    if @contract.update(update_contract_params)
+      redirect_to client_path(@client)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    authorize @contract
+    @contract.destroy
+    redirect_to @client
+  end
+
   private
     def add_breadcrumbs
       add_breadcrumb "Home", :root_path
@@ -43,5 +62,9 @@ class ContractsController < ApplicationController
 
     def contract_params
       params.require(:contract).permit(:url, :s3, :title)
+    end
+
+    def update_contract_params
+      params.require(:contract).permit(:title)
     end
 end

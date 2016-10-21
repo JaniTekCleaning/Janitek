@@ -1,5 +1,2 @@
-Fabricator(:contract) do
-  url          "MyString"
-  client       nil
-  title        "Some Title"
+Fabricator(:contract, from: :link, class_name: :contract) do
 end

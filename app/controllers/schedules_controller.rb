@@ -25,6 +25,25 @@ class SchedulesController < ApplicationController
     @staff=@client.staff
   end
 
+  def edit
+    authorize @schedule
+  end
+
+  def update
+    authorize @schedule
+    if @schedule.update(update_schedule_params)
+      redirect_to client_path(@client)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    authorize @schedule
+    @schedule.destroy
+    redirect_to @client
+  end
+
   private
     def add_breadcrumbs
       add_breadcrumb "Home", :root_path
@@ -44,5 +63,9 @@ class SchedulesController < ApplicationController
 
     def schedule_params
       params.require(:schedule).permit(:url, :s3, :title)
+    end
+
+    def update_schedule_params
+      params.require(:schedule).permit(:title)
     end
 end

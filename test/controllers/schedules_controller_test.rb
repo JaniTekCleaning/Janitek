@@ -19,6 +19,24 @@ class SchedulesControllerTest < ActionController::TestCase
       end
     end
 
+    should "should not edit schedule" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        get :edit, id:@schedule.id, client_id: @client.id
+      end
+    end
+
+    should "should not update schedule" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        put :update, id:@schedule.id, schedule: { :title=>"abc" }, client_id: @client.id
+      end
+    end
+
+    should "should not destroy schedule" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        delete :destroy, id:@schedule.id, client_id: @client.id
+      end
+    end
+
     should "should show schedule" do
       get :show, id: @schedule, client_id: @client.id
       assert_response :success
@@ -39,6 +57,24 @@ class SchedulesControllerTest < ActionController::TestCase
 
     should "should not show schedule" do
       assert_raises(Pundit::NotAuthorizedError){get :show, id: @schedule, client_id: @client.id}
+    end
+
+    should "should not edit schedule" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        get :edit, id:@schedule.id, client_id: @client.id
+      end
+    end
+
+    should "should not update schedule" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        put :update, id:@schedule.id, schedule: { :title=>"abc" }, client_id: @client.id
+      end
+    end
+
+    should "should not destroy schedule" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        delete :destroy, id:@schedule.id, client_id: @client.id
+      end
     end
   end
   context 'authorized as staff' do
@@ -69,6 +105,29 @@ class SchedulesControllerTest < ActionController::TestCase
     should "should show schedule" do
       get :show, id: @schedule, client_id: @client.id
       assert_response :success
+    end
+
+    should 'get edit' do
+      get :edit, id: @schedule, client_id: @client.id
+      assert_response :success
+    end
+
+    should 'update schedule' do
+      put :update, id: @schedule.id, client_id: @client.id, schedule: { title: "New" }
+      assert_redirected_to client_path(@client)
+    end
+
+    context 'destroy schedule' do
+      should 'redirect to client' do
+        delete :destroy, id: @schedule.id, client_id: @client.id
+        assert_redirected_to client_path(@client)
+      end
+      should 'destroy schedule' do
+        Client.expects(:find).returns(@client)
+        @client.schedules.expects(:find).returns(@schedule)
+        @schedule.expects(:destroy)
+        delete :destroy, id: @schedule.id, client_id: @client.id
+      end
     end
 
     should 'not email when showing schedule' do

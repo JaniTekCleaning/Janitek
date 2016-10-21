@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     end
     get 'edit_hotbutton'
     put 'update_hotbutton'
-    resources :contracts, :only=>[:new,:create,:show]
-    resources :schedules, :only=>[:new,:create,:show]
+    resources :contracts, :except=>[:index]
+    resources :schedules, :except=>[:index]
   end
   get 'contact_us' => 'contact#new'
   post 'contact_us' => 'contact#create'

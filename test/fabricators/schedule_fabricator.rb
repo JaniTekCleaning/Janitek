@@ -1,5 +1,2 @@
-Fabricator(:schedule) do
-  url          "MyString"
-  client       nil
-  title        "Some Title"
+Fabricator(:schedule, from: :link, class_name: :schedule) do
 end

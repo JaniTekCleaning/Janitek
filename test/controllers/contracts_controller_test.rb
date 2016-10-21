@@ -19,6 +19,18 @@ class ContractsControllerTest < ActionController::TestCase
       end
     end
 
+    should "should not edit contract" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        get :edit, id: @contract.id, client_id: @client.id
+      end
+    end
+
+    should "should not update contract" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        put :update, id: @contract.id, contract: { :title=>"abc" }, client_id: @client.id
+      end
+    end
+
     should "should show contract" do
       get :show, id: @contract, client_id: @client.id
       assert_response :success
@@ -28,6 +40,12 @@ class ContractsControllerTest < ActionController::TestCase
       TrackingMailer.expects(:viewed_contract).with(@member).returns(message)
       message.expects(:deliver_now)
       get :show, id: @contract, client_id: @client.id
+    end
+
+    should "should not destroy contract" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        delete :destroy, id:@contract.id, client_id: @client.id
+      end
     end
   end
   context 'authorized as general member' do
@@ -39,6 +57,24 @@ class ContractsControllerTest < ActionController::TestCase
 
     should "should show contract" do
       assert_raises(Pundit::NotAuthorizedError) {get :show, id: @contract, client_id: @client.id}
+    end
+
+    should "should not edit contract" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        get :edit, id: @contract.id, client_id: @client.id
+      end
+    end
+
+    should "should not update contract" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        put :update, id: @contract.id, contract: { :title=>"abc" }, client_id: @client.id
+      end
+    end
+
+    should "should not destroy contract" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        delete :destroy, id:@contract.id, client_id: @client.id
+      end
     end
   end
   context 'authorized as staff' do
@@ -69,6 +105,29 @@ class ContractsControllerTest < ActionController::TestCase
     should "should show contract" do
       get :show, id: @contract, client_id: @client.id
       assert_response :success
+    end
+
+    should 'get edit' do
+      get :edit, id: @contract, client_id: @client.id
+      assert_response :success
+    end
+
+    should 'update contract' do
+      put :update, id: @contract.id, client_id: @client.id, contract: { title: "New" }
+      assert_redirected_to client_path(@client)
+    end
+
+    context 'destroy contract' do
+      should 'redirect to client' do
+        delete :destroy, id: @contract.id, client_id: @client.id
+        assert_redirected_to client_path(@client)
+      end
+      should 'destroy contract' do
+        Client.expects(:find).returns(@client)
+        @client.contracts.expects(:find).returns(@contract)
+        @contract.expects(:destroy)
+        delete :destroy, id: @contract.id, client_id: @client.id
+      end
     end
 
     should 'not email when showing schedule' do

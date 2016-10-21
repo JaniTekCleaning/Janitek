@@ -1,8 +1,8 @@
-<%- title "New Schedule" %>
+<%- title "Edit Schedule" %>
 <%- back_link_url client_path(@client) %>
-<%- page_title "Janitek | New Schedule" %>
+<%- page_title "Janitek | Edit Schedule" %>
 
-<%= form_for([:schedule,@client,@schedule], :url=>client_schedules_path(@client)) do |f| %>
+<%= form_for([:schedule,@client,@schedule], :url=>client_schedule_path(@client, @schedule)) do |f| %>
   <% if @schedule.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -15,21 +15,9 @@
     </div>
   <% end %>
 
-  <p>Please note that you may use either the url or the file upload fields.  Using both at once is not recommended.</p>
-
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title, class:"form-control"  %>
-  </div>
-
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url, class:"form-control"  %>
-  </div>
-
-  <div class="field">
-    <%= f.label :s3, "File Upload" %><br />
-    <%= f.file_field :s3, class:"form-control"  %>
   </div>
 
   <div class="form-group">

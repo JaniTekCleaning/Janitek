@@ -12,10 +12,18 @@ class ContractPolicy < ApplicationPolicy
   end
 
   def new?
-    user.class==Staff
+    create?
   end
 
   def destroy?
-    user.class==Staff
+    create?
+  end
+
+  def update?
+    create?
+  end
+
+  def edit?
+    create?
   end
 end

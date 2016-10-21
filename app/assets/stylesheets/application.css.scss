@@ -515,14 +515,13 @@ table tr:hover td {
 ul.list-wrapper {
   list-style-type: none;
   padding-left: 0px;
-}
+  li{
+    margin-bottom: 5px;
+  }
+  .item-name.btn-default{
+    width:70%;
+  }
 
-ul.list-wrapper li {
-  margin-bottom: 5px;
-}
-
-ul.list-wrapper .btn {
-  width: 100%;
 }
 
 .logo-wrapper-small {

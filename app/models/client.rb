@@ -6,9 +6,9 @@ class Client < ActiveRecord::Base
   validates :number, :presence=>true
   validates :email, :presence=>true
 
-  has_many :members
-  has_many :contracts
-  has_many :schedules
+  has_many :members, dependent: :destroy
+  has_many :contracts, dependent: :destroy
+  has_many :schedules, dependent: :destroy
   belongs_to :staff
 
   scope :by_name, -> (name){ where "lower(name) LIKE ?", "%#{name.downcase}%"}

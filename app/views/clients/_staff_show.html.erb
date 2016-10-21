@@ -4,6 +4,24 @@
 <div class='row'>
   <div class="col-md-12 edit-button-wrapper">
     <%= link_to 'Edit', edit_client_path(@client), class: "btn btn-success"%>
+    <button class='btn btn-danger' data-toggle='modal' data-target='#delete-client'>Delete</button>
+    <div class="modal fade" id="delete-client" tabindex="-1" role="dialog" aria-labelledby="delete-client-label">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="delete-client-label">Delete Client?</h4>
+          </div>
+          <div class="modal-body">
+            You are deleting a client.  Once done, this cannot be reversed!  This will remove ALL RELEVANT DATA permanently!  Are you certain you wish to continue?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <%= link_to "Delete", client_path(@client), class: "btn btn-danger", method: :delete %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

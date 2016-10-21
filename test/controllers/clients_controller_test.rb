@@ -24,7 +24,7 @@ class ClientsControllerTest < ActionController::TestCase
       assert_raises(Pundit::NotAuthorizedError){get :new}
     end
 
-    should "should create client" do
+    should "should not create client" do
       assert_raises(Pundit::NotAuthorizedError) do
         post :create, client: { name:@client.name, email: @client.email, hot_button_items: @client.hot_button_items, number: @client.number }
       end
@@ -58,12 +58,6 @@ class ClientsControllerTest < ActionController::TestCase
       end
     end
 
-    should "should destroy client" do
-      assert_raises(Pundit::NotAuthorizedError) do
-        delete :destroy, id: @client
-      end
-    end
-
     should 'email when editing hot button items' do
       Client.expects(:find).returns(@client)
       message=mock('mailer')
@@ -80,6 +74,11 @@ class ClientsControllerTest < ActionController::TestCase
       put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
     end
 
+    should "should not destroy client" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        delete :destroy, id:@client.id
+      end
+    end
   end
   context 'authorized as staff' do
     setup do

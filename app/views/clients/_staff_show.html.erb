@@ -80,7 +80,7 @@
       <ul class="list-wrapper">
       <% @contracts.each do |contract| %>
         <li>
-          <%= link_to contract.created_at.strftime("%b %d, %Y"),client_contract_path(@client, contract), class: 'btn btn-default' %>
+          <%= link_to contract.title,client_contract_path(@client, contract), class: 'btn btn-default' %>
         </li>
       <% end %>
       </ul>
@@ -98,7 +98,7 @@
       <ul class="list-wrapper">
       <% @schedules.each do |contract| %>
         <li>
-          <%= link_to contract.created_at.strftime("%b %d, %Y"),contract.url_to_use, :target=>'_blank', class: 'btn btn-default' %>
+          <%= link_to contract.title,contract.url_to_use, :target=>'_blank', class: 'btn btn-default' %>
         </li>
       <% end %>
       </ul>

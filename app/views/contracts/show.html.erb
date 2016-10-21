@@ -13,7 +13,7 @@
         <div class='widget-icon'>
           <img src="<%= asset_path('icons/icon-service-contract.png') %>">
         </div><div class='widget-title'>
-          Contract for <%= @client.name %> on <%= @contract.created_at.strftime("%b %d, %Y") %> (<%= link_to 'View', @contract.url_to_use, :target=>'_blank'%>)
+          Contract (<%= @contract.title %>) for <%= @client.name %>, entered on <%= @contract.created_at.strftime("%b %d, %Y") %> (<%= link_to 'View', @contract.url_to_use, :target=>'_blank'%>)
         </div>
       </div>
       <div class='widget-content'>

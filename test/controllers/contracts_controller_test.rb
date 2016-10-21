@@ -55,14 +55,14 @@ class ContractsControllerTest < ActionController::TestCase
 
     should "should create contract" do
       assert_difference('Contract.count') do
-        post :create, contract: { :url=>"abc" }, client_id: @client.id
+        post :create, contract: { :url=>"abc", title: "Foo"  }, client_id: @client.id
       end
 
       assert_redirected_to client_contract_path(@client, assigns(:contract))
     end
 
     should 'created contract should have client id' do
-      post :create, contract: { :url=>"abc" }, client_id: @client.id
+      post :create, contract: { :url=>"abc"}, client_id: @client.id
       assert Contract.last.client==@client, 'contract should have client id assigned'
     end
 

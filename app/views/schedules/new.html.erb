@@ -18,6 +18,11 @@
   <p>Please note that you may use either the url or the file upload fields.  Using both at once is not recommended.
 
   <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class:"form-control"  %>
+  </div>
+
+  <div class="field">
     <%= f.label :url %><br>
     <%= f.text_field :url, class:"form-control"  %>
   </div>

@@ -6,6 +6,7 @@ class Link < ActiveRecord::Base
   validates_attachment_file_name :s3, :matches => [/pdf\Z/]
 
   validate :url_or_attachment
+  validates_presence_of :title
 
   def url_or_attachment
     unless ( !url.blank? ^ s3.file? )

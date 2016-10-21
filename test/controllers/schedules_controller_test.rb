@@ -55,7 +55,7 @@ class SchedulesControllerTest < ActionController::TestCase
 
     should "should create schedule" do
       assert_difference('Schedule.count') do
-        post :create, schedule: { :url=>"abc" }, client_id: @client.id
+        post :create, schedule: { :url=>"abc", title: "Foo" }, client_id: @client.id
       end
 
       assert_redirected_to client_schedule_path(@client, assigns(:schedule))

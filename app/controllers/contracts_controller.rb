@@ -42,6 +42,6 @@ class ContractsController < ApplicationController
     end
 
     def contract_params
-      params.require(:contract).permit(:url, :s3)
+      params.require(:contract).permit(:url, :s3, :title)
     end
 end

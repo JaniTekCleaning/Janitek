@@ -7,6 +7,10 @@ class LinkTest < ActiveSupport::TestCase
   should 'validate' do
     assert @link.valid?
   end
+  should 'require title' do
+    @link.title = nil
+    assert @link.invalid?
+  end
   should 'be valid with s3 file' do
     @link.url=nil
     @link.s3=File.new(Rails.root + 'test/fixtures/test_pdf.pdf')

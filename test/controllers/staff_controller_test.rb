@@ -40,11 +40,18 @@ class StaffControllerTest < ActionController::TestCase
     should "not update staff" do
       assert_raises(Pundit::NotAuthorizedError){patch :update, id: @staff, staff: { :email=>'ronlugge@test.test' }}
     end
+
+    should "not destroy staff" do
+      assert_raises(Pundit::NotAuthorizedError) do
+        delete :destroy, id: @staff
+      end
+    end
   end
   context 'authorized as staff' do
     setup do
       @staff = Fabricate(:staff)
-      sign_in Fabricate(:staff)
+      @staff_user = Fabricate(:staff)
+      sign_in @staff_user
     end
 
     should "get index" do
@@ -79,6 +86,17 @@ class StaffControllerTest < ActionController::TestCase
     should "update staff" do
       patch :update, id: @staff, staff: { :email=>'ronlugge@test.test' }
       assert_redirected_to staff_path(assigns(:staff))
+    end
+
+    should 'not destroy self' do
+      assert_raises(Pundit::NotAuthorizedError) do
+        delete :destroy, id: @staff_user
+      end
+    end
+
+    should "destroy staff" do
+      delete :destroy, id: @staff
+      assert_redirected_to staff_index_path
     end
   end
     

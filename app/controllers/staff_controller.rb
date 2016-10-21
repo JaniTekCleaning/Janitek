@@ -44,6 +44,12 @@ class StaffController < ApplicationController
     respond_with @staff
   end
 
+  def destroy
+    authorize @staff
+    @staff.destroy
+    redirect_to staff_index_path
+  end
+
   def log
     authorize @staff
     @logs=@staff.action_logs.order('created_at desc').paginate(:page=>params[:page], :per_page => 100)

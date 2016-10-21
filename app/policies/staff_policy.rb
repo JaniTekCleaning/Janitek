@@ -28,7 +28,7 @@ class StaffPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.class==Staff
+    user.class==Staff && record!=user
   end
 
   def permitted_attributes

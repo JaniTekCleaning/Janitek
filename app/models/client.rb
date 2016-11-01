@@ -12,6 +12,7 @@ class Client < ActiveRecord::Base
   belongs_to :staff
 
   scope :by_name, -> (name){ where "lower(name) LIKE ?", "%#{name.downcase}%"}
+  scope :by_rep, -> (rep){ rep=="NULL" ? (where staff: nil) : (where staff: rep) }
 
   has_attached_file :logo, :url => ":s3_domain_url", styles:{
     thumb:'50x50>',

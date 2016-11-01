@@ -5,8 +5,16 @@
 <% content_for :search do %>
   <%= form_tag(clients_path, class:"form-inline", method: :get) do %>
     <div class="form-group">
-      <%= label_tag(:name, "Client Name", class:"visible-sr, visible-sm, visible-xs") %>
-      <%= text_field_tag('name', @name, class:'form-control') %>
+      <%= label_tag(:by_rep, "Account Rep", class:"visible-sr, visible-sm, visible-xs") %>
+      <%= select_tag(:by_rep,\
+        content_tag(:option,'Current Account Rep',:value=>"") + \
+        content_tag(:option,'None',:value=>"NULL", selected: @rep=="NULL") + \
+        options_from_collection_for_select(Staff.all, :id, :full_name, @rep)
+      ) %>
+    </div>
+    <div class="form-group">
+      <%= label_tag(:by_name, "Client Name", class:"visible-sr, visible-sm, visible-xs") %>
+      <%= text_field_tag('by_name', @name, class:'form-control', placeholder: "Client Name") %>
     </div>
     <div class='form-group'>
       <%= submit_tag 'Search', class:'btn-info btn' %>

@@ -76,15 +76,16 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # Setup actionmailer to use Mandrill
+  # Setup actionmailer to use Postmark
+  
   config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
-    :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => ENV["MANDRILL_USERNAME"],
-    :password  => ENV["MANDRILL_PASSWORD"], # SMTP password is any valid API key
-    :authentication => 'login', # Mandrill supports 'plain' or 'login'
-    :domain => 'janitek.herokuapp.com' # your domain to identify your server when connecting
+    :address   => ENV['POSTMARK_SMTP_SERVER'],
+    :port      => 25,
+    :user_name => ENV['POSTMARK_API_TOKEN'],
+    :password  => ENV["POSTMARK_API_TOKEN"],
+    :authentication => :cram_md5,
+    :domain => 'janitek.herokuapp.com',
+    :enable_starttls_auto => true
   }
 
   # Default url, required for devise:

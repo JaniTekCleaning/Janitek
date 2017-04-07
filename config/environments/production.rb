@@ -89,7 +89,7 @@ Rails.application.configure do
   }
 
   # Default url, required for devise:
-  config.action_mailer.default_url_options = { host: 'janitek.herokuapp.com', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'janitek.herokuapp.com' }
 
   # Paperclip options
   config.paperclip_defaults = {

@@ -1,0 +1,5 @@
+<% if current_user.is_a? Member %>
+  <%= render 'member_show' %>
+<% else %>
+  <%= render 'staff_show' %>
+<% end %>

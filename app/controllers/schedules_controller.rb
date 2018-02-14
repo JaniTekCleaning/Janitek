@@ -1,8 +1,7 @@
 class SchedulesController < ApplicationController
   before_action :set_client
+  before_action :set_building
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
-
-  # before_filter :add_breadcrumbs
 
   respond_to :html
   def new
@@ -13,9 +12,9 @@ class SchedulesController < ApplicationController
 
   def create
     authorize Schedule
-    @schedule = Schedule.new(schedule_params.merge(:client_id=>@client.id))
+    @schedule = Schedule.new(schedule_params.merge(:building_id=>@building.id))
     @schedule.save
-    respond_with(@client,@schedule)
+    respond_with(@client,@building,@schedule)
   end
 
   def show
@@ -32,7 +31,7 @@ class SchedulesController < ApplicationController
   def update
     authorize @schedule
     if @schedule.update(update_schedule_params)
-      redirect_to client_path(@client)
+      redirect_to [@client, @building]
     else
       render :edit
     end
@@ -45,20 +44,18 @@ class SchedulesController < ApplicationController
   end
 
   private
-    def add_breadcrumbs
-      add_breadcrumb "Home", :root_path
-      add_breadcrumb "Clients", clients_path if current_user.type=="Staff"
-      add_breadcrumb @client.name, client_path(@client) if current_user.type=="Staff"
-      add_breadcrumb "Task Schedule", client_schedule_path(@client,@schedule) if @schedule
-    end
 
     def set_schedule
       set_client unless @client
-      @schedule = @client.schedules.find(params[:id])
+      @schedule = Schedule.find(params[:id])
     end
 
     def set_client
       @client ||= Client.find(params[:client_id])
+    end
+
+    def set_building
+      @building = Building.find(params[:building_id])
     end
 
     def schedule_params

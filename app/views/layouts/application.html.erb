@@ -43,6 +43,9 @@
         <% if content_for(:back_link_url) %>
           <%= link_to('&laquo; Back'.html_safe, content_for(:back_link_url), {:class=>'page-back'}) %>
         <% end %>
+        <% if content_for(:building_select) %>
+          <%= content_for(:building_select) %>
+        <% end %>
         <div class="page-header-gimmick"></div>
         <br style="clear:both;">
       </div>

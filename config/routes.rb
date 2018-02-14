@@ -2,15 +2,18 @@ Rails.application.routes.draw do
 
 
   resources :clients do
+    resources :buildings, except: :index do
+      put 'select', on: :member
+      get 'edit_hotbutton', on: :member
+      put 'update_hotbutton', on: :member
+      resources :contracts, :except=>[:index]
+      resources :schedules, :except=>[:index]
+    end
     resources :members do
       member do
         get 'log'
       end
     end
-    get 'edit_hotbutton'
-    put 'update_hotbutton'
-    resources :contracts, :except=>[:index]
-    resources :schedules, :except=>[:index]
   end
   get 'contact_us' => 'contact#new'
   post 'contact_us' => 'contact#create'
@@ -25,7 +28,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'root/index'
+  # get 'root/index'
 
   devise_for :users, :skip => [:registrations]
   root to: "root#index"

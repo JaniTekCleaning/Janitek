@@ -1,8 +1,8 @@
 <%- title "New Schedule" %>
-<%- back_link_url client_path(@client) %>
+<%- back_link_url client_building_path(@client,@building) %>
 <%- page_title "Janitek | New Schedule" %>
 
-<%= form_for([:schedule,@client,@schedule], :url=>client_schedules_path(@client)) do |f| %>
+<%= form_for([:schedule,@client,@schedule], :url=>client_building_schedules_path(@client,@building)) do |f| %>
   <% if @schedule.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -34,6 +34,6 @@
 
   <div class="form-group">
     <%= f.submit class:"btn btn-primary" %>
-    <%= link_to 'Cancel', client_path(@client), class:'btn btn-danger' %>
+    <%= link_to 'Cancel', [@client, @building], class:'btn btn-danger' %>
   </div>
 <% end %>

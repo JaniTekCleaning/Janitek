@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020231830) do
+ActiveRecord::Schema.define(version: 20180213205700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,31 @@ ActiveRecord::Schema.define(version: 20161020231830) do
   end
 
   add_index "action_logs", ["user_id"], name: "index_action_logs_on_user_id", using: :btree
+
+  create_table "buildings", force: :cascade do |t|
+    t.integer "client_id"
+    t.string  "name"
+    t.string  "number"
+    t.string  "email"
+    t.text    "hot_button_items"
+    t.integer "staff_id"
+    t.string  "directnumber"
+    t.string  "street1"
+    t.string  "street2"
+    t.string  "city"
+    t.string  "state"
+    t.string  "zip"
+    t.text    "notes"
+    t.string  "contact"
+    t.string  "contacttitle"
+  end
+
+  add_index "buildings", ["client_id"], name: "index_buildings_on_client_id", using: :btree
+
+  create_table "buildings_members", force: :cascade do |t|
+    t.integer "building_id"
+    t.integer "member_id"
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -53,7 +78,6 @@ ActiveRecord::Schema.define(version: 20161020231830) do
 
   create_table "links", force: :cascade do |t|
     t.string   "url"
-    t.integer  "client_id"
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -62,9 +86,8 @@ ActiveRecord::Schema.define(version: 20161020231830) do
     t.integer  "s3_file_size"
     t.datetime "s3_updated_at"
     t.text     "title"
+    t.integer  "building_id"
   end
-
-  add_index "links", ["client_id"], name: "index_links_on_client_id", using: :btree
 
   create_table "service_requests", force: :cascade do |t|
     t.text     "fields",         null: false
@@ -109,4 +132,7 @@ ActiveRecord::Schema.define(version: 20161020231830) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "buildings", "clients"
+  add_foreign_key "buildings", "users", column: "staff_id"
+  add_foreign_key "buildings_members", "users", column: "member_id"
 end

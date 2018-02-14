@@ -1,14 +1,6 @@
 require 'test_helper'
 
 class ClientsControllerTest < ActionController::TestCase
-  should 'get edit_hotbutton when no schedule set' do
-    @client=Fabricate(:client)
-    @user=Fabricate(:member,:client=>@client)
-    sign_in Fabricate(:staff)
-
-    get :edit_hotbutton, client_id: @client.id
-    assert_response :success
-  end
   context 'authorized as member' do
     setup do
       @client=Fabricate(:client)
@@ -56,22 +48,6 @@ class ClientsControllerTest < ActionController::TestCase
       assert_raises(Pundit::NotAuthorizedError) do
         patch :update, id: Fabricate(:client), client: { email: @client.email, hot_button_items: @client.hot_button_items, number: @client.number }
       end
-    end
-
-    should 'email when editing hot button items' do
-      Client.expects(:find).returns(@client)
-      message=mock('mailer')
-      TrackingMailer.expects(:edited_hotbutton).with(@user).returns(message)
-      message.expects(:deliver_now)
-
-      put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
-    end
-
-    should 'update hot button items' do
-      Client.expects(:find).returns(@client)
-      @client.expects(:hot_button_items=)
-      @client.expects(:save!)
-      put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
     end
 
     should "should not destroy client" do
@@ -126,25 +102,6 @@ class ClientsControllerTest < ActionController::TestCase
       end
 
       assert_redirected_to clients_path
-    end
-
-    context "#update_hotbutton" do
-      should 'update hot button items' do
-        Client.expects(:find).returns(@client)
-        @client.expects(:hot_button_items=)
-        @client.expects(:save!)
-        put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
-      end
-
-      should 'function with nil params' do
-        put :update_hotbutton, client_id:@client
-        assert_response :success
-      end
-    end
-
-    should 'not email when updating hot button items' do
-      TrackingMailer.expects(:edited_hotbutton).never
-      put :update_hotbutton, client_id:@client, variable_item:["1","2","3"]
     end
   end
 end

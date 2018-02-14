@@ -1,0 +1,86 @@
+<%- title "Janitek Client Connect: Hot Buttons" %>
+<% if current_user.is_a? Staff %>
+  <%- back_link_url client_building_path(@client, @building) %>
+<% else %>
+  <%- back_link_url root_path %>
+<% end %>
+<%- page_title "Janitek | Hot Buttons" %>
+
+
+<div class='row business-profile-full task-list-and-hot-buttons' id='client_root'>
+  <div class='col-md-4' id="client-col-left">
+    <%=render 'root/clientlead' %>
+  </div>
+  <div class='col-md-8' id="client-col-right">
+    <div class='widget' id=''>
+      <div class="widget-tabs">
+        <div class="widget-tab" data-target="hot_button_widget" id="tab_hot_buttons">
+          <div class='widget-header'>
+            <%= link_to([:edit_hotbutton, @client, @building]) do %>
+            <div class='widget-icon'>
+              <img src="<%= asset_path('icons/icon-service-request.png') %>">
+            </div><div class='widget-title'>
+              Hot Buttons
+            </div>
+            <% end %>
+          </div>
+        </div><div class="widget-tab inactive" data-target="task_list_widget" id="tab_task_list">
+          <div class='widget-header'>
+            <% if @schedule %>
+              <%= link_to [@client, @building, @schedule] do %>
+            <div class='widget-icon'>
+              <img src="<%= asset_path('icons/icon-service-request.png') %>">
+            </div>
+            <div class='widget-title'>My Task List</div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class='widget-content tab-content tab-active' id="hot_button_widget">
+        <div id="hot-buttons-container">
+          <p class="instructions">
+            Please use the space below to add you site specific "hot buttons".
+            These are issues that are unique to your site or areas you'd like us to pay extra attention to.
+          </p>
+          <%= form_tag([:update_hotbutton, @client, @building], method: :put) do -%>
+          <div class="hot-button-input-wrapper">
+            <h6>Add a Hot Button item to my Task List:</h6>
+            <input type="text" name="hot_button_input" id="hot_button_input" placeholder="Enter your hot button item text here..." />
+            <div>
+              <div id="add-new-hotbutton">
+                <a href="#add-hotbutton">
+                  <div class='widget-header'>
+                    <div class='widget-icon'>
+                      <i class="glyphicon glyphicon-plus"></i>
+                    </div><div class='widget-title uppercase'>
+                      Add Hot Button
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <br style="clear:both;">
+            </div>
+          </div>
+          <% end %>
+          <div id="hot-button-list-wrapper">
+            <h6>My Current Facility Hot Button List:</h6>
+            <ul id="hot-button-task-list">
+              <% @building.hot_button_items.each do |item| %>
+                <li>
+                  <a href="#remove">
+                    <i class="glyphicon glyphicon-minus-sign"></i>
+                  </a> <span><%= item %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>        
+        <script>
+          var clientId = "<%= @client.id %>";
+          var postUrl = "<%= update_hotbutton_client_building_path(@client,@building) %>";
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

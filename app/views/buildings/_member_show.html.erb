@@ -1,0 +1,101 @@
+<%- title "Janitek Client Connect: Profile" %>
+<%- page_title "Janitek | Business Profile" %>
+<%- back_link_url root_path %>
+
+<div class='row business-profile-full' id='client_root'>
+  <div class='col-md-4' id="client-col-left">
+    <%=render 'root/clientlead' %>
+  </div>
+  <div class='col-md-8' id="client-col-right">
+    <div class='widget' id=''>
+      <div class='widget-header'>
+        <div class='widget-icon'>
+          <img src="<%= asset_path('icons/icon-business-card.png') %>">
+        </div><div class='widget-title'>
+          My Business Profile
+        </div>
+      </div>
+      <div class='widget-content'>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="greybox">
+              <div class="inside">
+                <div class="business-name"><%= @client.name %></div>
+                <div class="business-contact-details">
+                  <div class="contact-name">
+                    <%= @client.contact %>
+                  </div>
+                  <% if @client.contacttitle %>
+                  <div class="contact-title">
+                    <%= @client.contacttitle %>
+                  </div>
+                  <% end %>
+                </div>
+                <div class="profile-details">
+                  <div class="main-office-number phone-number">
+                    <span>Main Office Number</span>
+                    <div><%= @client.number %></div>
+                  </div>
+                  <div class="direct-number phone-number">
+                    <span>Direct Number: </span>
+                    <div><%= @client.directnumber %></div>
+                  </div>
+                  
+                  <div class="email business-email">
+                    <a href="mailto:<%= @client.email %>"><%= @client.email %></a>
+                  </div>
+                  
+                  <div class="address-wrapper">
+                    <div>Site Address:</div>
+                    <div class="street1">
+                      <%= @client.street1 %>
+                    </div>
+                    <% if @client.street2 %>
+                    <div class="street2">
+                      <%= @client.street2 %>
+                    </div>
+                    <% end %>
+                    <div class="city-state-zip">
+                      <span class="city"><%= @client.city %></span>
+                      <% if !@client.state.empty? %>
+                      , <span class="state"><%= @client.state %></span>
+                      <% end %>
+                      <span class="zip-code"><%= @client.zip %></span>
+                    </div>
+                  </div>
+                  
+                  <div class="business-additional-notes">
+                    <div>Additional Notes:</div>
+                    <%= simple_format(@client.notes) %>
+                  </div>
+                </div>
+              </div> <!-- /.inside -->
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="member-image-wrapper">
+            <% if @client.logo.file? %>
+              <%= image_tag @client.logo.url(:profile) %>
+            <% else %>
+              <div class="no-image"></div>
+            <% end %>
+            </div>
+            <div class="edit-client-button-wrapper">
+              <%= link_to(edit_client_path(@client)) do %>
+              <div class='widget' id='edit-client-button'>
+                <div class='widget-header'>
+                  <div class='widget-icon'>
+                    <img src="<%= asset_path('icons/icon-edit.png') %>">
+                  </div><div class='widget-title'>
+                    Edit
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

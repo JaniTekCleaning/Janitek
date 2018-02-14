@@ -1,0 +1,82 @@
+<%= form_for([@client, @building]) do |f| %>
+  <% if @building.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@building.errors.count, "error") %> prohibited this building from being saved:</h2>
+
+      <ul>
+      <% @building.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label 'Contact' %><br>
+    <%= f.text_field :contact, class:"form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label 'Contact Title' %><br>
+    <%= f.text_field :contacttitle, class:"form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label 'Main Office Number' %><br>
+    <%= f.text_field :number, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Direct Number' %><br>
+    <%= f.text_field :directnumber, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class:"form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :street1 %><br />
+    <%= f.text_field :street1, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :street2 %><br />
+    <%= f.text_field :street2, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :city %><br />
+    <%= f.text_field :city, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :state %><br />
+    <%= f.text_field :state, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Zip Code' %><br />
+    <%= f.text_field :zip, class:"form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :logo %><br />
+    <%= f.file_field :logo, class:"form-control" %>
+  </div>
+  <% if policy(@client).update_janitorial_lead? %>
+    <div class="form-group">
+      <%= f.label :staff, "Account Rep" %><br>
+      <%= collection_select(:client, :staff_id, Staff.all.order('first_name'), :id, :full_name, prompt: true, class:"form-control") %>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= f.label 'Additional Notes' %><br />
+    <%= f.text_area :notes, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class:"btn btn-primary" %>
+  </div>
+<% end %>

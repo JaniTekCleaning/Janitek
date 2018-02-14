@@ -18,6 +18,15 @@ class ApplicationController < ActionController::Base
   def render_cannot_reset_password
     redirect_to new_user_session_path, alert:"You may not reset your password.  Please contact support instead."
   end
+
+  def current_building
+    return @current_building if @current_building.present?
+    return nil unless current_user.is_a? Member
+    return @current_building = Building.where(id: session[:building_id]).first if session[:building_id]
+    current_user.buildings.first
+  end
+
+  helper_method :current_building
   
   protected
 

@@ -1,11 +1,6 @@
 <%- title "<span id='client-home-connect'>Janitek <span class='client-connect-emphasis'>Client Connect</span></span>", html_safe:true %>
 <%- page_title "Janitek" %>
 <%- back_link_url root_path %>
-<% content_for :building_select do %>
-  <%= select_tag :buildings, options_for_select(current_user.buildings.map do |building|
-      [building.name, building.id]
-    end), class: "building-drop-down" %>
-<% end %>
 <%- page_class "page-client-view" %>
 
 <div class='row' id='client_root'>
@@ -16,9 +11,9 @@
     <div class="row">
       <!-- Service Contract -->
       <div class="col-md-6">
-        <div class='widget <% if !current_building.contracts.last %> disabled <% end %>' id='widget-service-contract'>
-          <% if current_building.contracts.last %>
-            <%= link_to([current_user.client, @building, @building.contracts.last]) do %>
+        <div class='widget <% if !current_user.client.contracts.last %> disabled <% end %>' id='widget-service-contract'>
+          <% if current_user.client.contracts.last %>
+            <%= link_to(client_contract_path(current_user.client, current_user.client.contracts.last)) do %>
               <div class='overlay'></div>
               <div class='widget-header'>
                 <div class='widget-icon'>

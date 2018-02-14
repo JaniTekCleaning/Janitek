@@ -86,99 +86,25 @@
   </div>
 </div>
 
-<div class='row client-links-wrapper'>
-  <div class='col-md-4 list-element'>
-    <div class="list-element-inside">
-      <h3>Contracts</h3>
-      <div class="col-button-wrapper">
-        <% if policy(Contract).create? %>
-          <%= link_to 'Add New', new_client_contract_path(@client), class:'btn btn-primary btn-xs' %>
-        <% end %>
+<% if true %>
+  <h2 class="member-title">Buildings</h2>
+  <div class='row member-list'>
+    <% @client.buildings.each do |building| %>
+      <div class="col-md-3">
+        <div class="inside">
+          <%= link_to building.name, [@client, building], class:'btn btn-primary' %>
+        </div>
       </div>
-      <ul class="list-wrapper">
-      <% @contracts.each do |contract| %>
-        <li>
-          <%= link_to contract.title,client_contract_path(@client, contract), class: 'item-name btn btn-default' %>
-          <%= link_to "", edit_client_contract_path(@client, contract), class: "btn btn-info glyphicon glyphicon-pencil" %>
-          <button class='btn btn-danger glyphicon glyphicon-minus' data-toggle='modal' data-target='#delete-contract-<%= contract.id %>'>
-          </button>
-          <div class="modal fade" id="delete-contract-<%= contract.id %>" tabindex="-1" role="dialog" aria-labelledby="delete-contract-<%= contract.id %>-label">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="delete-contract-<%= contract.id %>-label">Delete Contract?</h4>
-                </div>
-                <div class="modal-body">
-                  You are deleting a contract.  Once done, this cannot be reversed!  Are you certain you wish to continue?
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <%= link_to "Delete", client_contract_path(@client, contract), class: "btn btn-danger", method: :delete %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-      <% end %>
-      </ul>
+    <% end %>
+  </div>
+  <div class="row new-member-wrapper">
+    <div class="col-md-4">
+      <%= link_to 'Add New', [:new, @client, :building], class:'btn btn-success'  %>
     </div>
   </div>
+<% end %>
 
-  <div class='col-md-4 list-element'>
-    <div class="list-element-inside">
-      <h3>Task List</h3>
-      <div class="col-button-wrapper">
-        <% if policy(Schedule).create? %>
-          <%= link_to 'Add New', new_client_schedule_path(@client), class:'btn btn-primary btn-xs' %>
-        <% end %>
-      </div>
-      <ul class="list-wrapper">
-      <% @schedules.each do |schedule| %>
-        <li>
-          <%= link_to schedule.title,schedule.url_to_use, :target=>'_blank', class: 'item-name btn btn-default' %>
-          <%= link_to "", edit_client_schedule_path(@client, schedule), class: "btn btn-info glyphicon glyphicon-pencil" %>
-          <button class='btn btn-danger glyphicon glyphicon-minus' data-toggle='modal' data-target='#delete-schedule-<%= schedule.id %>'>
-          </button>
-          <div class="modal fade" id="delete-schedule-<%= schedule.id %>" tabindex="-1" role="dialog" aria-labelledby="delete-schedule-<%= schedule.id %>-label">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="delete-schedule-<%= schedule.id %>-label">Delete Task List?</h4>
-                </div>
-                <div class="modal-body">
-                  You are deleting a task list.  Once done, this cannot be reversed!  Are you certain you wish to continue?
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <%= link_to "Delete", client_schedule_path(@client, schedule), class: "btn btn-danger", method: :delete %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-      <% end %>
-      </ul>
-    </div>
-  </div>
-  
-  <div class='col-md-4 list-element'>
-    <div class="list-element-inside">
-      <h3>Hot Button List</h3>
-      <div class="col-button-wrapper">
-        <%= link_to 'Edit', client_edit_hotbutton_path(@client), class:'btn btn-primary btn-xs' %>
-      </div>
-      <ol class="list-wrapper">
-        <% @client.hot_button_items.each do |item| %>
-          <li>
-            <%= item %>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-  </div>
-</div>
+
 <% if policy(Member).update? %>
   <h2 class="member-title">Members</h2>
   <div class='row member-list'>

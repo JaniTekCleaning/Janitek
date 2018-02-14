@@ -1,5 +1,5 @@
 <%- title "Janitek Client Connect: Task List" %>
-<%- back_link_url ((current_user.is_a? Staff) ? client_path(@client) : root_path) %>
+<%- back_link_url ((current_user.is_a? Staff) ? client_building_path(@client,@building) : root_path) %>
 <%- page_title "Janitek | Schedule" %>
 
 <div class='row business-profile-full task-list-and-hot-buttons' id='client_root'>
@@ -11,7 +11,7 @@
       <div class="widget-tabs">
         <div class="widget-tab inactive" data-target="hot_button_widget" id="tab_hot_buttons">
           <div class='widget-header'>
-            <%= link_to(client_edit_hotbutton_path(@client)) do %>
+            <%= link_to [:edit_hotbutton, @client, @building] do %>
             <div class='widget-icon'>
               <img src="<%= asset_path('icons/icon-service-request.png') %>">
             </div><div class='widget-title'>
@@ -21,7 +21,7 @@
           </div>
         </div><div class="widget-tab" data-target="task_list_widget" id="tab_task_list">
           <div class='widget-header'>
-            <%= link_to(client_schedule_path(@client, @schedule)) do %>
+            <%= link_to [@client, @building, @schedule] do %>
             <div class='widget-icon'>
               <img src="<%= asset_path('icons/icon-service-request.png') %>">
             </div><div class='widget-title'>

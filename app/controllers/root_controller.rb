@@ -8,6 +8,7 @@ class RootController < ApplicationController
     if current_user.class==Member && current_user.client
       @client=current_user.client
       @staff=current_user.client.staff
+      @building = current_building
     end
   end
 end

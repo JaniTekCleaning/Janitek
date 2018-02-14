@@ -1,0 +1,199 @@
+<%- title @building.name %>
+<%- page_title "Janitek | Client" %>
+<%- back_link_url client_path(@client) %>
+
+<div class='row'>
+  <div class="col-md-12 edit-button-wrapper">
+    <%= link_to 'Edit', [:edit, @client, @building], class: "btn btn-success"%>
+    <button class='btn btn-danger' data-toggle='modal' data-target='#delete-client'>Delete</button>
+    <div class="modal fade" id="delete-client" tabindex="-1" role="dialog" aria-labelledby="delete-client-label">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="delete-client-label">Delete Client?</h4>
+          </div>
+          <div class="modal-body">
+            You are deleting a client.  Once done, this cannot be reversed!  This will remove ALL RELEVANT DATA permanently!  Are you certain you wish to continue?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <%= link_to "Delete", [@client, @building], class: "btn btn-danger", method: :delete %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row logo-wrapper-small">
+  <div class='col-md-12'>
+    <% if @client.logo.file? %>
+      <%= image_tag @client.logo.url(:profile) %>
+    <% end %>
+  </div>
+</div>
+
+<div class='row identity-info'>
+  <div class='col-md-6'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <h1><%= @building.name %></h1>
+        <table>
+          <tbody>
+            <tr>
+              <td>Phone Number:</td>
+              <td class="client-number"><%= @building.number %></td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td class="client-email"><%= @building.email %></td>
+            </tr>
+            <% if @building.staff %>
+            <tr>
+              <td>Account Rep:</td>
+              <td class="client-lead"><%= link_to @building.staff.full_name, @building.staff %></td>
+            </tr>
+            <% end %>
+            <tr>
+              <td>Site Address:</td>
+              <td><div class="address-wrapper">
+                    <div class="street1">
+                      <%= @building.street1 %>
+                    </div>
+                    <% if @building.street2 %>
+                    <div class="street2">
+                      <%= @building.street2 %>
+                    </div>
+                    <% end %>
+                    <div class="city-state-zip">
+                      <span class="city"><%= @building.city %></span>
+                      <% if @building.state && !@building.state.empty? %>
+                      , <span class="state"><%= @building.state %></span>
+                      <% end %>
+                      <span class="zip-code"><%= @building.zip %></span>
+                    </div>
+                  </div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-6 logo-wrapper'>
+    <% if @client.logo.file? %>
+      <%= image_tag @client.logo.url(:profile) %>
+    <% end %>
+  </div>
+</div>
+
+<div class='row client-links-wrapper'>
+  <div class='col-md-4 list-element'>
+    <div class="list-element-inside">
+      <h3>Contracts</h3>
+      <div class="col-button-wrapper">
+        <% if policy(Contract).create? %>
+          <%= link_to 'Add New', [:new, @client, @building, :contract], class:'btn btn-primary btn-xs' %>
+        <% end %>
+      </div>
+      <ul class="list-wrapper">
+      <% @contracts.each do |contract| %>
+        <li>
+          <%= link_to contract.title,client_contract_path(@client, contract), class: 'item-name btn btn-default' %>
+          <%= link_to "", edit_client_contract_path(@client, contract), class: "btn btn-info glyphicon glyphicon-pencil" %>
+          <button class='btn btn-danger glyphicon glyphicon-minus' data-toggle='modal' data-target='#delete-contract-<%= contract.id %>'>
+          </button>
+          <div class="modal fade" id="delete-contract-<%= contract.id %>" tabindex="-1" role="dialog" aria-labelledby="delete-contract-<%= contract.id %>-label">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="delete-contract-<%= contract.id %>-label">Delete Contract?</h4>
+                </div>
+                <div class="modal-body">
+                  You are deleting a contract.  Once done, this cannot be reversed!  Are you certain you wish to continue?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <%= link_to "Delete", client_contract_path(@client, contract), class: "btn btn-danger", method: :delete %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class='col-md-4 list-element'>
+    <div class="list-element-inside">
+      <h3>Task List</h3>
+      <div class="col-button-wrapper">
+        <% if policy(Schedule).create? %>
+          <%= link_to 'Add New', [:new, @client, @building, :schedule], class:'btn btn-primary btn-xs' %>
+        <% end %>
+      </div>
+      <ul class="list-wrapper">
+      <% @schedules.each do |schedule| %>
+        <li>
+          <%= link_to schedule.title,schedule.url_to_use, :target=>'_blank', class: 'item-name btn btn-default' %>
+          <%= link_to "", edit_client_schedule_path(@client, schedule), class: "btn btn-info glyphicon glyphicon-pencil" %>
+          <button class='btn btn-danger glyphicon glyphicon-minus' data-toggle='modal' data-target='#delete-schedule-<%= schedule.id %>'>
+          </button>
+          <div class="modal fade" id="delete-schedule-<%= schedule.id %>" tabindex="-1" role="dialog" aria-labelledby="delete-schedule-<%= schedule.id %>-label">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="delete-schedule-<%= schedule.id %>-label">Delete Task List?</h4>
+                </div>
+                <div class="modal-body">
+                  You are deleting a task list.  Once done, this cannot be reversed!  Are you certain you wish to continue?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <%= link_to "Delete", client_schedule_path(@client, schedule), class: "btn btn-danger", method: :delete %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+  
+  <div class='col-md-4 list-element'>
+    <div class="list-element-inside">
+      <h3>Hot Button List</h3>
+      <div class="col-button-wrapper">
+        <%= link_to 'Edit', [:edit_hotbutton, @client, @building], class:'btn btn-primary btn-xs' %>
+      </div>
+      <ol class="list-wrapper">
+        <% @building.hot_button_items.each do |item| %>
+          <li>
+            <%= item %>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</div>
+<% if policy(Member).update? %>
+  <h2 class="member-title">Members</h2>
+  <div class='row member-list'>
+    <% @client.members.each do |member| %>
+      <div class="col-md-3">
+        <div class="inside">
+          <%= link_to member.full_name, client_member_path(@client,member), class:'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row new-member-wrapper">
+    <div class="col-md-4">
+      <%= link_to 'Add New', new_client_member_path(@client), class:'btn btn-success'  %>
+    </div>
+  </div>
+<% end %>

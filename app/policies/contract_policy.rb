@@ -4,7 +4,7 @@ class ContractPolicy < ApplicationPolicy
   end
 
   def show?
-    user.class==Staff || user.client==record.client
+    user.class==Staff || (user.buildings.include? record.building)
   end
 
   def create?

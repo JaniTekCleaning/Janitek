@@ -40,7 +40,7 @@ class SchedulesController < ApplicationController
   def destroy
     authorize @schedule
     @schedule.destroy
-    redirect_to @client
+    redirect_to [@client, @building]
   end
 
   private

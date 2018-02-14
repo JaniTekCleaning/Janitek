@@ -99,8 +99,8 @@
       <ul class="list-wrapper">
       <% @contracts.each do |contract| %>
         <li>
-          <%= link_to contract.title,client_contract_path(@client, contract), class: 'item-name btn btn-default' %>
-          <%= link_to "", edit_client_contract_path(@client, contract), class: "btn btn-info glyphicon glyphicon-pencil" %>
+          <%= link_to contract.title, [@client, @building, contract], class: 'item-name btn btn-default' %>
+          <%= link_to "", [:edit, @client, @building, contract], class: "btn btn-info glyphicon glyphicon-pencil" %>
           <button class='btn btn-danger glyphicon glyphicon-minus' data-toggle='modal' data-target='#delete-contract-<%= contract.id %>'>
           </button>
           <div class="modal fade" id="delete-contract-<%= contract.id %>" tabindex="-1" role="dialog" aria-labelledby="delete-contract-<%= contract.id %>-label">
@@ -115,7 +115,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <%= link_to "Delete", client_contract_path(@client, contract), class: "btn btn-danger", method: :delete %>
+                  <%= link_to "Delete", [@client, @building, contract], class: "btn btn-danger", method: :delete %>
                 </div>
               </div>
             </div>
@@ -137,8 +137,8 @@
       <ul class="list-wrapper">
       <% @schedules.each do |schedule| %>
         <li>
-          <%= link_to schedule.title,schedule.url_to_use, :target=>'_blank', class: 'item-name btn btn-default' %>
-          <%= link_to "", edit_client_schedule_path(@client, schedule), class: "btn btn-info glyphicon glyphicon-pencil" %>
+          <%= link_to schedule.title, schedule.url_to_use, :target=>'_blank', class: 'item-name btn btn-default' %>
+          <%= link_to "", [:edit, @client, @building, schedule], class: "btn btn-info glyphicon glyphicon-pencil" %>
           <button class='btn btn-danger glyphicon glyphicon-minus' data-toggle='modal' data-target='#delete-schedule-<%= schedule.id %>'>
           </button>
           <div class="modal fade" id="delete-schedule-<%= schedule.id %>" tabindex="-1" role="dialog" aria-labelledby="delete-schedule-<%= schedule.id %>-label">
@@ -153,7 +153,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <%= link_to "Delete", client_schedule_path(@client, schedule), class: "btn btn-danger", method: :delete %>
+                  <%= link_to "Delete", [@client, @building, schedule], class: "btn btn-danger", method: :delete %>
                 </div>
               </div>
             </div>

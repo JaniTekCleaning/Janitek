@@ -1,8 +1,8 @@
 <%- title "Edit Contract" %>
-<%- back_link_url client_path(@client) %>
+<%- back_link_url client_building_path(@client,@building) %>
 <%- page_title "Janitek | Edit Contract" %>
 
-<%= form_for([:contract,@client,@contract], :url=>client_contract_path(@client,@contract)) do |f| %>
+<%= form_for([:contract,@client,@building,@contract], :url=>client_building_contract_path(@client,@building,@contract)) do |f| %>
   <% if @contract.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@contract.errors.count, "error") %> prohibited this contract from being saved:</h2>
@@ -22,7 +22,7 @@
 
   <div class="form-group">
     <%= f.submit class:"btn btn-primary" %>
-    <%= link_to 'Cancel', client_path(@client), class:'btn btn-danger' %>
+    <%= link_to 'Cancel', client_building_path(@client,@building), class:'btn btn-danger' %>
   </div>
 <% end %>
 

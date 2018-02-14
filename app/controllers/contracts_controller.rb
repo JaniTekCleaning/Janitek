@@ -14,7 +14,7 @@ class ContractsController < ApplicationController
     authorize Contract
     @contract = Contract.new(contract_params.merge(:building_id=>@building.id))
     @contract.save
-    respond_with(@client,@contract)
+    respond_with(@client, @building, @contract)
   end
 
   def show
@@ -30,7 +30,7 @@ class ContractsController < ApplicationController
   def update
     authorize @contract
     if @contract.update(update_contract_params)
-      redirect_to client_path(@client)
+      redirect_to client_building_path(@client,@building)
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class ContractsController < ApplicationController
   def destroy
     authorize @contract
     @contract.destroy
-    redirect_to @client
+    redirect_to [@client, @building]
   end
 
   private

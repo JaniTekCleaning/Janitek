@@ -45,7 +45,7 @@
       <!-- Task List and Hot Buttons -->
       <div class="col-md-6">
         <div class='widget' id='widget-tasks'>
-          <%= link_to(client_edit_hotbutton_path(@client)) do %>
+          <%= link_to([:edit_hotbutton, @client, @building]) do %>
             <div class='overlay'></div>
             <div class='widget-header'>
               <div class='widget-icon'>

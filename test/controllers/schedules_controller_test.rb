@@ -123,7 +123,7 @@ class SchedulesControllerTest < ActionController::TestCase
     context 'destroy schedule' do
       should 'redirect to client' do
         delete :destroy, id: @schedule.id, client_id: @client.id, building_id: @building.id
-        assert_redirected_to client_path(@client)
+        assert_redirected_to [@client, @building]
       end
       should 'destroy schedule' do
         assert_difference -> { Schedule.count }, -1 do

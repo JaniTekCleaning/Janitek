@@ -95,7 +95,7 @@ class ContractsControllerTest < ActionController::TestCase
         post :create, contract: { :url=>"abc", title: "Foo"  }, client_id: @client.id, building_id: @building.id
       end
 
-      assert_redirected_to client_contract_path(@client, assigns(:contract))
+      assert_redirected_to [@client, @building, assigns(:contract)]
     end
 
     should 'created contract should have client id' do
@@ -115,13 +115,13 @@ class ContractsControllerTest < ActionController::TestCase
 
     should 'update contract' do
       put :update, id: @contract.id, client_id: @client.id, building_id: @building.id, contract: { title: "New" }
-      assert_redirected_to client_path(@client)
+      assert_redirected_to [@client, @building]
     end
 
     context 'destroy contract' do
       should 'redirect to client' do
         delete :destroy, id: @contract.id, client_id: @client.id, building_id: @building.id
-        assert_redirected_to client_path(@client)
+        assert_redirected_to [@client, @building]
       end
       should 'destroy contract' do
         assert_difference -> { Contract.count }, -1 do

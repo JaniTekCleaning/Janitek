@@ -1,8 +1,16 @@
 class BuildingsController < ApplicationController
   before_action :set_client
-  before_action :set_building, except:[:index,:new,:create]
+  before_action :set_building, except:[:index,:new,:create, :select]
 
   respond_to :html
+
+  def select
+    @building = Building.find(params[:building][:id])
+    authorize @building
+    self.current_building = @building
+    # byebug
+    redirect_to root_path
+  end
 
   def show
     authorize @building
@@ -90,7 +98,7 @@ class BuildingsController < ApplicationController
       keys = [:name, :number, :email, :hot_button_list, :logo, :directnumber,
               :street1, :street2, :city, :state, :zip, :notes, :contacttitle,
               :contact]
-      keys << :staff_id if current_user.is_a? Staff
+      keys += [:staff_id, member_ids:[]] if current_user.is_a? Staff
       params.require(:building).permit(keys)
     end
 

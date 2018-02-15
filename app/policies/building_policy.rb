@@ -1,4 +1,10 @@
 class BuildingPolicy < ApplicationPolicy
+
+  def select?
+    return false if user.is_a? Staff
+    user.buildings.include? record
+  end
+
   def index?
     user.class==Staff
   end

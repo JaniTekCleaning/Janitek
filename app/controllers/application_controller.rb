@@ -22,8 +22,17 @@ class ApplicationController < ActionController::Base
   def current_building
     return @current_building if @current_building.present?
     return nil unless current_user.is_a? Member
-    return @current_building = Building.where(id: session[:building_id]).first if session[:building_id]
-    current_user.buildings.first
+    if session[:building_id]
+      @current_building = Building.where(id: session[:building_id]).first
+      return @current_building if @current_building.present?
+    end
+    @current_building = current_user.buildings.first
+  end
+
+  def current_building=(building)
+    # byebug
+    session[:building_id] = building.try(:id)
+    @current_building = building
   end
 
   helper_method :current_building

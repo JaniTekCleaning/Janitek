@@ -1,5 +1,10 @@
 <% if current_user.class==Member %>
-  <%= render 'client' %>
+  <% if current_building %>
+    <%= render 'client' %>
+  <% else %>
+    <h1>Error</h1>
+    <p>There was a system error.  We are unable to display any data for you.  Please contact support.</p>
+  <% end %>
 <% else %>
   <%= render 'staff' %>
 <% end %>

@@ -1,0 +1,15 @@
+<%- title @building.name + " Members" %>
+<%- page_title "Janitek | Client" %>
+<%- back_link_url client_building_path(@client,@building) %>
+
+<%= form_for([@client, @building], url: [:update_members, @client, @building], method: :put) do |f| %>
+
+<%= f.select :member_ids, options_for_select(@client.members.map do |p|
+  ["#{p.first_name} #{p.last_name}", p.id]
+  end), {}, {class: 'custom-select', multiple: true, size: @client.members.count} %>
+
+  <div class="form-group">
+    <%= f.submit class:"btn btn-primary" %>
+  </div>
+
+<% end %>

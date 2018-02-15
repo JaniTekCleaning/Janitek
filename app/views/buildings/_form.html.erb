@@ -70,6 +70,14 @@
       <%= collection_select(:client, :staff_id, Staff.all.order('first_name'), :id, :full_name, prompt: true, class:"form-control") %>
     </div>
   <% end %>
+
+  <div class='form-group'>
+    <%= f.label :member_ids, "Members Assigned To Building" %><br>
+    <%= f.select :member_ids, (@client.members.map do |m|
+            ["#{m.first_name} #{m.last_name}",m.id ]
+          end), {}, {class: 'custom-select', multiple: true, size: @client.members.count}
+      %>
+  </div>
   
   <div class="form-group">
     <%= f.label 'Additional Notes' %><br />

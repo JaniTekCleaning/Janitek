@@ -4,7 +4,10 @@
 <% content_for :building_select do %>
   <%= select_tag :buildings, options_for_select(current_user.buildings.map do |building|
       [building.name, building.id]
-    end), class: "building-drop-down" %>
+    end, current_building.id), class: "building-drop-down", id: "BuildingSelect" %>
+    <%= form_for(Building.new, url: select_client_buildings_path(@client), method: :put, html: {id: "BuildingSelectForm"}) do |f| %>
+      <%= f.hidden_field :id, id: 'BuildingSelectIdentifier' %>
+    <% end %>
 <% end %>
 <%- page_class "page-client-view" %>
 

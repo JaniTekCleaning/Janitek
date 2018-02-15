@@ -47,6 +47,14 @@
           <%= f.label :avatar %><br />
           <%= f.file_field :avatar, class:"form-control" %>
         </div>
+
+        <div class='form-group'>
+          <%= f.label :building_ids, "Assigned To Buildings" %><br>
+          <%= f.select :building_ids, (@client.buildings.map do |b|
+                  [b.name,b.id ]
+                end), {}, {class: 'custom-select', multiple: true, size: @client.members.count}
+            %>
+        </div>
       </div>
     </div>
     <div class="row">

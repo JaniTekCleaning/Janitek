@@ -19,6 +19,13 @@ class BuildingsControllerTest < ActionController::TestCase
       sign_in @user
     end
 
+    should 'change current building' do
+      @controller.current_building = Fabricate(:building, client:@client)
+      put :select, client_id: @client.id, building: {id: @building.id}
+      assert @controller.current_building.id == @building.id
+      assert_redirected_to root_path
+    end
+
     should "should get new" do
       assert_raises(Pundit::NotAuthorizedError){get :new, client_id: @client.id}
     end

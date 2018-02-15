@@ -36,6 +36,7 @@ class MemberPolicy < ApplicationPolicy
     if user.is_a? Staff
       list<<[:password]
       list<<[:password_confirmation]
+      list << [building_ids:[]]
     end
     list
   end

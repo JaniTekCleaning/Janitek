@@ -183,17 +183,12 @@
 <% if policy(Member).update? %>
   <h2 class="member-title">Members</h2>
   <div class='row member-list'>
-    <% @client.members.each do |member| %>
+    <% @building.members.each do |member| %>
       <div class="col-md-3">
         <div class="inside">
           <%= link_to member.full_name, client_member_path(@client,member), class:'btn btn-primary' %>
         </div>
       </div>
     <% end %>
-  </div>
-  <div class="row new-member-wrapper">
-    <div class="col-md-4">
-      <%= link_to 'Add New', new_client_member_path(@client), class:'btn btn-success'  %>
-    </div>
   </div>
 <% end %>

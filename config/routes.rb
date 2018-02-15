@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :clients do
     resources :buildings, except: :index do
-      put 'select', on: :member
+      put 'select', on: :collection
       get 'edit_hotbutton', on: :member
       put 'update_hotbutton', on: :member
       resources :contracts, :except=>[:index]

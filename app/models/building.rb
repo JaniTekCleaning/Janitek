@@ -1,5 +1,5 @@
 class Building < ActiveRecord::Base
-  belongs_to :staff
+  # belongs_to :staff
   belongs_to :client
   
   serialize :hot_button_items, Array

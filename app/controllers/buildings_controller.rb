@@ -8,7 +8,6 @@ class BuildingsController < ApplicationController
     @building = Building.find(params[:building][:id])
     authorize @building
     self.current_building = @building
-    # byebug
     redirect_to root_path
   end
 
@@ -16,7 +15,7 @@ class BuildingsController < ApplicationController
     authorize @building
     @contracts=@building.contracts.limit(10).order(created_at: :desc)
     @schedules=@building.schedules.limit(10).order(created_at: :desc)
-    @staff=@building.staff
+    @staff=@building.client.staff
     respond_with(@building,@contracts,@schedules)
   end
 
@@ -61,7 +60,7 @@ class BuildingsController < ApplicationController
 
   def edit_hotbutton
     authorize @building
-    @staff = @building.staff
+    @staff = @building.client.staff
     @schedule=@building.schedules.order(created_at: :desc).first
     # add_breadcrumb current_user.type=='Staff' ? "Edit" : "Hotbuttons", building_edit_hotbutton_path(@building)
   end
@@ -101,7 +100,7 @@ class BuildingsController < ApplicationController
         :billing_state, :billing_zip]
       if current_user.is_a? Staff
         keys += [
-          :staff_id, :street1, :street2, :city, :state, :zip, member_ids:[]
+          :street1, :street2, :city, :state, :zip, member_ids:[]
         ] 
       end
       params.require(:building).permit(keys)

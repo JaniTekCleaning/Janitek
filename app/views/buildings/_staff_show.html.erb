@@ -49,10 +49,10 @@
               <td>Email:</td>
               <td class="client-email"><%= @building.email %></td>
             </tr>
-            <% if @building.staff %>
+            <% if @client.staff %>
             <tr>
               <td>Account Rep:</td>
-              <td class="client-lead"><%= link_to @building.staff.full_name, @building.staff %></td>
+              <td class="client-lead"><%= link_to @client.staff.full_name, @client.staff %></td>
             </tr>
             <% end %>
             <tr>

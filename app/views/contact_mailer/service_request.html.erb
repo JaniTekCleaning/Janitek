@@ -10,7 +10,7 @@
     <ul>
       <% (0..@service_request.fields.count-1).each do |index| %>
         <% field=@service_request.fields[index] %>
-        <% fieldValue=@fields[index] %>
+        <% fieldValue=@fields[index.to_s] %>
         <li>
           <%= field['title'] %>: 
             <% if field['type'] == 'checkbox' %>

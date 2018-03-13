@@ -3,6 +3,7 @@ class Building < ActiveRecord::Base
   belongs_to :client
   
   serialize :hot_button_items, Array
+  serialize :last_service_request, JSON
 
   validates :name, :presence=>true
   validates :number, :presence=>true

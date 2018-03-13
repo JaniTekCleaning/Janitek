@@ -4,7 +4,8 @@ class ServiceRequestControllerTest < ActionController::TestCase
   context 'authenticated as member' do
     setup do
       @client=Fabricate(:client)
-      @member = Fabricate(:member, :client=>@client)
+      @building = Fabricate(:building, client:@client)
+      @member = Fabricate(:member, :client=>@client, buildings: [@building])
       @service_request=Fabricate(:service_request)
       sign_in @member
     end
@@ -23,6 +24,12 @@ class ServiceRequestControllerTest < ActionController::TestCase
           ContactMailer.expects(:service_request).returns(message)
           message.expects(:deliver_now)
           post :submit, {:form_version=>@service_request.version_number, formField:{'0':'abcd'}}
+        end
+        should 'store data on building' do
+          post :submit, {:form_version=>@service_request.version_number, formField:{'0':'abcd'}}
+          expected = [{"title" => "Test", "type" => "shortText","value" => 'abcd'}]
+          actual = @building.reload.last_service_request
+          assert_equal expected, actual
         end
       end
       context 'invalid version numer' do

@@ -120,7 +120,29 @@
 
 <% if @building.notes.present? %>
   <h2 class='member-title'>Client Notes</h2>
-  <%= simple_format(@building.notes) %>
+  <div class='notes'>
+    <%= simple_format(@building.notes) %>
+  </div>
+<% end %>
+
+<% if @building.last_service_request.present? %>
+  <h2 class='member-title'>Last Service Request</h2>
+  <div class='notes'>
+    <ul>
+      <% @building.last_service_request.each do |item| %>
+        <li>
+
+          <%= item["title"] %>:
+          <% if item["type"] == 'checkbox' %>
+            <%= (!item["value"].nil? && item["value"])? 'yes' : 'no' %>
+          <% else %>
+            <%= item["value"] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  
 <% end %>
 
 <div class='row client-links-wrapper'>

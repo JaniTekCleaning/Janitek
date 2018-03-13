@@ -16,7 +16,16 @@ class ServiceRequestController < ApplicationController
       redirect_to service_request_path
       return
     end
-    ContactMailer.service_request(params[:formField],current_user).deliver_now
+    ActiveRecord::Base.transaction do
+      fields = ServiceRequest.last.fields
+      data = params[:formField]
+      service_request = fields.each_with_index.map do |item, index|
+        {"title": item["title"], "type":item["type"],"value":data[index.to_s]}
+      end
+      # byebug
+      current_building.update!(last_service_request: service_request)
+      ContactMailer.service_request(params[:formField],current_user).deliver_now
+    end
     redirect_to root_path
   end
 

@@ -1,5 +1,5 @@
-$(document).ready(service_request_ready);
-$(document).on('page:load', service_request_ready);
+// $(document).ready(service_request_ready);
+$(document).on('turbolinks:load', service_request_ready);
 
 function maxFormNumber(){
   var formNumber = 0;

@@ -19,16 +19,16 @@ Rails.application.configure do
   # Set true to send emails for testing
   config.action_mailer.perform_deliveries = false
 
-  # Setup actionmailer to use Postmark
-  config.action_mailer.smtp_settings = {
-    :address   => ENV['POSTMARK_SMTP_SERVER'],
-    :port      => 25,
-    :user_name => ENV['POSTMARK_API_TOKEN'],
-    :password  => ENV["POSTMARK_API_TOKEN"],
-    :authentication => :cram_md5,
-    :domain => 'janitek.herokuapp.com',
-    :enable_starttls_auto => true
-  }
+  # # Setup actionmailer to use Postmark
+  # config.action_mailer.smtp_settings = {
+  #   :address   => ENV['POSTMARK_SMTP_SERVER'],
+  #   :port      => 25,
+  #   :user_name => ENV['POSTMARK_API_TOKEN'],
+  #   :password  => ENV["POSTMARK_API_TOKEN"],
+  #   :authentication => :cram_md5,
+  #   :domain => 'janitek.herokuapp.com',
+  #   :enable_starttls_auto => true
+  # }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

@@ -96,9 +96,14 @@ class BuildingsController < ApplicationController
 
     def building_params
       keys = [:name, :number, :email, :hot_button_list, :logo, :directnumber,
-              :street1, :street2, :city, :state, :zip, :notes, :contacttitle,
-              :contact]
-      keys += [:staff_id, member_ids:[]] if current_user.is_a? Staff
+              :notes, :contacttitle,
+              :contact, :billing_street_1, :billing_street_2, :billing_city,
+        :billing_state, :billing_zip]
+      if current_user.is_a? Staff
+        keys += [
+          :staff_id, :street1, :street2, :city, :state, :zip, member_ids:[]
+        ] 
+      end
       params.require(:building).permit(keys)
     end
 

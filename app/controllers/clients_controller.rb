@@ -57,11 +57,17 @@ class ClientsController < ApplicationController
     end
 
     def client_params
+      keys = [
+        :name, :number, :email, :hot_button_list, :logo, :directnumber,
+        :notes, :contacttitle,
+        :contact, :billing_street_1, :billing_street_2, :billing_city,
+        :billing_state, :billing_zip
+      ]
       if current_user.is_a? Staff
-        params.require(:client).permit(:staff_id, :name, :number, :email, :hot_button_list, :logo, :directnumber, :street1, :street2, :city, :state, :zip, :notes, :contacttitle, :contact)
-      else
-        params.require(:client).permit(:name, :number, :email, :hot_button_list, :logo, :directnumber, :street1, :street2, :city, :state, :zip, :notes, :contacttitle, :contact)
+        keys += [:staff_id, :street1, :street2, :city, :state, :zip ] 
       end
+      
+      params.require(:client).permit(keys)
     end
 
     def link_params

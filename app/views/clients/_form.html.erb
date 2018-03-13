@@ -39,25 +39,48 @@
     <%= f.text_field :email, class:"form-control" %>
   </div>
   
+  <% if current_user.is_a? Staff %>
+    <div class="form-group">
+      <%= f.label :street1 %><br />
+      <%= f.text_field :street1, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :street2 %><br />
+      <%= f.text_field :street2, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :city %><br />
+      <%= f.text_field :city, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :state %><br />
+      <%= f.text_field :state, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label 'Zip Code' %><br />
+      <%= f.text_field :zip, class:"form-control" %>
+    </div>
+  <% end %>
+  
   <div class="form-group">
-    <%= f.label :street1 %><br />
-    <%= f.text_field :street1, class:"form-control" %>
+    <%= f.label :billing_street_1 %><br />
+    <%= f.text_field :billing_street_1, class:"form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :street2 %><br />
-    <%= f.text_field :street2, class:"form-control" %>
+    <%= f.label :billing_street_2 %><br />
+    <%= f.text_field :billing_street_2, class:"form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :city %><br />
-    <%= f.text_field :city, class:"form-control" %>
+    <%= f.label :billing_city %><br />
+    <%= f.text_field :billing_city, class:"form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :state %><br />
-    <%= f.text_field :state, class:"form-control" %>
+    <%= f.label :billing_state %><br />
+    <%= f.text_field :billing_state, class:"form-control" %>
   </div>
   <div class="form-group">
     <%= f.label 'Zip Code' %><br />
-    <%= f.text_field :zip, class:"form-control" %>
+    <%= f.text_field :billing_zip, class:"form-control" %>
   </div>
   
   <div class="form-group">

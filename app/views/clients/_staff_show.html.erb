@@ -56,23 +56,54 @@
             <% end %>
             <tr>
               <td>Site Address:</td>
-              <td><div class="address-wrapper">
-                    <div class="street1">
-                      <%= @client.street1 %>
-                    </div>
-                    <% if @client.street2 %>
-                    <div class="street2">
-                      <%= @client.street2 %>
-                    </div>
+              <td>
+                <div class="address-wrapper">
+                  <div class="street1">
+                    <%= @client.street1 %>
+                  </div>
+                  <% if @client.street2 %>
+                  <div class="street2">
+                    <%= @client.street2 %>
+                  </div>
+                  <% end %>
+                  <div class="city-state-zip">
+                    <span class="city"><%= @client.city %></span>
+                    <% if @client.state && !@client.state.empty? %>
+                    , <span class="state"><%= @client.state %></span>
                     <% end %>
-                    <div class="city-state-zip">
-                      <span class="city"><%= @client.city %></span>
-                      <% if @client.state && !@client.state.empty? %>
-                      , <span class="state"><%= @client.state %></span>
-                      <% end %>
-                      <span class="zip-code"><%= @client.zip %></span>
-                    </div>
-                  </div></td>
+                    <span class="zip-code"><%= @client.zip %></span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Billing Address:</td>
+              <td>
+                <div class="address-wrapper">
+                  <div class="street1">
+                    <%= @client.billing_street_1 %>
+                  </div>
+                  <% if @client.billing_street_2.present? %>
+                  <div class="street2">
+                    <%= @client.billing_street_1 %>
+                  </div>
+                  <% end %>
+                  <div class="city-state-zip">
+                    <span class="city"><%= @client.billing_city %></span>
+                    <% if @client.billing_state.present? %>
+                    , <span class="state"><%= @client.billing_state %></span>
+                    <% end %>
+                    <span class="zip-code"><%= @client.billing_zip %></span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Primary Contact</td>
+              <td>
+                Name: <%= @client.contact %><br>
+                Title: <%= @client.contacttitle %>  
+              </td>
             </tr>
           </tbody>
         </table>
@@ -85,6 +116,11 @@
     <% end %>
   </div>
 </div>
+
+<% if @client.notes.present? %>
+  <h2 class='member-title'>Client Notes</h2>
+  <%= simple_format(@client.notes) %>
+<% end %>
 
 <% if true %>
   <h2 class="member-title">Buildings</h2>

@@ -119,7 +119,9 @@
 
 <% if @client.notes.present? %>
   <h2 class='member-title'>Client Notes</h2>
-  <%= simple_format(@client.notes) %>
+  <div class='notes'>
+    <%= simple_format(@client.notes) %>
+  </div>
 <% end %>
 
 <% if true %>
@@ -127,7 +129,7 @@
   <div class='row member-list'>
     <% @client.buildings.each do |building| %>
       <div class="col-md-3">
-        <div class="inside">
+        <div class="inside list-button">
           <%= link_to building.name, [@client, building], class:'btn btn-primary' %>
         </div>
       </div>
@@ -146,7 +148,7 @@
   <div class='row member-list'>
     <% @client.members.each do |member| %>
       <div class="col-md-3">
-        <div class="inside">
+        <div class="inside list-button">
           <%= link_to member.full_name, client_member_path(@client,member), class:'btn btn-primary' %>
         </div>
       </div>

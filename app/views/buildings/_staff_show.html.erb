@@ -221,7 +221,7 @@
   <div class='row member-list'>
     <% @building.members.each do |member| %>
       <div class="col-md-3">
-        <div class="inside">
+        <div class="inside list-button">
           <%= link_to member.full_name, client_member_path(@client,member), class:'btn btn-primary' %>
         </div>
       </div>
